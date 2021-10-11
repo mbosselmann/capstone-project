@@ -19,10 +19,13 @@ function Book(props) {
           </p>
         </div>
         <div>
-          {!props.readingStatus
-            ? `Reading since: ${props.readingStatusDate}`
-            : `
+          <div>{!props.readingStatus ? '' : 'Rating'}</div>
+          <div>
+            {!props.readingStatus
+              ? `Reading since: ${props.readingStatusDate}`
+              : `
         Finished since: ${props.finishedSince}`}
+          </div>
         </div>
       </Content>
     </Wrapper>
