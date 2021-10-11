@@ -3,37 +3,16 @@ import Book from './Book'
 import placeholder from '../images/placeholder.png'
 
 describe('Book', () => {
-  const books = [
-    {
-      id: '1',
-      bookCover: placeholder,
-      title: 'Harry Potter and the Goblet of Fire',
-      authors: ['J. K. Rowling'],
-      finished: false,
-      readingSince: '05/2021',
-      finishedSince: '',
-    },
-    {
-      id: '2',
-      bookCover: placeholder,
-      title: 'Cathedral of the Sea',
-      authors: ['Ildefonso Falcones de Sierra'],
-      finished: true,
-      readingSince: '05/2021',
-      finishedSince: '08/2021',
-    },
-  ]
-
   it('renders book currently read', () => {
     render(
       <Book
-        key={books[0].id}
-        title={books[0].title}
-        authors={books[0].authors}
-        readingStatus={books[0].finished}
-        readingStatusDate={books[0].readingSince}
-        finishedSince={books[0].finishedSince}
-        bookCover={books[0].bookCover}
+        key={'1'}
+        title={'Harry Potter and the Goblet of Fire'}
+        authors={['J. K. Rowling']}
+        readingStatus={false}
+        readingStatusDate={'05/2021'}
+        finishedSince={''}
+        bookCover={placeholder}
       />
     )
 
@@ -44,13 +23,13 @@ describe('Book', () => {
   it('renders book that is already read', () => {
     render(
       <Book
-        key={books[1].id}
-        title={books[1].title}
-        authors={books[1].authors}
-        readingStatus={books[1].finished}
-        readingStatusDate={books[1].readingSince}
-        finishedSince={books[1].finishedSince}
-        bookCover={books[1].bookCover}
+        key={'2'}
+        title={'Cathedral of the Sea'}
+        authors={['Ildefonso Falcones de Sierra']}
+        readingStatus={true}
+        readingStatusDate={'05/2021'}
+        finishedSince={'08/2021'}
+        bookCover={placeholder}
       />
     )
 
@@ -61,48 +40,49 @@ describe('Book', () => {
   it('renders listitem with correct text', () => {
     render(
       <Book
-        key={books[1].id}
-        title={books[1].title}
-        authors={books[1].authors}
-        readingStatus={books[1].finished}
-        readingStatusDate={books[1].readingSince}
-        finishedSince={books[1].finishedSince}
-        bookCover={books[1].bookCover}
+        key={'2'}
+        title={'Cathedral of the Sea'}
+        authors={['Ildefonso Falcones de Sierra']}
+        readingStatus={true}
+        readingStatusDate={'05/2021'}
+        finishedSince={'08/2021'}
+        bookCover={placeholder}
       />
     )
 
-    const listitemContent = screen.getByRole('listitem')
-    expect(listitemContent).toBeInTheDocument(`
-      ${books[1].title}, ${books[1].authors}, ${books[1].readingSince}, ${books[1].finishedSince}
-      `)
+    expect(screen.getByText('Cathedral of the Sea')).toBeInTheDocument()
+    expect(
+      screen.getByText('by Ildefonso Falcones de Sierra')
+    ).toBeInTheDocument()
+    expect(screen.getByText('Finished since: 08/2021')).toBeInTheDocument()
   })
 
   it('displays image', () => {
     render(
       <Book
-        key={books[1].id}
-        title={books[1].title}
-        authors={books[1].authors}
-        readingStatus={books[1].finished}
-        readingStatusDate={books[1].readingSince}
-        finishedSince={books[1].finishedSince}
-        bookCover={books[1].bookCover}
+        key={'2'}
+        title={'Cathedral of the Sea'}
+        authors={['Ildefonso Falcones de Sierra']}
+        readingStatus={true}
+        readingStatusDate={'05/2021'}
+        finishedSince={'08/2021'}
+        bookCover={placeholder}
       />
     )
     const displayedImage = screen.getByRole('img')
-    expect(displayedImage).toBeInTheDocument(`${books[1].bookCover}`)
+    expect(displayedImage).toBeInTheDocument(`${placeholder}`)
   })
 
   it('displayed image has an alt-text', () => {
     render(
       <Book
-        key={books[1].id}
-        title={books[1].title}
-        authors={books[1].authors}
-        readingStatus={books[1].finished}
-        readingStatusDate={books[1].readingSince}
-        finishedSince={books[1].finishedSince}
-        bookCover={books[1].bookCover}
+        key={'2'}
+        title={'Cathedral of the Sea'}
+        authors={['Ildefonso Falcones de Sierra']}
+        readingStatus={true}
+        readingStatusDate={'05/2021'}
+        finishedSince={'08/2021'}
+        bookCover={placeholder}
       />
     )
     const altText = screen.getByAltText('bookcover')

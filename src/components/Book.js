@@ -1,30 +1,32 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 
-function Book(props) {
+function Book({
+  bookCover,
+  title,
+  authors,
+  readingStatus,
+  readingStatusDate,
+  finishedSince,
+}) {
   return (
     <Wrapper>
-      <Img>
-        <div>
-          <img src={props.bookCover} alt="bookcover" />
-        </div>
-      </Img>
+      <ImgContainer>
+        <img src={bookCover} alt="bookcover" />
+      </ImgContainer>
       <Content>
         <div>
-          <h3>{props.title}</h3>
+          <h3>{title}</h3>
           <p>
             by
-            {props.authors.length > 1
-              ? ` ${props.authors[0]}`
-              : ` ${props.authors}`}
+            {authors.length > 1 ? ` ${authors[0]}` : ` ${authors}`}
           </p>
         </div>
         <div>
-          <div>{!props.readingStatus ? '' : 'Rating'}</div>
+          <div>{!readingStatus ? '' : 'Rating'}</div>
           <div>
-            {!props.readingStatus
-              ? `Reading since: ${props.readingStatusDate}`
-              : `
-        Finished since: ${props.finishedSince}`}
+            {!readingStatus
+              ? `Reading since: ${readingStatusDate}`
+              : `Finished since: ${finishedSince}`}
           </div>
         </div>
       </Content>
@@ -43,22 +45,17 @@ const Wrapper = styled.li`
   min-height: 150px;
   box-shadow: 5px 4px 10px 0px rgba(0, 0, 0, 0.25);
 `
-const Img = styled.div`
+const ImgContainer = styled.div`
   flex: 1;
   background-color: #f6f6f6;
   display: flex;
+  justify-content: center;
+  align-items: center;
 
-  div {
-    width: 100%;
-    margin: 10px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  div img {
-    width: 60%;
+  img {
     box-shadow: 5px 4px 10px 0px rgba(0, 0, 0, 0.25);
+    width: 60%;
+    margin: 10px 10px;
   }
 `
 
