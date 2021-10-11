@@ -8,13 +8,13 @@ export default {
 
 const Template = args => <Book {...args} />
 
-export const Books = Template.bind({})
-Books.args = {
+export const OneBook = Template.bind({})
+OneBook.args = {
   id: '1',
   bookCover: placeholder,
   title: 'Harry Potter and the Goblet of Fire',
   authors: ['J. K. Rowling'],
   finished: false,
-  readingSince: '05/2021',
+  readingStatusDate: '05/2021',
   finishedSince: '',
 }
