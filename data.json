@@ -1,0 +1,808 @@
+[
+  {
+    "kind": "books#volumes",
+    "totalItems": 1,
+    "items": [
+      {
+        "kind": "books#volume",
+        "id": "PXOqDwAAQBAJ",
+        "etag": "+30D8NcX61k",
+        "selfLink": "https://www.googleapis.com/books/v1/volumes/PXOqDwAAQBAJ",
+        "volumeInfo": {
+          "title": "Das NEINhorn",
+          "authors": ["Marc-Uwe Kling"],
+          "publisher": "Carlsen Verlag",
+          "publishedDate": "2019-10-05",
+          "description": "Im Herzwald kommt ein kleines, schnickeldischnuckeliges Einhorn zur Welt. Aber obwohl alle ganz lilalieb zu ihm sind und es ständig mit gezuckertem Glücksklee füttern, benimmt sich das Tierchen ganz und gar nicht einhornmäßig. Es sagt einfach immer Nein, sodass seine Familie es bald nur noch NEINhorn nennt. Eines Tages bricht das NEINhorn aus seiner Zuckerwattewelt aus. Es trifft einen Waschbären, der nicht zuhören will, einen Hund, dem echt alles schnuppe ist, und eine Prinzessin, die immer Widerworte gibt. Die vier sind ein ziemlich gutes Team. Denn sogar bockig sein macht zusammen viel mehr Spaß! Vom Autoren der Känguru-Chroniken und des Spiegel-Bestsellers \"Der Tag, an dem die Oma das Internet kaputt gemacht hat\"",
+          "industryIdentifiers": [
+            {
+              "type": "ISBN_13",
+              "identifier": "9783551518415"
+            },
+            {
+              "type": "ISBN_10",
+              "identifier": "3551518416"
+            }
+          ],
+          "readingModes": {
+            "text": false,
+            "image": true
+          },
+          "pageCount": 48,
+          "printType": "BOOK",
+          "categories": ["Juvenile Fiction"],
+          "maturityRating": "NOT_MATURE",
+          "allowAnonLogging": false,
+          "contentVersion": "preview-1.0.0",
+          "panelizationSummary": {
+            "containsEpubBubbles": false,
+            "containsImageBubbles": false
+          },
+          "imageLinks": {
+            "smallThumbnail": "http://books.google.com/books/content?id=PXOqDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+            "thumbnail": "http://books.google.com/books/content?id=PXOqDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+          },
+          "language": "de",
+          "previewLink": "http://books.google.de/books?id=PXOqDwAAQBAJ&printsec=frontcover&dq=isbn:9783551518415&hl=&cd=1&source=gbs_api",
+          "infoLink": "http://books.google.de/books?id=PXOqDwAAQBAJ&dq=isbn:9783551518415&hl=&source=gbs_api",
+          "canonicalVolumeLink": "https://books.google.com/books/about/Das_NEINhorn.html?hl=&id=PXOqDwAAQBAJ"
+        },
+        "saleInfo": {
+          "country": "DE",
+          "saleability": "NOT_FOR_SALE",
+          "isEbook": false
+        },
+        "accessInfo": {
+          "country": "DE",
+          "viewability": "PARTIAL",
+          "embeddable": true,
+          "publicDomain": false,
+          "textToSpeechPermission": "ALLOWED",
+          "epub": {
+            "isAvailable": false
+          },
+          "pdf": {
+            "isAvailable": false
+          },
+          "webReaderLink": "http://play.google.com/books/reader?id=PXOqDwAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+          "accessViewStatus": "SAMPLE",
+          "quoteSharingAllowed": false
+        },
+        "searchInfo": {
+          "textSnippet": "Es sagt einfach immer Nein, sodass seine Familie es bald nur noch NEINhorn nennt. Eines Tages bricht das NEINhorn aus seiner Zuckerwattewelt aus."
+        }
+      }
+    ]
+  },
+  {
+    "kind": "books#volumes",
+    "totalItems": 1,
+    "items": [
+      {
+        "kind": "books#volume",
+        "id": "xL34yAEACAAJ",
+        "etag": "9MObzm8fk8A",
+        "selfLink": "https://www.googleapis.com/books/v1/volumes/xL34yAEACAAJ",
+        "volumeInfo": {
+          "title": "Harry Potter and the Goblet of Fire - Ravenclaw Edition",
+          "authors": ["J. K. Rowling"],
+          "publisher": "Bloomsbury Children's Books",
+          "publishedDate": "2020-01-23",
+          "description": "Harry Potter joins the Weasleys at the Quidditch World Cup, then enters his fourth year at Hogwarts Academy where he is mysteriously entered in an unusual contest that challenges his wizarding skills, friendships and character, amid signs that an old enemy is growing stronger. Harry's fouth year is packed with more great Ravenclaw moments and characters, including the return of Moaning Myrtle... Look inside to discover more Ravenclaw-themed features and illustrations by Levi Pinfold.",
+          "industryIdentifiers": [
+            {
+              "type": "ISBN_10",
+              "identifier": "1526610329"
+            },
+            {
+              "type": "ISBN_13",
+              "identifier": "9781526610324"
+            }
+          ],
+          "readingModes": {
+            "text": false,
+            "image": false
+          },
+          "pageCount": 627,
+          "printType": "BOOK",
+          "categories": ["Juvenile Fiction"],
+          "maturityRating": "NOT_MATURE",
+          "allowAnonLogging": false,
+          "contentVersion": "preview-1.0.0",
+          "panelizationSummary": {
+            "containsEpubBubbles": false,
+            "containsImageBubbles": false
+          },
+          "imageLinks": {
+            "smallThumbnail": "http://books.google.com/books/content?id=xL34yAEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+            "thumbnail": "http://books.google.com/books/content?id=xL34yAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+          },
+          "language": "en",
+          "previewLink": "http://books.google.de/books?id=xL34yAEACAAJ&dq=isbn:9781526610324&hl=&cd=1&source=gbs_api",
+          "infoLink": "http://books.google.de/books?id=xL34yAEACAAJ&dq=isbn:9781526610324&hl=&source=gbs_api",
+          "canonicalVolumeLink": "https://books.google.com/books/about/Harry_Potter_and_the_Goblet_of_Fire_Rave.html?hl=&id=xL34yAEACAAJ"
+        },
+        "saleInfo": {
+          "country": "DE",
+          "saleability": "NOT_FOR_SALE",
+          "isEbook": false
+        },
+        "accessInfo": {
+          "country": "DE",
+          "viewability": "NO_PAGES",
+          "embeddable": false,
+          "publicDomain": false,
+          "textToSpeechPermission": "ALLOWED",
+          "epub": {
+            "isAvailable": false
+          },
+          "pdf": {
+            "isAvailable": false
+          },
+          "webReaderLink": "http://play.google.com/books/reader?id=xL34yAEACAAJ&hl=&printsec=frontcover&source=gbs_api",
+          "accessViewStatus": "NONE",
+          "quoteSharingAllowed": false
+        },
+        "searchInfo": {
+          "textSnippet": "Harry Potter joins the Weasleys at the Quidditch World Cup, then enters his fourth year at Hogwarts Academy where he is mysteriously entered in an unusual contest that challenges his wizarding skills, friendships and character, amid signs ..."
+        }
+      }
+    ]
+  },
+  {
+    "kind": "books#volumes",
+    "totalItems": 2,
+    "items": [
+      {
+        "kind": "books#volume",
+        "id": "AsefzgEACAAJ",
+        "etag": "78HPsfH6OG0",
+        "selfLink": "https://www.googleapis.com/books/v1/volumes/AsefzgEACAAJ",
+        "volumeInfo": {
+          "title": "Eloquent JavaScript, 3rd Edition",
+          "authors": ["Marijn Haverbeke"],
+          "publishedDate": "2021",
+          "industryIdentifiers": [
+            {
+              "type": "ISBN_10",
+              "identifier": "1593279507"
+            },
+            {
+              "type": "ISBN_13",
+              "identifier": "9781593279509"
+            }
+          ],
+          "readingModes": {
+            "text": false,
+            "image": false
+          },
+          "printType": "BOOK",
+          "maturityRating": "NOT_MATURE",
+          "allowAnonLogging": false,
+          "contentVersion": "preview-1.0.0",
+          "panelizationSummary": {
+            "containsEpubBubbles": false,
+            "containsImageBubbles": false
+          },
+          "language": "en",
+          "previewLink": "http://books.google.de/books?id=AsefzgEACAAJ&dq=isbn:9781593279509&hl=&cd=1&source=gbs_api",
+          "infoLink": "http://books.google.de/books?id=AsefzgEACAAJ&dq=isbn:9781593279509&hl=&source=gbs_api",
+          "canonicalVolumeLink": "https://books.google.com/books/about/Eloquent_JavaScript_3rd_Edition.html?hl=&id=AsefzgEACAAJ"
+        },
+        "saleInfo": {
+          "country": "DE",
+          "saleability": "NOT_FOR_SALE",
+          "isEbook": false
+        },
+        "accessInfo": {
+          "country": "DE",
+          "viewability": "NO_PAGES",
+          "embeddable": false,
+          "publicDomain": false,
+          "textToSpeechPermission": "ALLOWED",
+          "epub": {
+            "isAvailable": false
+          },
+          "pdf": {
+            "isAvailable": false
+          },
+          "webReaderLink": "http://play.google.com/books/reader?id=AsefzgEACAAJ&hl=&printsec=frontcover&source=gbs_api",
+          "accessViewStatus": "NONE",
+          "quoteSharingAllowed": false
+        }
+      },
+      {
+        "kind": "books#volume",
+        "id": "p1v6DwAAQBAJ",
+        "etag": "ehD/4gLzkCM",
+        "selfLink": "https://www.googleapis.com/books/v1/volumes/p1v6DwAAQBAJ",
+        "volumeInfo": {
+          "title": "Eloquent JavaScript",
+          "subtitle": "A Modern Introduction to Programming",
+          "authors": ["Marijn Haverbeke"],
+          "publishedDate": "2018-11-15",
+          "description": "Diving deep into the JavaScript language to show you how to write beautiful, effective code, this book uses extensive examples and immerses you in code from the start, while exercises and full-chapter projects give you hands-on experience with writing your own programs. --",
+          "industryIdentifiers": [
+            {
+              "type": "ISBN_13",
+              "identifier": "9781593279509"
+            },
+            {
+              "type": "ISBN_10",
+              "identifier": "1593279507"
+            }
+          ],
+          "readingModes": {
+            "text": false,
+            "image": false
+          },
+          "pageCount": 450,
+          "printType": "BOOK",
+          "categories": ["Computers"],
+          "averageRating": 3.5,
+          "ratingsCount": 2,
+          "maturityRating": "NOT_MATURE",
+          "allowAnonLogging": false,
+          "contentVersion": "preview-1.0.0",
+          "panelizationSummary": {
+            "containsEpubBubbles": false,
+            "containsImageBubbles": false
+          },
+          "imageLinks": {
+            "smallThumbnail": "http://books.google.com/books/content?id=p1v6DwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+            "thumbnail": "http://books.google.com/books/content?id=p1v6DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+          },
+          "language": "en",
+          "previewLink": "http://books.google.de/books?id=p1v6DwAAQBAJ&printsec=frontcover&dq=isbn:9781593279509&hl=&cd=2&source=gbs_api",
+          "infoLink": "http://books.google.de/books?id=p1v6DwAAQBAJ&dq=isbn:9781593279509&hl=&source=gbs_api",
+          "canonicalVolumeLink": "https://books.google.com/books/about/Eloquent_JavaScript.html?hl=&id=p1v6DwAAQBAJ"
+        },
+        "saleInfo": {
+          "country": "DE",
+          "saleability": "NOT_FOR_SALE",
+          "isEbook": false
+        },
+        "accessInfo": {
+          "country": "DE",
+          "viewability": "PARTIAL",
+          "embeddable": true,
+          "publicDomain": false,
+          "textToSpeechPermission": "ALLOWED",
+          "epub": {
+            "isAvailable": false
+          },
+          "pdf": {
+            "isAvailable": false
+          },
+          "webReaderLink": "http://play.google.com/books/reader?id=p1v6DwAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+          "accessViewStatus": "SAMPLE",
+          "quoteSharingAllowed": false
+        },
+        "searchInfo": {
+          "textSnippet": "Diving deep into the JavaScript language to show you how to write beautiful, effective code, this book uses extensive examples and immerses you in code from the start, while exercises and full-chapter projects give you hands-on experience ..."
+        }
+      }
+    ]
+  },
+  {
+    "kind": "books#volumes",
+    "totalItems": 1,
+    "items": [
+      {
+        "kind": "books#volume",
+        "id": "fimTNQEACAAJ",
+        "etag": "EQhkrOoHbUA",
+        "selfLink": "https://www.googleapis.com/books/v1/volumes/fimTNQEACAAJ",
+        "volumeInfo": {
+          "title": "Cathedral of the Sea",
+          "authors": ["Ildefonso Falcones de Sierra", "Ildefonso Falcones"],
+          "publisher": "New Amer Library",
+          "publishedDate": "2009-04",
+          "description": "An English-language translation of a best-selling work in Spain follows the fortunes of the Estanyol family in medieval Barcelona, whose rise from peasantry is marked by their stoneworker son's role in building the Santa Maria del Mar cathedral and his forbidden love for a Jewish woman. Reprint.",
+          "industryIdentifiers": [
+            {
+              "type": "ISBN_10",
+              "identifier": "0451225996"
+            },
+            {
+              "type": "ISBN_13",
+              "identifier": "9780451225993"
+            }
+          ],
+          "readingModes": {
+            "text": false,
+            "image": false
+          },
+          "pageCount": 611,
+          "printType": "BOOK",
+          "categories": ["Fiction"],
+          "averageRating": 5,
+          "ratingsCount": 1,
+          "maturityRating": "NOT_MATURE",
+          "allowAnonLogging": false,
+          "contentVersion": "preview-1.0.0",
+          "imageLinks": {
+            "smallThumbnail": "http://books.google.com/books/content?id=fimTNQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+            "thumbnail": "http://books.google.com/books/content?id=fimTNQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+          },
+          "language": "en",
+          "previewLink": "http://books.google.de/books?id=fimTNQEACAAJ&dq=isbn:9780451225993&hl=&cd=1&source=gbs_api",
+          "infoLink": "http://books.google.de/books?id=fimTNQEACAAJ&dq=isbn:9780451225993&hl=&source=gbs_api",
+          "canonicalVolumeLink": "https://books.google.com/books/about/Cathedral_of_the_Sea.html?hl=&id=fimTNQEACAAJ"
+        },
+        "saleInfo": {
+          "country": "DE",
+          "saleability": "NOT_FOR_SALE",
+          "isEbook": false
+        },
+        "accessInfo": {
+          "country": "DE",
+          "viewability": "NO_PAGES",
+          "embeddable": false,
+          "publicDomain": false,
+          "textToSpeechPermission": "ALLOWED",
+          "epub": {
+            "isAvailable": false
+          },
+          "pdf": {
+            "isAvailable": false
+          },
+          "webReaderLink": "http://play.google.com/books/reader?id=fimTNQEACAAJ&hl=&printsec=frontcover&source=gbs_api",
+          "accessViewStatus": "NONE",
+          "quoteSharingAllowed": false
+        },
+        "searchInfo": {
+          "textSnippet": "An English-language translation of a best-selling work in Spain follows the fortunes of the Estanyol family in medieval Barcelona, whose rise from peasantry is marked by their stoneworker son&#39;s role in building the Santa Maria del Mar ..."
+        }
+      }
+    ]
+  },
+  {
+    "kind": "books#volumes",
+    "totalItems": 1,
+    "items": [
+      {
+        "kind": "books#volume",
+        "id": "fkOKDQAAQBAJ",
+        "etag": "q2SQLFH5GAg",
+        "selfLink": "https://www.googleapis.com/books/v1/volumes/fkOKDQAAQBAJ",
+        "volumeInfo": {
+          "title": "Start with why",
+          "subtitle": "How Great Leaders Inspire Everyone to Take Action",
+          "authors": ["Simon Sinek"],
+          "publisher": "Penguin",
+          "publishedDate": "2011",
+          "description": "Draws on real-life stories and figures, including Martin Luther King, Jr. and Steve Jobs, to examine the qualities a good leader requires in order to inspire and motivate people.",
+          "industryIdentifiers": [
+            {
+              "type": "ISBN_13",
+              "identifier": "9781591846444"
+            },
+            {
+              "type": "ISBN_10",
+              "identifier": "1591846447"
+            }
+          ],
+          "readingModes": {
+            "text": false,
+            "image": false
+          },
+          "pageCount": 246,
+          "printType": "BOOK",
+          "categories": ["Business & Economics"],
+          "averageRating": 3.5,
+          "ratingsCount": 22,
+          "maturityRating": "NOT_MATURE",
+          "allowAnonLogging": false,
+          "contentVersion": "0.2.0.0.preview.0",
+          "panelizationSummary": {
+            "containsEpubBubbles": false,
+            "containsImageBubbles": false
+          },
+          "imageLinks": {
+            "smallThumbnail": "http://books.google.com/books/content?id=fkOKDQAAQBAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+            "thumbnail": "http://books.google.com/books/content?id=fkOKDQAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+          },
+          "language": "en",
+          "previewLink": "http://books.google.de/books?id=fkOKDQAAQBAJ&dq=isbn:9781591846444&hl=&cd=1&source=gbs_api",
+          "infoLink": "http://books.google.de/books?id=fkOKDQAAQBAJ&dq=isbn:9781591846444&hl=&source=gbs_api",
+          "canonicalVolumeLink": "https://books.google.com/books/about/Start_with_why.html?hl=&id=fkOKDQAAQBAJ"
+        },
+        "saleInfo": {
+          "country": "DE",
+          "saleability": "NOT_FOR_SALE",
+          "isEbook": false
+        },
+        "accessInfo": {
+          "country": "DE",
+          "viewability": "NO_PAGES",
+          "embeddable": false,
+          "publicDomain": false,
+          "textToSpeechPermission": "ALLOWED",
+          "epub": {
+            "isAvailable": false
+          },
+          "pdf": {
+            "isAvailable": false
+          },
+          "webReaderLink": "http://play.google.com/books/reader?id=fkOKDQAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+          "accessViewStatus": "NONE",
+          "quoteSharingAllowed": false
+        },
+        "searchInfo": {
+          "textSnippet": "Draws on real-life stories and figures, including Martin Luther King, Jr. and Steve Jobs, to examine the qualities a good leader requires in order to inspire and motivate people."
+        }
+      }
+    ]
+  },
+  {
+    "kind": "books#volumes",
+    "totalItems": 1,
+    "items": [
+      {
+        "kind": "books#volume",
+        "id": "DrIGogEACAAJ",
+        "etag": "xgMVomFC4Gs",
+        "selfLink": "https://www.googleapis.com/books/v1/volumes/DrIGogEACAAJ",
+        "volumeInfo": {
+          "title": "Die Intelligenz der Pflanzen",
+          "authors": ["Stefano Mancuso", "Alessandra Viola"],
+          "publishedDate": "2015-02-11",
+          "industryIdentifiers": [
+            {
+              "type": "ISBN_10",
+              "identifier": "3956140303"
+            },
+            {
+              "type": "ISBN_13",
+              "identifier": "9783956140303"
+            }
+          ],
+          "readingModes": {
+            "text": false,
+            "image": false
+          },
+          "pageCount": 166,
+          "printType": "BOOK",
+          "maturityRating": "NOT_MATURE",
+          "allowAnonLogging": false,
+          "contentVersion": "preview-1.0.0",
+          "imageLinks": {
+            "smallThumbnail": "http://books.google.com/books/content?id=DrIGogEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+            "thumbnail": "http://books.google.com/books/content?id=DrIGogEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+          },
+          "language": "de",
+          "previewLink": "http://books.google.de/books?id=DrIGogEACAAJ&dq=isbn:9783956140303&hl=&cd=1&source=gbs_api",
+          "infoLink": "http://books.google.de/books?id=DrIGogEACAAJ&dq=isbn:9783956140303&hl=&source=gbs_api",
+          "canonicalVolumeLink": "https://books.google.com/books/about/Die_Intelligenz_der_Pflanzen.html?hl=&id=DrIGogEACAAJ"
+        },
+        "saleInfo": {
+          "country": "DE",
+          "saleability": "NOT_FOR_SALE",
+          "isEbook": false
+        },
+        "accessInfo": {
+          "country": "DE",
+          "viewability": "NO_PAGES",
+          "embeddable": false,
+          "publicDomain": false,
+          "textToSpeechPermission": "ALLOWED",
+          "epub": {
+            "isAvailable": false
+          },
+          "pdf": {
+            "isAvailable": false
+          },
+          "webReaderLink": "http://play.google.com/books/reader?id=DrIGogEACAAJ&hl=&printsec=frontcover&source=gbs_api",
+          "accessViewStatus": "NONE",
+          "quoteSharingAllowed": false
+        }
+      }
+    ]
+  },
+  {
+    "kind": "books#volumes",
+    "totalItems": 1,
+    "items": [
+      {
+        "kind": "books#volume",
+        "id": "jhK3JTPLSIgC",
+        "etag": "OZ5+uxAowtA",
+        "selfLink": "https://www.googleapis.com/books/v1/volumes/jhK3JTPLSIgC",
+        "volumeInfo": {
+          "title": "Man and the Natural World",
+          "subtitle": "Changing Attitudes in England 1500-1800",
+          "authors": ["Keith Thomas"],
+          "publisher": "Penguin UK",
+          "publishedDate": "1991-09-26",
+          "description": "An account of the changing attitudes in people towards nature and the environment between 1500-1800, and comparing and contrasting this with our present attitude towards it.",
+          "industryIdentifiers": [
+            {
+              "type": "ISBN_13",
+              "identifier": "9780140146868"
+            },
+            {
+              "type": "ISBN_10",
+              "identifier": "0140146865"
+            }
+          ],
+          "readingModes": {
+            "text": true,
+            "image": false
+          },
+          "pageCount": 432,
+          "printType": "BOOK",
+          "categories": ["Science"],
+          "maturityRating": "NOT_MATURE",
+          "allowAnonLogging": false,
+          "contentVersion": "0.3.1.0.preview.2",
+          "imageLinks": {
+            "smallThumbnail": "http://books.google.com/books/content?id=jhK3JTPLSIgC&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+            "thumbnail": "http://books.google.com/books/content?id=jhK3JTPLSIgC&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+          },
+          "language": "en",
+          "previewLink": "http://books.google.de/books?id=jhK3JTPLSIgC&dq=isbn:9780140146868&hl=&cd=1&source=gbs_api",
+          "infoLink": "http://books.google.de/books?id=jhK3JTPLSIgC&dq=isbn:9780140146868&hl=&source=gbs_api",
+          "canonicalVolumeLink": "https://books.google.com/books/about/Man_and_the_Natural_World.html?hl=&id=jhK3JTPLSIgC"
+        },
+        "saleInfo": {
+          "country": "DE",
+          "saleability": "NOT_FOR_SALE",
+          "isEbook": false
+        },
+        "accessInfo": {
+          "country": "DE",
+          "viewability": "NO_PAGES",
+          "embeddable": false,
+          "publicDomain": false,
+          "textToSpeechPermission": "ALLOWED",
+          "epub": {
+            "isAvailable": true
+          },
+          "pdf": {
+            "isAvailable": false
+          },
+          "webReaderLink": "http://play.google.com/books/reader?id=jhK3JTPLSIgC&hl=&printsec=frontcover&source=gbs_api",
+          "accessViewStatus": "NONE",
+          "quoteSharingAllowed": false
+        },
+        "searchInfo": {
+          "textSnippet": "An account of the changing attitudes in people towards nature and the environment between 1500-1800, and comparing and contrasting this with our present attitude towards it."
+        }
+      }
+    ]
+  },
+  {
+    "kind": "books#volumes",
+    "totalItems": 1,
+    "items": [
+      {
+        "kind": "books#volume",
+        "id": "qBfRDQAAQBAJ",
+        "etag": "y42LYUNyazA",
+        "selfLink": "https://www.googleapis.com/books/v1/volumes/qBfRDQAAQBAJ",
+        "volumeInfo": {
+          "title": "The Design of Everyday Things",
+          "subtitle": "Revised and Expanded Edition",
+          "authors": ["Don Norman"],
+          "publisher": "Basic Books (AZ)",
+          "publishedDate": "2013-11-05",
+          "description": "Even the smartest among us can feel inept as we fail to figure out which light switch or oven burner to turn on, or whether to push, pull, or slide a door. The fault, argues this ingenious—even liberating—book, lies not in ourselves, but in product design that ignores the needs of users and the principles of cognitive psychology. The problems range from ambiguous and hidden controls to arbitrary relationships between controls and functions, coupled with a lack of feedback or other assistance and unreasonable demands on memorization. The Design of Everyday Things shows that good, usable design is possible. The rules are simple: make things visible, exploit natural relationships that couple function and control, and make intelligent use of constraints. The goal: guide the user effortlessly to the right action on the right control at the right time. In this entertaining and insightful analysis, cognitive scientist Don Norman hails excellence of design as the most important key to regaining the competitive edge in influencing consumer behavior. Now fully expanded and updated, with a new introduction by the author, The Design of Everyday Things is a powerful primer on how—and why—some products satisfy customers while others only frustrate them.",
+          "industryIdentifiers": [
+            {
+              "type": "ISBN_13",
+              "identifier": "9780465050659"
+            },
+            {
+              "type": "ISBN_10",
+              "identifier": "0465050654"
+            }
+          ],
+          "readingModes": {
+            "text": false,
+            "image": false
+          },
+          "pageCount": 368,
+          "printType": "BOOK",
+          "categories": ["Business & Economics"],
+          "averageRating": 3.5,
+          "ratingsCount": 37,
+          "maturityRating": "NOT_MATURE",
+          "allowAnonLogging": false,
+          "contentVersion": "0.1.0.0.preview.0",
+          "panelizationSummary": {
+            "containsEpubBubbles": false,
+            "containsImageBubbles": false
+          },
+          "imageLinks": {
+            "smallThumbnail": "http://books.google.com/books/content?id=qBfRDQAAQBAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+            "thumbnail": "http://books.google.com/books/content?id=qBfRDQAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+          },
+          "language": "en",
+          "previewLink": "http://books.google.de/books?id=qBfRDQAAQBAJ&dq=isbn:9780465050659&hl=&cd=1&source=gbs_api",
+          "infoLink": "http://books.google.de/books?id=qBfRDQAAQBAJ&dq=isbn:9780465050659&hl=&source=gbs_api",
+          "canonicalVolumeLink": "https://books.google.com/books/about/The_Design_of_Everyday_Things.html?hl=&id=qBfRDQAAQBAJ"
+        },
+        "saleInfo": {
+          "country": "DE",
+          "saleability": "NOT_FOR_SALE",
+          "isEbook": false
+        },
+        "accessInfo": {
+          "country": "DE",
+          "viewability": "NO_PAGES",
+          "embeddable": false,
+          "publicDomain": false,
+          "textToSpeechPermission": "ALLOWED",
+          "epub": {
+            "isAvailable": false
+          },
+          "pdf": {
+            "isAvailable": false
+          },
+          "webReaderLink": "http://play.google.com/books/reader?id=qBfRDQAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+          "accessViewStatus": "NONE",
+          "quoteSharingAllowed": false
+        },
+        "searchInfo": {
+          "textSnippet": "The goal: guide the user effortlessly to the right action on the right control at the right time."
+        }
+      }
+    ]
+  },
+  {
+    "kind": "books#volumes",
+    "totalItems": 1,
+    "items": [
+      {
+        "kind": "books#volume",
+        "id": "AmxFtwEACAAJ",
+        "etag": "3MHMBAvS0tE",
+        "selfLink": "https://www.googleapis.com/books/v1/volumes/AmxFtwEACAAJ",
+        "volumeInfo": {
+          "title": "The Overstory",
+          "subtitle": "A Novel",
+          "authors": ["Richard Powers"],
+          "publisher": "W. W. Norton",
+          "publishedDate": "2019-04-02",
+          "description": "The Overstory, winner of the 2019 Pulitzer Prize in Fiction, is a sweeping, impassioned work of activism and resistance that is also a stunning evocation of--and paean to--the natural world. From the roots to the crown and back to the seeds, Richard Powers's twelfth novel unfolds in concentric rings of interlocking fables that range from antebellum New York to the late twentieth-century Timber Wars of the Pacific Northwest and beyond. There is a world alongside ours--vast, slow, interconnected, resourceful, magnificently inventive, and almost invisible to us. This is the story of a handful of people who learn how to see that world and who are drawn up into its unfolding catastrophe.",
+          "industryIdentifiers": [
+            {
+              "type": "ISBN_10",
+              "identifier": "039335668X"
+            },
+            {
+              "type": "ISBN_13",
+              "identifier": "9780393356687"
+            }
+          ],
+          "readingModes": {
+            "text": false,
+            "image": false
+          },
+          "pageCount": 502,
+          "printType": "BOOK",
+          "categories": ["Fiction"],
+          "averageRating": 4,
+          "ratingsCount": 82,
+          "maturityRating": "NOT_MATURE",
+          "allowAnonLogging": false,
+          "contentVersion": "preview-1.0.0",
+          "panelizationSummary": {
+            "containsEpubBubbles": false,
+            "containsImageBubbles": false
+          },
+          "imageLinks": {
+            "smallThumbnail": "http://books.google.com/books/content?id=AmxFtwEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+            "thumbnail": "http://books.google.com/books/content?id=AmxFtwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+          },
+          "language": "en",
+          "previewLink": "http://books.google.de/books?id=AmxFtwEACAAJ&dq=isbn:9780393356687&hl=&cd=1&source=gbs_api",
+          "infoLink": "http://books.google.de/books?id=AmxFtwEACAAJ&dq=isbn:9780393356687&hl=&source=gbs_api",
+          "canonicalVolumeLink": "https://books.google.com/books/about/The_Overstory.html?hl=&id=AmxFtwEACAAJ"
+        },
+        "saleInfo": {
+          "country": "DE",
+          "saleability": "NOT_FOR_SALE",
+          "isEbook": false
+        },
+        "accessInfo": {
+          "country": "DE",
+          "viewability": "NO_PAGES",
+          "embeddable": false,
+          "publicDomain": false,
+          "textToSpeechPermission": "ALLOWED",
+          "epub": {
+            "isAvailable": false
+          },
+          "pdf": {
+            "isAvailable": false
+          },
+          "webReaderLink": "http://play.google.com/books/reader?id=AmxFtwEACAAJ&hl=&printsec=frontcover&source=gbs_api",
+          "accessViewStatus": "NONE",
+          "quoteSharingAllowed": false
+        },
+        "searchInfo": {
+          "textSnippet": "New York Times BestsellerA monumental novel about trees and people by one of our most &quot;prodigiously talented&quot; (The New York Times Book Review) novelists."
+        }
+      }
+    ]
+  },
+  {
+    "kind": "books#volumes",
+    "totalItems": 1,
+    "items": [
+      {
+        "kind": "books#volume",
+        "id": "VLJdMQAACAAJ",
+        "etag": "C6hdRO5QDto",
+        "selfLink": "https://www.googleapis.com/books/v1/volumes/VLJdMQAACAAJ",
+        "volumeInfo": {
+          "title": "Hillbilly Elegy",
+          "subtitle": "A Memoir of a Family and Culture in Crisis",
+          "authors": ["J. D. Vance"],
+          "publisher": "William Collins",
+          "publishedDate": "2017-06",
+          "description": "Waterstones Non-Fiction Book of the Month A Time Magazine Top 10 Nonfiction Book of 2016 SOON TO BE A MAJOR MOTION PICTURE 'The political book of the year' Sunday Times 'You will not read a more important book about America this year' Economist Hillbilly Elegy is a passionate and personal analysis of a culture in crisis--that of white working-class Americans. The decline of this group, a demographic of our country that has been slowly disintegrating over forty years, has been reported on with growing frequency and alarm, but has never before been written about as searingly from the inside. J. D. Vance tells the true story of what a social, regional, and class decline feels like when you were born with it hung around your neck. The Vance family story begins hopefully in post-war America. J. D.'s grandparents were \"dirt poor and in love,\" and moved north from Kentucky's Appalachia region to Ohio in the hopes of escaping the dreadful poverty around them. They raised a middle-class family, and eventually their grandchild (the author) would graduate from Yale Law School, a conventional marker of their success in achieving generational upward mobility. But as the family saga of Hillbilly Elegy plays out, we learn that this is only the short, superficial version. Vance's grandparents, aunt, uncle, sister, and, most of all, his mother, struggled profoundly with the demands of their new middle-class life, and were never able to fully escape the legacy of abuse, alcoholism, poverty, and trauma so characteristic of their part of America. Vance piercingly shows how he himself still carries around the demons of their chaotic family history. A deeply moving memoir with its share of humour and vividly colourful figures, Hillbilly Elegy is the story of how upward mobility really feels. And it is an urgent and troubling meditation on the loss of the American dream for a large segment of this country.",
+          "industryIdentifiers": [
+            {
+              "type": "ISBN_10",
+              "identifier": "0008220565"
+            },
+            {
+              "type": "ISBN_13",
+              "identifier": "9780008220563"
+            }
+          ],
+          "readingModes": {
+            "text": false,
+            "image": false
+          },
+          "pageCount": 272,
+          "printType": "BOOK",
+          "averageRating": 4,
+          "ratingsCount": 253,
+          "maturityRating": "NOT_MATURE",
+          "allowAnonLogging": false,
+          "contentVersion": "preview-1.0.0",
+          "panelizationSummary": {
+            "containsEpubBubbles": false,
+            "containsImageBubbles": false
+          },
+          "imageLinks": {
+            "smallThumbnail": "http://books.google.com/books/content?id=VLJdMQAACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+            "thumbnail": "http://books.google.com/books/content?id=VLJdMQAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+          },
+          "language": "en",
+          "previewLink": "http://books.google.de/books?id=VLJdMQAACAAJ&dq=isbn:9780008220563&hl=&cd=1&source=gbs_api",
+          "infoLink": "http://books.google.de/books?id=VLJdMQAACAAJ&dq=isbn:9780008220563&hl=&source=gbs_api",
+          "canonicalVolumeLink": "https://books.google.com/books/about/Hillbilly_Elegy.html?hl=&id=VLJdMQAACAAJ"
+        },
+        "saleInfo": {
+          "country": "DE",
+          "saleability": "NOT_FOR_SALE",
+          "isEbook": false
+        },
+        "accessInfo": {
+          "country": "DE",
+          "viewability": "NO_PAGES",
+          "embeddable": false,
+          "publicDomain": false,
+          "textToSpeechPermission": "ALLOWED",
+          "epub": {
+            "isAvailable": false
+          },
+          "pdf": {
+            "isAvailable": false
+          },
+          "webReaderLink": "http://play.google.com/books/reader?id=VLJdMQAACAAJ&hl=&printsec=frontcover&source=gbs_api",
+          "accessViewStatus": "NONE",
+          "quoteSharingAllowed": false
+        },
+        "searchInfo": {
+          "textSnippet": "Shares the story of the author&#39;s family and upbringing, describing how they moved from poverty to an upwardly mobile clan that included the author, a Yale Law School graduate, while navigating the demands of middle class life and the ..."
+        }
+      }
+    ]
+  }
+]
