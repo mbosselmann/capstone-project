@@ -92,4 +92,20 @@ describe('Book', () => {
     const displayedImage = screen.getByRole('img')
     expect(displayedImage).toBeInTheDocument(`${books[1].bookCover}`)
   })
+
+  it('displayed image has an alt-text', () => {
+    render(
+      <Book
+        key={books[1].id}
+        title={books[1].title}
+        authors={books[1].authors}
+        readingStatus={books[1].finished}
+        readingStatusDate={books[1].readingSince}
+        finishedSince={books[1].finishedSince}
+        bookCover={books[1].bookCover}
+      />
+    )
+    const altText = screen.getByAltText('bookcover')
+    expect(altText).toBeInTheDocument()
+  })
 })
