@@ -6,7 +6,6 @@ function BookList({ books }) {
   const [filteredBooks, setFilteredBooks] = useState(books)
   const [readingStatus, setReadingStatus] = useState('')
 
-  // for filtering and displaying book data (currently read & finished)
   function handleActiveReadingStatus(status, books) {
     setReadingStatus(status)
     if (status === 'true') {
@@ -20,7 +19,6 @@ function BookList({ books }) {
     }
   }
 
-  // changes title above displayed books according to selected books
   function filterTitle(status) {
     if (status === 'true') {
       return 'Your library of finished books:'
