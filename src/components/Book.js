@@ -8,6 +8,20 @@ function Book({
   readingStatusDate,
   finishedSince,
 }) {
+  // this function is a workaround for fixing wrong author data
+  function authorsLength(authors) {
+    if (authors.length === 2) {
+      if (authors[0].includes(authors[1])) {
+        return ` ${authors[0]}`
+      }
+      return ` ${authors[0]} and ${authors[1]}`
+    } else if (authors > 2) {
+      return ` ${authors[0]} and others`
+    } else {
+      return ` ${authors}`
+    }
+  }
+
   return (
     <Wrapper>
       <ImgContainer>
@@ -18,7 +32,7 @@ function Book({
           <h3>{title}</h3>
           <p>
             by
-            {authors.length > 1 ? ` ${authors[0]}` : ` ${authors}`}
+            {authorsLength(authors)}
           </p>
         </div>
         <div>
