@@ -50,7 +50,7 @@ function BookList({ books }) {
             Finished reading
           </Button>
         </div>
-        <h3>{filterTitle(readingStatus)}</h3>
+        <h2>{filterTitle(readingStatus)}</h2>
       </FilterContainer>
       <ul>
         {filteredBooks.map(book => (
@@ -80,6 +80,10 @@ const FilterContainer = styled.section`
   div {
     display: flex;
     gap: 20px;
+  }
+
+  h2 {
+    font-size: 1rem;
   }
 `
 
