@@ -42,11 +42,11 @@ const NavBarLink = styled(NavLink)`
   padding: 1.4rem;
   text-align: center;
   text-decoration: none;
-  color: #fff;
+  color: #000;
+  background-color: #afa8ba;
 
   &.${props => props.activeClassName} {
     background-color: #4b5878;
     color: #fff;
-    border: 1px double #4b5878;
   }
 `

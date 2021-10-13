@@ -4,6 +4,13 @@ import placeholder from '../images/placeholder.png'
 export default {
   title: 'Component/Book',
   component: Book,
+  decorators: [
+    Story => (
+      <ul>
+        <Story />
+      </ul>
+    ),
+  ],
 }
 
 const Template = args => <Book {...args} />

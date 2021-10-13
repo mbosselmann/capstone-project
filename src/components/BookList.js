@@ -15,7 +15,7 @@ function BookList({ books, readingStatus }) {
   return (
     <>
       <FilterContainer>
-        <h2>{filterTitle(readingStatus)}</h2>
+        {readingStatus && <h2>{filterTitle(readingStatus)}</h2>}
       </FilterContainer>
       <ul>
         {books.map(book => (

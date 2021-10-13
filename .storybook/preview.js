@@ -1,4 +1,5 @@
 import GlobalStyles from "../src/GlobalStyles"
+import { MemoryRouter } from "react-router";
 
 export const decorators = [
   (Story) => (
@@ -6,6 +7,9 @@ export const decorators = [
     <GlobalStyles />
     <Story />
     </>
+  ),
+  (Story) => (
+    <MemoryRouter><Story/></MemoryRouter>
   )
 ]
 
