@@ -34,16 +34,16 @@ const Wrapper = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #afa8ba;
 `
 
 const NavBarLink = styled(NavLink)`
   flex: 1;
   padding: 1.4rem;
+  height: 4rem;
   text-align: center;
   text-decoration: none;
-  color: #000;
-  background-color: #afa8ba;
+  color: #4a4453;
+  background-color: #fff;
 
   &.${props => props.activeClassName} {
     background-color: #4b5878;
