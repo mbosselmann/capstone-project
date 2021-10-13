@@ -8,7 +8,6 @@ function Book({
   readingStatusDate,
   finishedSince,
 }) {
-  // this function is a workaround for fixing wrong author data
   function authorsLength(authors) {
     if (authors.length === 2) {
       if (authors[0].includes(authors[1])) {
@@ -52,11 +51,11 @@ export default Book
 
 const Wrapper = styled.li`
   border-radius: 5px;
-  margin: 20px;
+  margin: 1rem;
   display: flex;
   justify-content: space-between;
-  gap: 10px;
-  min-height: 150px;
+  gap: 0.5rem;
+  min-height: 180px;
   box-shadow: 5px 4px 10px 0px rgba(0, 0, 0, 0.25);
 `
 const ImgContainer = styled.div`
@@ -69,7 +68,7 @@ const ImgContainer = styled.div`
   img {
     box-shadow: 5px 4px 10px 0px rgba(0, 0, 0, 0.25);
     width: 60%;
-    margin: 10px 10px;
+    margin: 1rem;
   }
 `
 
