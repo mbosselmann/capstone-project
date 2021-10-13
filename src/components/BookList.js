@@ -1,28 +1,11 @@
 import Book from './Book'
 import styled from 'styled-components/macro'
-import { useState } from 'react'
 
-function BookList({ books }) {
-  const [filteredBooks, setFilteredBooks] = useState(books)
-  const [readingStatus, setReadingStatus] = useState('')
-
-  function handleActiveReadingStatus(status, books) {
-    setReadingStatus(status)
-    if (status === 'true') {
-      const readBooks = books.filter(book => book.finished === true)
-      setFilteredBooks(readBooks)
-    } else if (status === 'false') {
-      const currentlyReadBooks = books.filter(book => book.finished === false)
-      setFilteredBooks(currentlyReadBooks)
-    } else if (status === '') {
-      setFilteredBooks(books)
-    }
-  }
-
+function BookList({ books, readingStatus }) {
   function filterTitle(status) {
-    if (status === 'true') {
+    if (status === 'finishedBooks') {
       return 'Your library of finished books:'
-    } else if (status === 'false') {
+    } else if (status === 'currentlyReading') {
       return 'Your library of books currently read:'
     } else {
       return ''
@@ -32,26 +15,10 @@ function BookList({ books }) {
   return (
     <>
       <FilterContainer>
-        <div>
-          <Button
-            onClick={() => {
-              handleActiveReadingStatus('false', books)
-            }}
-          >
-            Currently reading
-          </Button>
-          <Button
-            onClick={() => {
-              handleActiveReadingStatus('true', books)
-            }}
-          >
-            Finished reading
-          </Button>
-        </div>
         <h2>{filterTitle(readingStatus)}</h2>
       </FilterContainer>
       <ul>
-        {filteredBooks.map(book => (
+        {books.map(book => (
           <Book
             key={book.id}
             title={book.volumeInfo.title}
@@ -74,26 +41,10 @@ const FilterContainer = styled.section`
   gap: 20px;
   flex-direction: column;
   align-items: center;
+  margin-top: 20px;
 
   div {
     display: flex;
     gap: 20px;
-  }
-
-  h2 {
-    font-size: 1rem;
-  }
-`
-
-const Button = styled.button`
-  border: none;
-  border-radius: 5px;
-  background-color: #afa8ba;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  box-shadow: 5px 4px 10px 0px rgba(0, 0, 0, 0.25);
-
-  &:active {
-    background-color: #4a4453;
   }
 `
