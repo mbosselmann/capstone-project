@@ -74,7 +74,7 @@ const AppContainer = styled.div`
   margin: 0 auto;
   display: grid;
   grid-template-areas: 'header' 'main' 'footer';
-  grid-template-rows: 120px auto 80px;
+  grid-template-rows: 120px auto 4rem;
 `
 
 export default App
