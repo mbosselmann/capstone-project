@@ -42,10 +42,14 @@ const FilterContainer = styled.section`
   gap: 20px;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+  margin: 1rem auto 0 auto;
 
   div {
     display: flex;
     gap: 20px;
+  }
+
+  h2 {
+    font-size: 1.1rem;
   }
 `

@@ -78,4 +78,10 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.2rem;
+    padding-right: 5px;
+  }
 `
