@@ -8,7 +8,7 @@ function App({ data }) {
   const [filteredBooks, setFilteredBooks] = useState(data)
   const [readingStatus, setReadingStatus] = useState('')
 
-  function handleActiveReadingStatus(status, books) {
+  function handleBookList(status, books) {
     setReadingStatus(status)
     if (status === 'finishedBooks') {
       const readBooks = books.filter(book => book.finished === true)
@@ -35,19 +35,12 @@ function App({ data }) {
       <Main>
         <Switch>
           <Route exact path={['/', '/currently-reading', '/library']}>
-            <BookList
-              books={filteredBooks}
-              readingStatus={readingStatus}
-              setReadingStatus={setReadingStatus}
-            />
+            <BookList books={filteredBooks} readingStatus={readingStatus} />
           </Route>
         </Switch>
       </Main>
       <Footer>
-        <Navigation
-          books={data}
-          onHandleActiveReadingStatus={handleActiveReadingStatus}
-        />
+        <Navigation books={data} onHandleBookList={handleBookList} />
       </Footer>
     </AppContainer>
   )
@@ -65,7 +58,6 @@ const Main = styled.main`
 
 const Footer = styled.footer`
   grid-area: footer;
-  z-index: 10;
 `
 
 const AppContainer = styled.div`

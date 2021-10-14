@@ -1,13 +1,13 @@
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
-function Navigation({ books, onHandleActiveReadingStatus }) {
+function Navigation({ books, onHandleBookList }) {
   return (
     <Wrapper>
       <NavBarLink
         to="/currently-reading"
         onClick={() => {
-          onHandleActiveReadingStatus('currentlyReading', books)
+          onHandleBookList('currentlyReading', books)
         }}
         activeClassName="is-active"
       >
@@ -16,7 +16,7 @@ function Navigation({ books, onHandleActiveReadingStatus }) {
       <NavBarLink
         to="/library"
         onClick={() => {
-          onHandleActiveReadingStatus('finishedBooks', books)
+          onHandleBookList('finishedBooks', books)
         }}
         activeClassName="is-active"
       >
