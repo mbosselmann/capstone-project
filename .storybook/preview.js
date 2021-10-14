@@ -3,14 +3,11 @@ import { MemoryRouter } from "react-router";
 
 export const decorators = [
   (Story) => (
-    <>
-    <GlobalStyles />
-    <Story />
-    </>
+    <MemoryRouter>
+      <GlobalStyles />
+      <Story />
+    </MemoryRouter>
   ),
-  (Story) => (
-    <MemoryRouter><Story/></MemoryRouter>
-  )
 ]
 
 export const parameters = {

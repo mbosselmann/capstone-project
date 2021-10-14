@@ -5,7 +5,8 @@ function BookList({ books, readingStatus }) {
   function filterTitle(status) {
     if (status === 'finishedBooks') {
       return 'Your library of finished books:'
-    } else if (status === 'currentlyReading') {
+    }
+    if (status === 'currentlyReading') {
       return 'Your library of books currently read:'
     } else {
       return ''
@@ -14,7 +15,7 @@ function BookList({ books, readingStatus }) {
 
   return (
     <>
-      <FilterContainer>
+      <FilterContainer role="booklist-title">
         {readingStatus && <h2>{filterTitle(readingStatus)}</h2>}
       </FilterContainer>
       <ul>
