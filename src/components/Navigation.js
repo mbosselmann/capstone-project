@@ -38,7 +38,9 @@ const Wrapper = styled.nav`
 
 const NavBarLink = styled(NavLink)`
   flex: 1;
-  padding: 1.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 4rem;
   text-align: center;
   text-decoration: none;
