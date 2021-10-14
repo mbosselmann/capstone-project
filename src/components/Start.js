@@ -72,6 +72,11 @@ const Form = styled.form`
     height: 2rem;
   }
 
+  input:-webkit-autofill {
+    box-shadow: 0 0 0 50px #f6f6f6 inset;
+    -webkit-box-shadow: 0 0 0 50px #f6f6f6 inset;
+  }
+
   button {
     height: 1.8rem;
     width: 98%;

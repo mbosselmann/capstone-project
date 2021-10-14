@@ -81,6 +81,7 @@ const Content = styled.div`
 
   h3 {
     font-size: 1.2rem;
+    font-weight: 600;
     margin-bottom: 0.2rem;
     padding-right: 5px;
   }
