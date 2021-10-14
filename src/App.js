@@ -1,5 +1,6 @@
 import BookList from './components/BookList'
 import Navigation from './components/Navigation'
+import Start from './components/Start'
 import styled from 'styled-components/macro'
 import { Route, Switch } from 'react-router-dom'
 import { useState } from 'react'
@@ -25,23 +26,28 @@ function App({ data }) {
 
   return (
     <AppContainer>
-      <Route exact path={['/', '/currently-reading', '/library']}>
+      <Route exact path={['/currently-reading', '/library']}>
         <Header>
           <h1>List of Books</h1>
           <h2>Hi user!</h2>
           <p>Welcome back! Here is your booklist:</p>
         </Header>
       </Route>
-      <Main>
-        <Switch>
-          <Route exact path={['/', '/currently-reading', '/library']}>
+      <Switch>
+        <Route exact path="/">
+          <Start />
+        </Route>
+        <Route exact path={['/currently-reading', '/library']}>
+          <Main>
             <BookList books={filteredBooks} readingStatus={readingStatus} />
-          </Route>
-        </Switch>
-      </Main>
-      <Footer>
-        <Navigation books={data} onHandleBookList={handleBookList} />
-      </Footer>
+          </Main>
+        </Route>
+      </Switch>
+      <Route exact path={['/currently-reading', '/library']}>
+        <Footer>
+          <Navigation books={data} onHandleBookList={handleBookList} />
+        </Footer>
+      </Route>
     </AppContainer>
   )
 }
