@@ -15,7 +15,7 @@ function BookList({ books, readingStatus }) {
 
   return (
     <>
-      <FilterContainer role="booklist-title">
+      <FilterContainer data-testid="booklist-title">
         {readingStatus && <h2>{filterTitle(readingStatus)}</h2>}
       </FilterContainer>
       <ul>
