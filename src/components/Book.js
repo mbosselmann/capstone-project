@@ -51,6 +51,7 @@ export default Book
 
 const Wrapper = styled.li`
   border-radius: 5px;
+  background-color: #fff;
   margin: 1rem;
   display: flex;
   justify-content: space-between;
