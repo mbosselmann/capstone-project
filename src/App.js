@@ -38,13 +38,7 @@ function App({ data }) {
 
   return (
     <AppContainer>
-      <Route exact path={['/currently-reading', '/library']}>
-        <Header>
-          <h1>List of Books</h1>
-          <h2>Hi user!</h2>
-          <p>Welcome back! Here is your booklist:</p>
-        </Header>
-      </Route>
+      <Route exact path={['/currently-reading', '/library']}></Route>
       <Switch>
         <Route exact path="/">
           {username ? (
@@ -55,7 +49,11 @@ function App({ data }) {
         </Route>
         <Route exact path={['/currently-reading', '/library']}>
           <Main>
-            <BookList books={filteredBooks} readingStatus={readingStatus} />
+            <BookList
+              books={filteredBooks}
+              readingStatus={readingStatus}
+              username={username}
+            />
           </Main>
         </Route>
       </Switch>
@@ -67,11 +65,6 @@ function App({ data }) {
     </AppContainer>
   )
 }
-
-const Header = styled.header`
-  margin: 20px;
-  grid-area: header;
-`
 
 const Main = styled.main`
   grid-area: main;
@@ -88,8 +81,8 @@ const AppContainer = styled.div`
   max-width: 600px;
   margin: 0 auto;
   display: grid;
-  grid-template-areas: 'header' 'main' 'footer';
-  grid-template-rows: 120px auto 4rem;
+  grid-template-areas: 'main' 'footer';
+  grid-template-rows: auto 4rem;
 `
 
 export default App
