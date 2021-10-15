@@ -1,23 +1,15 @@
 import Book from './Book'
 import styled from 'styled-components/macro'
+import TitleBookList from './TitleBookList'
 
-function BookList({ books, readingStatus }) {
-  function filterTitle(status) {
-    if (status === 'finishedBooks') {
-      return 'Your library of finished books:'
-    }
-    if (status === 'currentlyReading') {
-      return 'Your library of books currently read:'
-    } else {
-      return ''
-    }
-  }
-
+function BookList({ books, readingStatus, username }) {
   return (
-    <>
-      <FilterContainer data-testid="booklist-title">
-        {readingStatus && <h2>{filterTitle(readingStatus)}</h2>}
-      </FilterContainer>
+    <Wrapper>
+      <TitleContainer data-testid="booklist-title">
+        {readingStatus && (
+          <TitleBookList status={readingStatus} username={username} />
+        )}
+      </TitleContainer>
       <ul>
         {books.map(book => (
           <Book
@@ -31,26 +23,52 @@ function BookList({ books, readingStatus }) {
           />
         ))}
       </ul>
-    </>
+    </Wrapper>
   )
 }
 
 export default BookList
 
-const FilterContainer = styled.section`
+const Wrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 200px 1fr 1fr 1fr 1fr;
+
+  ul {
+    grid-row: 2 / 6;
+    grid-column: 1;
+    z-index: 10;
+  }
+`
+
+const TitleContainer = styled.section`
+  grid-row: 1 / 3;
+  grid-column: 1;
+  height: 310px;
   display: flex;
   gap: 20px;
   flex-direction: column;
-  align-items: center;
-  margin: 1rem auto 0 auto;
+  align-items: left;
+  justify-content: flex-end;
+  background-color: #4a4453;
+  color: #fff;
+  padding: 4rem 1rem;
 
   div {
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 60px;
   }
 
   h2 {
-    font-size: 1.1rem;
+    font-size: 2rem;
     font-weight: 600;
+    font-family: 'Libre Baskerville', serif;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 1.1rem;
   }
 `
