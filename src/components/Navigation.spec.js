@@ -46,11 +46,9 @@ describe('Navigation', () => {
   })
 
   it('changes to active when "currently reading" link is clicked', () => {
-    const mockOnHandleBookList = jest.fn()
-
     render(
       <Router>
-        <Navigation books={books} onHandleBookList={mockOnHandleBookList} />
+        <Navigation />
       </Router>
     )
 
@@ -61,11 +59,9 @@ describe('Navigation', () => {
   })
 
   it(`doesn't change the "finished reading" to active when "currently reading" link is clicked`, () => {
-    const mockOnHandleBookList = jest.fn()
-
     render(
       <Router>
-        <Navigation books={books} onHandleBookList={mockOnHandleBookList} />
+        <Navigation />
       </Router>
     )
 
@@ -74,15 +70,12 @@ describe('Navigation', () => {
     const linkFinishedReading = links[1]
     userEvent.click(linkCurrentlyReading)
     expect(linkFinishedReading).not.toHaveClass('is-active')
-    expect(mockOnHandleBookList).toHaveBeenCalledWith('currentlyReading', books)
   })
 
   it('changes to active when "finished reading" link is clicked', () => {
-    const mockOnHandleBookList = jest.fn()
-
     render(
       <Router>
-        <Navigation books={books} onHandleBookList={mockOnHandleBookList} />
+        <Navigation />
       </Router>
     )
 
@@ -93,11 +86,9 @@ describe('Navigation', () => {
   })
 
   it(`doesn't change the "currently reading" link to active when "finished reading" link is clicked`, () => {
-    const mockOnHandleBookList = jest.fn()
-
     render(
       <Router>
-        <Navigation books={books} onHandleBookList={mockOnHandleBookList} />
+        <Navigation />
       </Router>
     )
 
@@ -106,6 +97,5 @@ describe('Navigation', () => {
     const linkFinishedReading = links[1]
     userEvent.click(linkFinishedReading)
     expect(linkCurrentlyReading).not.toHaveClass('is-active')
-    expect(mockOnHandleBookList).toHaveBeenCalledWith('finishedBooks', books)
   })
 })

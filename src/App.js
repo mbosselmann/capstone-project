@@ -61,7 +61,7 @@ function App({ data }) {
       </Switch>
       <Route exact path={['/currently-reading', '/library']}>
         <Footer>
-          <Navigation books={data} onHandleBookList={handleBookList} />
+          <Navigation />
         </Footer>
       </Route>
     </AppContainer>
