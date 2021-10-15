@@ -57,8 +57,8 @@ const Wrapper = styled.li`
   gap: 0.5rem;
   height: 180px;
   padding-right: 5px;
-  box-shadow: 5px 4px 10px 0px rgba(0, 0, 0, 0.25);
-  -webkit-box-shadow: 5px 4px 10px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--box-shadow);
+  -webkit-box-shadow: var(--box-shadow);
 `
 const ImgContainer = styled.div`
   flex: 1;
@@ -69,8 +69,8 @@ const ImgContainer = styled.div`
   border-radius: 5px 0 0 5px;
 
   img {
-    box-shadow: 5px 4px 10px 0px rgba(0, 0, 0, 0.25);
-    -webkit-box-shadow: 5px 4px 10px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--box-shadow);
+    -webkit-box-shadow: var(--box-shadow);
     max-width: 80%;
     max-height: 130px;
     margin: 1rem;

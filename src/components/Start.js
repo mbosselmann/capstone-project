@@ -102,8 +102,8 @@ const Form = styled.form`
     border: none;
     border-radius: 5px;
     text-transform: uppercase;
-    box-shadow: 5px 4px 10px 0px rgba(0, 0, 0, 0.25);
-    -webkit-box-shadow: 5px 4px 10px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--box-shadow);
+    -webkit-box-shadow: var(--box-shadow);
   }
 
   button:focus {
