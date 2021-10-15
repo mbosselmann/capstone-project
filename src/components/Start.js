@@ -40,7 +40,7 @@ const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
   margin: 7rem auto 0 auto;
-  width: 90%;
+  max-width: 90%;
 
   img {
     width: 80%;
@@ -73,7 +73,7 @@ const Form = styled.form`
     background-color: #f6f6f6;
     color: #4a4453;
     border-radius: 5px;
-    height: 1.8rem;
+    height: 2.5rem;
     margin: 0 auto 1rem auto;
     padding-left: 10px;
   }
@@ -85,7 +85,7 @@ const Form = styled.form`
   input:focus {
     outline: none;
     width: 100%;
-    height: 2rem;
+    height: 2.6rem;
   }
 
   input:-webkit-autofill {
@@ -94,7 +94,8 @@ const Form = styled.form`
   }
 
   button {
-    height: 1.8rem;
+    height: 2.5rem;
+    font-size: 1.2rem;
     width: 98%;
     margin: 0 auto;
     background-color: #4a4453;
@@ -108,5 +109,6 @@ const Form = styled.form`
 
   button:focus {
     width: 100%;
+    height: 2.6rem;
   }
 `
