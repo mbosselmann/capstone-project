@@ -2,12 +2,14 @@ import BookList from './components/BookList'
 import Navigation from './components/Navigation'
 import Start from './components/Start'
 import styled from 'styled-components/macro'
-import { Route, Switch } from 'react-router-dom'
-import { useState } from 'react'
+import { Route, Switch, useLocation, Redirect } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 
 function App({ data }) {
   const [filteredBooks, setFilteredBooks] = useState(data)
   const [readingStatus, setReadingStatus] = useState('')
+  const { pathname } = useLocation()
+  const [username, setUsername] = useState('')
 
   function handleBookList(status, books) {
     setReadingStatus(status)
@@ -24,6 +26,16 @@ function App({ data }) {
     }
   }
 
+  useEffect(() => {
+    setReadingStatus(pathname)
+    if (pathname === '/currently-reading') {
+      handleBookList('currentlyReading', data)
+    }
+    if (pathname === '/library') {
+      handleBookList('finishedBooks', data)
+    }
+  }, [pathname, data])
+
   return (
     <AppContainer>
       <Route exact path={['/currently-reading', '/library']}>
@@ -35,7 +47,11 @@ function App({ data }) {
       </Route>
       <Switch>
         <Route exact path="/">
-          <Start />
+          {username ? (
+            <Redirect to="/currently-reading" />
+          ) : (
+            <Start setUsername={setUsername} />
+          )}
         </Route>
         <Route exact path={['/currently-reading', '/library']}>
           <Main>

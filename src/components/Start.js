@@ -1,19 +1,23 @@
 import readaholicLogo from '../images/readaholic-logo.svg'
 import styled from 'styled-components/macro'
 
-function Start() {
+function Start({ setUsername }) {
   function handleSubmit(startEvent) {
     startEvent.preventDefault()
     const form = startEvent.target
-    form.action = '/currently-reading'
-    form.submit()
+    const { username } = form.elements
+    setUsername(username.value)
   }
 
   return (
     <Wrapper>
       <img src={readaholicLogo} alt="readaholic" />
       <h1>Readaholic</h1>
-      <Form onSubmit={event => handleSubmit(event)}>
+      <Form
+        onSubmit={event => {
+          handleSubmit(event)
+        }}
+      >
         <label htmlFor="name" aria-label="username">
           Enter your name:
         </label>
