@@ -64,6 +64,7 @@ const Main = styled.main`
 
 const Footer = styled.footer`
   grid-area: footer;
+  z-index: 10;
 `
 
 const AppContainer = styled.div`

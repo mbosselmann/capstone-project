@@ -34,6 +34,8 @@ const Wrapper = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
+  -webkit-box-shadow: 0px -2px 10px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px -2px 10px 0px rgba(0, 0, 0, 0.25);
 `
 
 const NavBarLink = styled(NavLink)`

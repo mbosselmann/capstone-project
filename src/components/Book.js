@@ -55,8 +55,10 @@ const Wrapper = styled.li`
   display: flex;
   justify-content: space-between;
   gap: 0.5rem;
-  min-height: 180px;
+  height: 180px;
+  padding-right: 5px;
   box-shadow: 5px 4px 10px 0px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.25);
 `
 const ImgContainer = styled.div`
   flex: 1;
@@ -64,10 +66,13 @@ const ImgContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 5px 0 0 5px;
 
   img {
     box-shadow: 5px 4px 10px 0px rgba(0, 0, 0, 0.25);
-    width: 60%;
+    -webkit-box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.25);
+    max-width: 80%;
+    max-height: 130px;
     margin: 1rem;
   }
 `
@@ -80,9 +85,8 @@ const Content = styled.div`
   justify-content: space-between;
 
   h3 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 600;
     margin-bottom: 0.2rem;
-    padding-right: 5px;
   }
 `
