@@ -36,11 +36,17 @@ const Wrapper = styled.section`
   margin: 7rem auto 0 auto;
   width: 90%;
 
+  img {
+    width: 80%;
+    margin: 0 auto;
+  }
+
   h1 {
     font-family: 'Libre Baskerville', serif;
     font-size: 3.5rem;
     text-align: center;
     color: #4a4453;
+    margin-top: 0.5rem;
   }
 `
 
@@ -90,6 +96,8 @@ const Form = styled.form`
     border: none;
     border-radius: 5px;
     text-transform: uppercase;
+    box-shadow: 5px 4px 10px 0px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 5px 4px 10px 0px rgba(0, 0, 0, 0.25);
   }
 
   button:focus {
