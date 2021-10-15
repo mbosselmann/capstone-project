@@ -2,38 +2,8 @@ import { render, screen } from '@testing-library/react'
 import { MemoryRouter as Router } from 'react-router-dom'
 import userEvent from '@testing-library/user-event'
 import Navigation from './Navigation'
-import placeholder from '../images/placeholder.png'
 
 describe('Navigation', () => {
-  const books = [
-    {
-      id: '1',
-      volumeInfo: {
-        title: 'Harry Potter and the Goblet of Fire',
-        authors: ['J. K. Rowling'],
-        imageLinks: {
-          thumbnail: placeholder,
-        },
-      },
-      finished: false,
-      readingSince: '05/2021',
-      finishedSince: '',
-    },
-    {
-      id: '2',
-      volumeInfo: {
-        title: 'Cathedral of the Sea',
-        authors: ['Ildefonso Falcones de Sierra'],
-        imageLinks: {
-          thumbnail: placeholder,
-        },
-      },
-      finished: true,
-      readingSince: '05/2021',
-      finishedSince: '08/2021',
-    },
-  ]
-
   it('renders two links', () => {
     render(
       <Router>
