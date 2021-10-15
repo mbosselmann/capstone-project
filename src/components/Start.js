@@ -21,7 +21,13 @@ function Start({ setUsername }) {
         <label htmlFor="name" aria-label="username">
           Enter your name:
         </label>
-        <input name="username" id="name" placeholder="Your name" required />
+        <input
+          type="text"
+          name="username"
+          id="name"
+          placeholder="Your name"
+          required
+        />
         <button>Start</button>
       </Form>
     </Wrapper>
