@@ -42,7 +42,7 @@ describe('Book list', () => {
   it('renders no title according to readingStatus=""', () => {
     render(<BookList books={books} readingStatus={''} />)
 
-    const titleSection = screen.getByRole('booklist-title')
+    const titleSection = screen.getByTestId('booklist-title')
     expect(titleSection).toHaveTextContent('')
   })
 

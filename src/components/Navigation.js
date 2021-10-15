@@ -1,25 +1,13 @@
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
-function Navigation({ books, onHandleBookList }) {
+function Navigation() {
   return (
     <Wrapper>
-      <NavBarLink
-        to="/currently-reading"
-        onClick={() => {
-          onHandleBookList('currentlyReading', books)
-        }}
-        activeClassName="is-active"
-      >
+      <NavBarLink to="/currently-reading" activeClassName="is-active">
         Currently Reading
       </NavBarLink>
-      <NavBarLink
-        to="/library"
-        onClick={() => {
-          onHandleBookList('finishedBooks', books)
-        }}
-        activeClassName="is-active"
-      >
+      <NavBarLink to="/library" activeClassName="is-active">
         Finished Reading
       </NavBarLink>
     </Wrapper>
@@ -34,11 +22,15 @@ const Wrapper = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
+  -webkit-box-shadow: 0px -2px 10px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px -2px 10px 0px rgba(0, 0, 0, 0.25);
 `
 
 const NavBarLink = styled(NavLink)`
   flex: 1;
-  padding: 1.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 4rem;
   text-align: center;
   text-decoration: none;
