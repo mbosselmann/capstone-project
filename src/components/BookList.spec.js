@@ -45,18 +45,4 @@ describe('Book list', () => {
     const titleSection = screen.getByTestId('booklist-title')
     expect(titleSection).toHaveTextContent('')
   })
-
-  it('renders correct title according to readingStatus="finishedBooks"', () => {
-    render(<BookList books={books} readingStatus={'finishedBooks'} />)
-
-    const title = screen.getByRole('heading', { level: 2 })
-    expect(title).toHaveTextContent('Your library of finished books:')
-  })
-
-  it('renders correct title according to readingStatus= "currentlyReading"', () => {
-    render(<BookList books={books} readingStatus={'currentlyReading'} />)
-
-    const title = screen.getByRole('heading', { level: 2 })
-    expect(title).toHaveTextContent('Your library of books currently read:')
-  })
 })
