@@ -48,11 +48,15 @@ function App({ data }) {
         </Route>
         <Route exact path={['/currently-reading', '/library']}>
           <Main>
-            <BookList
-              books={filteredBooks}
-              readingStatus={readingStatus}
-              username={username}
-            />
+            {!username ? (
+              <Redirect to="/" />
+            ) : (
+              <BookList
+                books={filteredBooks}
+                readingStatus={readingStatus}
+                username={username}
+              />
+            )}
           </Main>
         </Route>
       </Switch>
