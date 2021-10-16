@@ -12,9 +12,11 @@ function Book({
     if (authors.length === 2) {
       if (authors[0].includes(authors[1])) {
         return ` ${authors[0]}`
+      } else {
+        return ` ${authors[0]} and ${authors[1]}`
       }
-      return ` ${authors[0]} and ${authors[1]}`
-    } else if (authors > 2) {
+    }
+    if (authors > 2) {
       return ` ${authors[0]} and others`
     } else {
       return ` ${authors}`
@@ -51,6 +53,7 @@ export default Book
 
 const Wrapper = styled.li`
   border-radius: 5px;
+  background-color: #fff;
   margin: 1rem;
   display: flex;
   justify-content: space-between;

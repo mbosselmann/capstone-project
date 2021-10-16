@@ -38,7 +38,7 @@ const NavBarLink = styled(NavLink)`
   background-color: #fff;
 
   &.${props => props.activeClassName} {
-    background-color: #4b5878;
+    background-color: #4a4453;
     color: #fff;
   }
 `
