@@ -38,7 +38,6 @@ function App({ data }) {
 
   return (
     <AppContainer>
-      <Route exact path={['/currently-reading', '/library']}></Route>
       <Switch>
         <Route exact path="/">
           {username ? (
@@ -81,8 +80,8 @@ const AppContainer = styled.div`
   max-width: 600px;
   margin: 0 auto;
   display: grid;
-  grid-template-areas: 'main' 'footer';
   grid-template-rows: auto 4rem;
+  grid-template-areas: 'main' 'footer';
 `
 
 export default App
