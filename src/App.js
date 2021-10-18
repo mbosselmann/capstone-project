@@ -1,5 +1,6 @@
 import BookList from './components/BookList'
 import Navigation from './components/Navigation'
+import AddBook from './components/AddBook'
 import Start from './components/Start'
 import styled from 'styled-components/macro'
 import { Route, Switch, useLocation, Redirect } from 'react-router-dom'
@@ -46,8 +47,8 @@ function App({ data }) {
             <Start setUsername={setUsername} />
           )}
         </Route>
-        <Route exact path={['/currently-reading', '/library']}>
-          <Main>
+        <Main>
+          <Route exact path={['/currently-reading', '/library']}>
             {!username ? (
               <Redirect to="/" />
             ) : (
@@ -57,10 +58,13 @@ function App({ data }) {
                 username={username}
               />
             )}
-          </Main>
-        </Route>
+          </Route>
+          <Route exact path="/add-book">
+            <AddBook />
+          </Route>
+        </Main>
       </Switch>
-      <Route exact path={['/currently-reading', '/library']}>
+      <Route exact path={['/currently-reading', '/library', '/add-book']}>
         <Footer>
           <Navigation />
         </Footer>
