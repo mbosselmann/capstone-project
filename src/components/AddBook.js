@@ -1,5 +1,186 @@
-function AddBook() {
-  return <div>AddBook</div>
+import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import styled from 'styled-components/macro'
+import { nanoid } from 'nanoid'
+import placeholder from '../images/placeholder.png'
+import previewPlaceholder from '../images/preview-placeholder.png'
+
+function AddBook({ books, setBooks }) {
+  const [bookcover, setBookcover] = useState(placeholder)
+  const history = useHistory()
+  function getBookcoverPreview(previewEvent) {
+    const form = URL.createObjectURL(previewEvent.target.files[0])
+    setBookcover(form)
+  }
+
+  function createNewBook({ title, authors, readingSince, onPage }) {
+    const newBook = [
+      {
+        id: nanoid(),
+        finished: false,
+        readingSince: readingSince,
+        finishedSince: '',
+        onPage: onPage,
+        volumeInfo: {
+          title: title,
+          authors: authors,
+          imageLinks: {
+            thumbnail: bookcover,
+          },
+        },
+      },
+      ...books,
+    ]
+    setBooks(newBook)
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    const form = event.target
+    const { title, authors, readingSince, onPage } = form.elements
+
+    createNewBook({
+      title: title.value,
+      authors: authors.value,
+      readingSince: readingSince.value,
+      onPage: onPage.value,
+    })
+    form.reset()
+    history.push('/currently-reading')
+  }
+
+  return (
+    <Wrapper>
+      <Form
+        onSubmit={event => {
+          handleSubmit(event)
+        }}
+      >
+        <h2>New book:</h2>
+        <label htmlFor="book-title">Title:</label>
+        <input
+          name="title"
+          type="text"
+          id="bookTitle"
+          placeholder="Title of the book you want to add"
+          required
+        />
+        <label htmlFor="bookAuthors">Author or Authors:</label>
+        <input
+          name="authors"
+          type="text"
+          id="bookAuthors"
+          placeholder="Name or names of the author/authors"
+          required
+        />
+        <Container>
+          <BookcoverContainer>
+            <div id="bookcover-preview">
+              {bookcover === placeholder ? (
+                <img src={previewPlaceholder} alt="bookcover"></img>
+              ) : (
+                <img src={bookcover} alt="bookcover"></img>
+              )}
+            </div>
+            <input
+              type="file"
+              name="bookcover"
+              id="chooseBookcover"
+              accept=".png, .jpeg, .jpg"
+              onChange={preview => {
+                getBookcoverPreview(preview)
+              }}
+            />
+            <label htmlFor="chooseBookcover">Select</label>
+          </BookcoverContainer>
+          <div>
+            <label htmlFor="reading-since">Reading since:</label>
+            <input name="readingSince" type="date" id="reading-since" />
+            <label htmlFor="onPage">Currently on page:</label>
+            <input
+              name="onPage"
+              type="number"
+              id="onPage"
+              placeholder="e. g. 72"
+            />
+          </div>
+        </Container>
+        <button>Add book to list</button>
+      </Form>
+    </Wrapper>
+  )
 }
 
 export default AddBook
+
+const Wrapper = styled.div`
+  background-color: #f6f6f6;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+`
+const Form = styled.form`
+  background-color: #fff;
+  border-radius: 25px 25px 0 0;
+  box-shadow: var(--box-shadow);
+  padding: 1rem;
+  width: 100%;
+
+  h2 {
+    font-family: 'Libre Baskerville', serif;
+    padding-left: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  button {
+    background-color: #504465;
+  }
+`
+
+const Container = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+`
+
+const BookcoverContainer = styled.div`
+  margin-top: 1.35rem;
+  height: 170px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img {
+    max-height: 120px;
+    max-width: 100%;
+    position: relative;
+    margin: 0 auto;
+    border-radius: 5px;
+  }
+
+  input {
+    display: none;
+  }
+
+  label {
+    background-color: #4a4453;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    margin-left: 0;
+    border-radius: 5px;
+    font-weight: 600;
+    width: 80%;
+    text-transform: uppercase;
+    box-shadow: var(--box-shadow);
+    -webkit-box-shadow: var(--box-shadow);
+  }
+`

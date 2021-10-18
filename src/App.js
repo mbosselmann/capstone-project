@@ -7,7 +7,8 @@ import { Route, Switch, useLocation, Redirect } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 function App({ data }) {
-  const [filteredBooks, setFilteredBooks] = useState(data)
+  const [books, setBooks] = useState(data)
+  const [filteredBooks, setFilteredBooks] = useState(books)
   const [readingStatus, setReadingStatus] = useState('')
   const { pathname } = useLocation()
   const [username, setUsername] = useState('')
@@ -30,12 +31,12 @@ function App({ data }) {
   useEffect(() => {
     setReadingStatus(pathname)
     if (pathname === '/currently-reading') {
-      handleBookList('currentlyReading', data)
+      handleBookList('currentlyReading', books)
     }
     if (pathname === '/library') {
-      handleBookList('finishedBooks', data)
+      handleBookList('finishedBooks', books)
     }
-  }, [pathname, data])
+  }, [pathname, books])
 
   return (
     <AppContainer>
@@ -60,7 +61,7 @@ function App({ data }) {
             )}
           </Route>
           <Route exact path="/add-book">
-            <AddBook />
+            <AddBook books={books} setBooks={setBooks} />
           </Route>
         </Main>
       </Switch>
