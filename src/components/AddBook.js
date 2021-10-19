@@ -9,8 +9,8 @@ function AddBook({ books, setBooks }) {
   const [bookcover, setBookcover] = useState(placeholder)
   const history = useHistory()
   function getBookcoverPreview(previewEvent) {
-    const form = URL.createObjectURL(previewEvent.target.files[0])
-    setBookcover(form)
+    const preview = URL.createObjectURL(previewEvent.target.files[0])
+    setBookcover(preview)
   }
 
   function createNewBook({ title, authors, readingSince, onPage }) {
@@ -57,7 +57,9 @@ function AddBook({ books, setBooks }) {
         }}
       >
         <h2>New book:</h2>
-        <label htmlFor="book-title">Title:</label>
+        <label aria-label="book-title" htmlFor="bookTitle">
+          Title:
+        </label>
         <input
           name="title"
           type="text"
@@ -65,7 +67,9 @@ function AddBook({ books, setBooks }) {
           placeholder="Title of the book you want to add"
           required
         />
-        <label htmlFor="bookAuthors">Author or Authors:</label>
+        <label aria-label="book-authors" htmlFor="bookAuthors">
+          Author or Authors:
+        </label>
         <input
           name="authors"
           type="text"
@@ -91,12 +95,18 @@ function AddBook({ books, setBooks }) {
                 getBookcoverPreview(preview)
               }}
             />
-            <label htmlFor="chooseBookcover">Select</label>
+            <label aria-label="select-bookcover" htmlFor="chooseBookcover">
+              Select
+            </label>
           </BookcoverContainer>
           <div>
-            <label htmlFor="reading-since">Reading since:</label>
+            <label aria-label="reading-since" htmlFor="reading-since">
+              Reading since:
+            </label>
             <input name="readingSince" type="date" id="reading-since" />
-            <label htmlFor="onPage">Currently on page:</label>
+            <label aria-label="currently-on-page" htmlFor="onPage">
+              Currently on page:
+            </label>
             <input
               name="onPage"
               type="number"
@@ -105,7 +115,7 @@ function AddBook({ books, setBooks }) {
             />
           </div>
         </Container>
-        <button>Add book to list</button>
+        <button aria-label="submit-book">Add book to list</button>
       </Form>
     </Wrapper>
   )
