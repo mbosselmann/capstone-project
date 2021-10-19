@@ -5,6 +5,6 @@ export default {
   component: AddBook,
 }
 
-const Template = args => <AddBook {...args} />
+const Template = args => <AddBook />
 
 export const NewBook = Template.bind({})
