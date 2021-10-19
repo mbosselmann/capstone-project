@@ -57,9 +57,7 @@ function AddBook({ books, setBooks }) {
         }}
       >
         <h2>New book:</h2>
-        <label aria-label="book-title" htmlFor="bookTitle">
-          Title:
-        </label>
+        <label htmlFor="bookTitle">Book title:</label>
         <input
           name="title"
           type="text"
@@ -67,9 +65,7 @@ function AddBook({ books, setBooks }) {
           placeholder="Title of the book you want to add"
           required
         />
-        <label aria-label="book-authors" htmlFor="bookAuthors">
-          Author or Authors:
-        </label>
+        <label htmlFor="bookAuthors">Author or Authors:</label>
         <input
           name="authors"
           type="text"
@@ -95,18 +91,14 @@ function AddBook({ books, setBooks }) {
                 getBookcoverPreview(preview)
               }}
             />
-            <label aria-label="select-bookcover" htmlFor="chooseBookcover">
+            <label aria-label="select bookcover" htmlFor="chooseBookcover">
               Select
             </label>
           </BookcoverContainer>
           <div>
-            <label aria-label="reading-since" htmlFor="reading-since">
-              Reading since:
-            </label>
+            <label htmlFor="reading-since">Reading since:</label>
             <input name="readingSince" type="date" id="reading-since" />
-            <label aria-label="currently-on-page" htmlFor="onPage">
-              Currently on page:
-            </label>
+            <label htmlFor="onPage">Currently on page:</label>
             <input
               name="onPage"
               type="number"
