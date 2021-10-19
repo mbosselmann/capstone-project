@@ -61,7 +61,11 @@ function App({ data }) {
             )}
           </Route>
           <Route exact path="/add-book">
-            <AddBook books={books} setBooks={setBooks} />
+            {!username ? (
+              <Redirect to="/" />
+            ) : (
+              <AddBook books={books} setBooks={setBooks} />
+            )}
           </Route>
         </Main>
       </Switch>
