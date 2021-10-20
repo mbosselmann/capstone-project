@@ -5,9 +5,14 @@ import Start from './components/Start'
 import styled from 'styled-components/macro'
 import { Route, Switch, useLocation, Redirect } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import getLocalStorage from './lib/loadFromLocal'
+import setLocalStorage from './lib/saveToLocal'
 
 function App({ data }) {
-  const [books, setBooks] = useState(data)
+  const [username, setUsername] = useState(getLocalStorage('user') || '')
+  const [books, setBooks] = useState(
+    getLocalStorage(`books${username}`) || data
+  )
   const [filteredBooks, setFilteredBooks] = useState(books)
   const [readingStatus, setReadingStatus] = useState('')
   const { pathname } = useLocation()
@@ -29,7 +34,10 @@ function App({ data }) {
   }
 
   useEffect(() => {
-    setReadingStatus(pathname)
+    setLocalStorage('user', username)
+  }, [username])
+
+  useEffect(() => {
     if (pathname === '/currently-reading') {
       handleBookList('currentlyReading', books)
     }

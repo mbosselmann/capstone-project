@@ -4,6 +4,7 @@ import styled from 'styled-components/macro'
 import { nanoid } from 'nanoid'
 import placeholder from '../images/placeholder.png'
 import previewPlaceholder from '../images/preview-placeholder.png'
+import setLocalStorage from '../lib/saveToLocal'
 
 function AddBook({ books, setBooks }) {
   const [bookcover, setBookcover] = useState(placeholder)
@@ -32,6 +33,7 @@ function AddBook({ books, setBooks }) {
       ...books,
     ]
     setBooks(newBook)
+    setLocalStorage(`books${username}`, newBook)
   }
 
   function handleSubmit(event) {
