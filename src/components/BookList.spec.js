@@ -33,14 +33,14 @@ describe('Book list', () => {
   ]
 
   it('renders two listitems', () => {
-    render(<BookList books={books} readingStatus={''} />)
+    render(<BookList filteredBooks={books} />)
 
     const bookListItems = screen.getAllByRole('listitem')
     expect(bookListItems).toHaveLength(2)
   })
 
-  it('renders no title according to readingStatus=""', () => {
-    render(<BookList books={books} readingStatus={''} />)
+  it('renders no title according to pathname=""', () => {
+    render(<BookList filteredBooks={books} pathname={''} />)
 
     const titleSection = screen.getByTestId('booklist-title')
     expect(titleSection).toHaveTextContent('')

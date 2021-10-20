@@ -12,7 +12,7 @@ describe('AddBook', () => {
   it('has two required input fields (title and authors)', () => {
     render(<AddBook />)
 
-    const inputElTitle = screen.getByLabelText('Title:')
+    const inputElTitle = screen.getByLabelText('Book title:')
     expect(inputElTitle).toBeRequired()
 
     const inputElAuthors = screen.getByLabelText('Author or Authors:')
