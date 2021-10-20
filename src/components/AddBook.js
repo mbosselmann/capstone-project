@@ -6,12 +6,16 @@ import placeholder from '../images/placeholder.png'
 import previewPlaceholder from '../images/preview-placeholder.png'
 import setLocalStorage from '../lib/saveToLocal'
 
-function AddBook({ books, setBooks }) {
+function AddBook({ books, setBooks, username }) {
   const [bookcover, setBookcover] = useState(placeholder)
   const history = useHistory()
   function getBookcoverPreview(previewEvent) {
-    const preview = URL.createObjectURL(previewEvent.target.files[0])
-    setBookcover(preview)
+    const preview = previewEvent.target.files[0]
+    const reader = new FileReader()
+    reader.onload = event => {
+      setBookcover(event.target.result)
+    }
+    reader.readAsDataURL(preview)
   }
 
   function createNewBook({ title, authors, readingSince, onPage }) {
