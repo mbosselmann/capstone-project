@@ -8,8 +8,10 @@ export default {
   },
 }
 
-const Template = args => <Navigation {...args} />
+const Template = args => <Navigation />
 
 export const CurrentlyReadingLink = Template.bind({})
 
 export const FinishedReadingLink = Template.bind({})
+
+export const AddBookLink = Template.bind({})

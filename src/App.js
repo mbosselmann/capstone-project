@@ -1,12 +1,14 @@
 import BookList from './components/BookList'
 import Navigation from './components/Navigation'
+import AddBook from './components/AddBook'
 import Start from './components/Start'
 import styled from 'styled-components/macro'
 import { Route, Switch, useLocation, Redirect } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 function App({ data }) {
-  const [filteredBooks, setFilteredBooks] = useState(data)
+  const [books, setBooks] = useState(data)
+  const [filteredBooks, setFilteredBooks] = useState(books)
   const [readingStatus, setReadingStatus] = useState('')
   const { pathname } = useLocation()
   const [username, setUsername] = useState('')
@@ -29,12 +31,12 @@ function App({ data }) {
   useEffect(() => {
     setReadingStatus(pathname)
     if (pathname === '/currently-reading') {
-      handleBookList('currentlyReading', data)
+      handleBookList('currentlyReading', books)
     }
     if (pathname === '/library') {
-      handleBookList('finishedBooks', data)
+      handleBookList('finishedBooks', books)
     }
-  }, [pathname, data])
+  }, [pathname, books])
 
   return (
     <AppContainer>
@@ -46,8 +48,8 @@ function App({ data }) {
             <Start setUsername={setUsername} />
           )}
         </Route>
-        <Route exact path={['/currently-reading', '/library']}>
-          <Main>
+        <Main>
+          <Route exact path={['/currently-reading', '/library']}>
             {!username ? (
               <Redirect to="/" />
             ) : (
@@ -57,10 +59,17 @@ function App({ data }) {
                 username={username}
               />
             )}
-          </Main>
-        </Route>
+          </Route>
+          <Route exact path="/add-book">
+            {!username ? (
+              <Redirect to="/" />
+            ) : (
+              <AddBook books={books} setBooks={setBooks} />
+            )}
+          </Route>
+        </Main>
       </Switch>
-      <Route exact path={['/currently-reading', '/library']}>
+      <Route exact path={['/currently-reading', '/library', '/add-book']}>
         <Footer>
           <Navigation />
         </Footer>

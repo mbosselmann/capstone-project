@@ -8,6 +8,6 @@ export default {
   },
 }
 
-const Template = args => <Start {...args} />
+const Template = args => <Start />
 
 export const StartPoint = Template.bind({})

@@ -10,6 +10,9 @@ function Navigation() {
       <NavBarLink to="/library" activeClassName="is-active">
         Finished Reading
       </NavBarLink>
+      <NavBarLink to="/add-book" activeClassName="is-active">
+        Add Book
+      </NavBarLink>
     </Wrapper>
   )
 }

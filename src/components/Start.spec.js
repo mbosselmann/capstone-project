@@ -25,7 +25,7 @@ describe('Start', () => {
   })
 
   it('has an input field where the user has to enter his name', () => {
-    render(<Start inputValue="Mareike" />)
+    render(<Start />)
 
     const inputEl = screen.getByLabelText('Enter your name:')
     expect(inputEl).toBeRequired()
