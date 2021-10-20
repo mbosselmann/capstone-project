@@ -14,22 +14,16 @@ function App({ data }) {
     getLocalStorage(`books${username}`) || data
   )
   const [filteredBooks, setFilteredBooks] = useState(books)
-  const [readingStatus, setReadingStatus] = useState('')
   const { pathname } = useLocation()
-  const [username, setUsername] = useState('')
 
   function handleBookList(status, books) {
-    setReadingStatus(status)
-    if (status === 'finishedBooks') {
+    if (status === '/library') {
       const readBooks = books.filter(book => book.finished === true)
       setFilteredBooks(readBooks)
     }
-    if (status === 'currentlyReading') {
+    if (status === '/currently-reading') {
       const currentlyReadBooks = books.filter(book => book.finished === false)
       setFilteredBooks(currentlyReadBooks)
-    }
-    if (status === '') {
-      setFilteredBooks(books)
     }
   }
 
@@ -39,10 +33,10 @@ function App({ data }) {
 
   useEffect(() => {
     if (pathname === '/currently-reading') {
-      handleBookList('currentlyReading', books)
+      handleBookList('/currently-reading', books)
     }
     if (pathname === '/library') {
-      handleBookList('finishedBooks', books)
+      handleBookList('/library', books)
     }
   }, [pathname, books])
 
@@ -62,9 +56,9 @@ function App({ data }) {
               <Redirect to="/" />
             ) : (
               <BookList
-                books={filteredBooks}
-                readingStatus={readingStatus}
+                filteredBooks={filteredBooks}
                 username={username}
+                pathname={pathname}
               />
             )}
           </Route>
@@ -72,7 +66,7 @@ function App({ data }) {
             {!username ? (
               <Redirect to="/" />
             ) : (
-              <AddBook books={books} setBooks={setBooks} />
+              <AddBook books={books} setBooks={setBooks} username={username} />
             )}
           </Route>
         </Main>

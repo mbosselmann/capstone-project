@@ -2,16 +2,14 @@ import Book from './Book'
 import styled from 'styled-components/macro'
 import TitleBookList from './TitleBookList'
 
-function BookList({ books, readingStatus, username }) {
+function BookList({ filteredBooks, username, pathname }) {
   return (
     <Wrapper>
       <TitleContainer data-testid="booklist-title">
-        {readingStatus && (
-          <TitleBookList status={readingStatus} username={username} />
-        )}
+        {pathname && <TitleBookList status={pathname} username={username} />}
       </TitleContainer>
       <ul>
-        {books.map(book => (
+        {filteredBooks.map(book => (
           <Book
             key={book.id}
             title={book.volumeInfo.title}

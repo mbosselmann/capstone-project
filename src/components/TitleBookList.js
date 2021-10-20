@@ -1,5 +1,5 @@
 function TitleBookList({ status, username }) {
-  if (status === 'finishedBooks') {
+  if (status === '/library') {
     return (
       <div>
         <h2>Your library</h2>
@@ -7,7 +7,7 @@ function TitleBookList({ status, username }) {
       </div>
     )
   }
-  if (status === 'currentlyReading') {
+  if (status === '/currently-reading') {
     return (
       <div>
         <h2>Hi {username}! </h2>
