@@ -2,6 +2,7 @@ import BookList from './components/BookList'
 import Navigation from './components/Navigation'
 import AddBook from './components/AddBook'
 import Start from './components/Start'
+import usePathname from './hooks/usePathname'
 import styled from 'styled-components/macro'
 import { Route, Switch, useLocation, Redirect } from 'react-router-dom'
 import { useState, useEffect } from 'react'
@@ -16,29 +17,11 @@ function App({ data }) {
   const [filteredBooks, setFilteredBooks] = useState(books)
   const { pathname } = useLocation()
 
-  function handleBookList(status, books) {
-    if (status === '/library') {
-      const readBooks = books.filter(book => book.finished === true)
-      setFilteredBooks(readBooks)
-    }
-    if (status === '/currently-reading') {
-      const currentlyReadBooks = books.filter(book => book.finished === false)
-      setFilteredBooks(currentlyReadBooks)
-    }
-  }
-
   useEffect(() => {
     setLocalStorage('user', username)
   }, [username])
 
-  useEffect(() => {
-    if (pathname === '/currently-reading') {
-      handleBookList('/currently-reading', books)
-    }
-    if (pathname === '/library') {
-      handleBookList('/library', books)
-    }
-  }, [pathname, books])
+  usePathname(pathname, books, setFilteredBooks)
 
   return (
     <AppContainer>
