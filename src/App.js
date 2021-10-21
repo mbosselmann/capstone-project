@@ -41,7 +41,7 @@ function App({ data }) {
               <BookList
                 filteredBooks={filteredBooks}
                 username={username}
-                pathname={pathname}
+                status={pathname}
               />
             )}
           </Route>

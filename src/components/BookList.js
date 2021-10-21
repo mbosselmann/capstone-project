@@ -2,11 +2,11 @@ import Book from './Book'
 import styled from 'styled-components/macro'
 import TitleBookList from './TitleBookList'
 
-function BookList({ filteredBooks, username, pathname }) {
+function BookList({ filteredBooks, username, status }) {
   return (
     <Wrapper>
       <TitleContainer data-testid="booklist-title">
-        {pathname && <TitleBookList status={pathname} username={username} />}
+        {status && <TitleBookList status={status} username={username} />}
       </TitleContainer>
       <ul>
         {filteredBooks.map(book => (
