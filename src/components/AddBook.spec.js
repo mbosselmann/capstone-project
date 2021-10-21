@@ -1,5 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import AddBook from './AddBook'
+import { createMemoryHistory } from 'history'
+import { Router } from 'react-router-dom'
+import setLocalStorage from '../lib/saveToLocal'
 
 describe('AddBook', () => {
   it('renders heading', () => {
@@ -48,5 +51,22 @@ describe('AddBook', () => {
     render(<AddBook />)
     const inputElBookcover = screen.getByLabelText('Select')
     expect(inputElBookcover).toHaveAttribute('accept', '.png, .jpeg, .jpg')
+  })
+
+  it('saves the new list of books in LocalStorage', () => {
+    const history = createMemoryHistory()
+    const mockSetBooks = jest.fn()
+    const spyLocalStorage = jest.spyOn(
+      Object.getPrototypeOf(window.localStorage),
+      'setItem'
+    )
+
+    render(
+      <Router history={history}>
+        <AddBook books={'book'} setBooks={mockSetBooks} />
+      </Router>
+    )
+    setLocalStorage('books', 'new book')
+    expect(spyLocalStorage).toHaveBeenCalledWith('books', '"new book"')
   })
 })

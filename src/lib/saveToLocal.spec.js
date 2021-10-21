@@ -1,7 +1,7 @@
 import setLocalStorage from './saveToLocal'
 
 describe('setLocalStorage', () => {
-  it('should save data to local storage', async () => {
+  it('should save data to local storage', () => {
     const spyLocalStorage = jest.spyOn(
       Object.getPrototypeOf(window.localStorage),
       'setItem'
