@@ -2,7 +2,6 @@ import BookList from './components/BookList'
 import Navigation from './components/Navigation'
 import AddBook from './components/AddBook'
 import Start from './components/Start'
-import usePathname from './hooks/usePathname'
 import styled from 'styled-components/macro'
 import { Route, Switch, useLocation, Redirect } from 'react-router-dom'
 import { useState, useEffect } from 'react'
@@ -10,18 +9,15 @@ import getLocalStorage from './lib/loadFromLocal'
 import setLocalStorage from './lib/saveToLocal'
 
 function App({ data }) {
-  const [username, setUsername] = useState(getLocalStorage('user') || '')
+  const [username, setUsername] = useState(getLocalStorage('user') ?? '')
   const [books, setBooks] = useState(
-    getLocalStorage(`books${username}`) || data
+    getLocalStorage(`books${username}`) ?? data
   )
-  const [filteredBooks, setFilteredBooks] = useState(books)
   const { pathname } = useLocation()
 
   useEffect(() => {
     setLocalStorage('user', username)
   }, [username])
-
-  usePathname(pathname, books, setFilteredBooks)
 
   return (
     <AppContainer>
@@ -38,11 +34,7 @@ function App({ data }) {
             {!username ? (
               <Redirect to="/" />
             ) : (
-              <BookList
-                filteredBooks={filteredBooks}
-                username={username}
-                status={pathname}
-              />
+              <BookList books={books} username={username} status={pathname} />
             )}
           </Route>
           <Route exact path="/add-book">

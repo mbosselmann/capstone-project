@@ -2,7 +2,12 @@ import Book from './Book'
 import styled from 'styled-components/macro'
 import TitleBookList from './TitleBookList'
 
-function BookList({ filteredBooks, username, status }) {
+function BookList({ books, username, status }) {
+  const filteredBooks =
+    status === '/library'
+      ? books.filter(book => book.finished === true)
+      : books.filter(book => book.finished === false)
+
   return (
     <Wrapper>
       <TitleContainer data-testid="booklist-title">
