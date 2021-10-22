@@ -35,7 +35,7 @@ export default BookList
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 200px 1fr 1fr 1fr 1fr;
+  grid-template-rows: 120px 1fr 1fr 1fr 1fr;
 
   ul {
     grid-row: 2 / 6;
@@ -47,21 +47,19 @@ const Wrapper = styled.div`
 const TitleContainer = styled.section`
   grid-row: 1 / 3;
   grid-column: 1;
-  height: 310px;
+  height: 225px;
   display: flex;
-  gap: 20px;
   flex-direction: column;
   align-items: left;
-  justify-content: flex-end;
   background-color: #4a4453;
   color: #fff;
-  padding: 4rem 1rem;
+  padding: 1.5rem 1rem;
 
   div {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    margin-bottom: 60px;
+    margin-bottom: 70px;
   }
 
   h2 {
