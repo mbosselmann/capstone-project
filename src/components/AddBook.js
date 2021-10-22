@@ -6,6 +6,13 @@ import previewPlaceholder from '../images/preview-placeholder.png'
 
 function AddBook({ onCreateNewBook, onGetBookCoverPreview }) {
   const history = useHistory()
+  const [preview, setPreview] = useState(placeholder)
+
+  function getPreview(previewEvent) {
+    const preview = URL.createObjectURL(previewEvent.target.files[0])
+    setPreview(preview)
+  }
+
   const date = new Date()
   const today =
     date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
@@ -52,10 +59,10 @@ function AddBook({ onCreateNewBook, onGetBookCoverPreview }) {
         <Container>
           <BookcoverContainer>
             <div id="bookcover-preview">
-              {bookcover === placeholder ? (
+              {preview === placeholder ? (
                 <img src={previewPlaceholder} alt="bookcover"></img>
               ) : (
-                <img src={bookcover} alt="bookcover"></img>
+                <img src={preview} alt="bookcover"></img>
               )}
             </div>
             <input
@@ -65,6 +72,7 @@ function AddBook({ onCreateNewBook, onGetBookCoverPreview }) {
               accept=".png, .jpeg, .jpg"
               onChange={preview => {
                 onGetBookCoverPreview(preview)
+                getPreview(preview)
               }}
             />
             <label aria-label="select bookcover" htmlFor="chooseBookcover">
