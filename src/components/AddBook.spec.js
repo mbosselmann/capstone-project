@@ -29,10 +29,16 @@ describe('AddBook', () => {
     expect(altText).toBeInTheDocument()
   })
 
-  it('has an input field "Reading since" with the type "date"', () => {
+  it('has an input field "Reading since" with the type "date" and the attribute "max"', () => {
+    const date = new Date()
+    const today =
+      date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+
     render(<AddBook />)
+
     const inputElReadingSince = screen.getByLabelText('Reading since:')
     expect(inputElReadingSince).toHaveAttribute('type', 'date')
+    expect(inputElReadingSince).toHaveAttribute('max', today)
   })
 
   it('has an input field "Currently on page" with the type "number"', () => {

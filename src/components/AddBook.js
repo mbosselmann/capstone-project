@@ -18,6 +18,10 @@ function AddBook({ books, setBooks, username }) {
     reader.readAsDataURL(preview)
   }
 
+  const date = new Date()
+  const today =
+    date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+
   function createNewBook({ title, authors, readingSince, onPage }) {
     const newBook = [
       {
@@ -103,7 +107,12 @@ function AddBook({ books, setBooks, username }) {
           </BookcoverContainer>
           <div>
             <label htmlFor="reading-since">Reading since:</label>
-            <input name="readingSince" type="date" id="reading-since" />
+            <input
+              name="readingSince"
+              type="date"
+              id="reading-since"
+              max={today}
+            />
             <label htmlFor="onPage">Currently on page:</label>
             <input
               name="onPage"
