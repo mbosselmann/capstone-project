@@ -26,6 +26,7 @@ function Start({ setUsername }) {
           name="username"
           id="name"
           placeholder="Your name"
+          autoComplete="off"
           required
         />
         <button>Start</button>

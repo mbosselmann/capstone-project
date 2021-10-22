@@ -3,7 +3,7 @@ import TitleBookList from './TitleBookList'
 
 describe('Title for BookList Component', () => {
   it('returns correct title according to readingStatus= "currentlyReading" and username', () => {
-    render(<TitleBookList status={'currentlyReading'} username={'Mareike'} />)
+    render(<TitleBookList status={'/currently-reading'} username={'Mareike'} />)
 
     const titleHeading = screen.getByText('Hi Mareike!')
     expect(titleHeading).toBeInTheDocument()
@@ -15,7 +15,7 @@ describe('Title for BookList Component', () => {
   })
 
   it('returns correct title according to readingStatus= "finishedBooks"', () => {
-    render(<TitleBookList status={'finishedBooks'} />)
+    render(<TitleBookList status={'/library'} />)
 
     const titleHeading = screen.getByText('Your library')
     expect(titleHeading).toBeInTheDocument()

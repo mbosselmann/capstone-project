@@ -1,45 +1,28 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
-import { nanoid } from 'nanoid'
 import placeholder from '../images/placeholder.png'
 import previewPlaceholder from '../images/preview-placeholder.png'
 
-function AddBook({ books, setBooks }) {
-  const [bookcover, setBookcover] = useState(placeholder)
+function AddBook({ onCreateNewBook, onGetBookCoverPreview }) {
   const history = useHistory()
-  function getBookcoverPreview(previewEvent) {
+  const [preview, setPreview] = useState(placeholder)
+
+  function getPreview(previewEvent) {
     const preview = URL.createObjectURL(previewEvent.target.files[0])
-    setBookcover(preview)
+    setPreview(preview)
   }
 
-  function createNewBook({ title, authors, readingSince, onPage }) {
-    const newBook = [
-      {
-        id: nanoid(),
-        finished: false,
-        readingSince: readingSince,
-        finishedSince: '',
-        onPage: onPage,
-        volumeInfo: {
-          title: title,
-          authors: authors,
-          imageLinks: {
-            thumbnail: bookcover,
-          },
-        },
-      },
-      ...books,
-    ]
-    setBooks(newBook)
-  }
+  const date = new Date()
+  const today =
+    date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
 
   function handleSubmit(event) {
     event.preventDefault()
     const form = event.target
     const { title, authors, readingSince, onPage } = form.elements
 
-    createNewBook({
+    onCreateNewBook({
       title: title.value,
       authors: authors.value,
       readingSince: readingSince.value,
@@ -76,10 +59,10 @@ function AddBook({ books, setBooks }) {
         <Container>
           <BookcoverContainer>
             <div id="bookcover-preview">
-              {bookcover === placeholder ? (
+              {preview === placeholder ? (
                 <img src={previewPlaceholder} alt="bookcover"></img>
               ) : (
-                <img src={bookcover} alt="bookcover"></img>
+                <img src={preview} alt="bookcover"></img>
               )}
             </div>
             <input
@@ -88,7 +71,8 @@ function AddBook({ books, setBooks }) {
               id="chooseBookcover"
               accept=".png, .jpeg, .jpg"
               onChange={preview => {
-                getBookcoverPreview(preview)
+                onGetBookCoverPreview(preview)
+                getPreview(preview)
               }}
             />
             <label aria-label="select bookcover" htmlFor="chooseBookcover">
@@ -97,7 +81,12 @@ function AddBook({ books, setBooks }) {
           </BookcoverContainer>
           <div>
             <label htmlFor="reading-since">Reading since:</label>
-            <input name="readingSince" type="date" id="reading-since" />
+            <input
+              name="readingSince"
+              type="date"
+              id="reading-since"
+              max={today}
+            />
             <label htmlFor="onPage">Currently on page:</label>
             <input
               name="onPage"

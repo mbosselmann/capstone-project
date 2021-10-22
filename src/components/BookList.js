@@ -2,16 +2,19 @@ import Book from './Book'
 import styled from 'styled-components/macro'
 import TitleBookList from './TitleBookList'
 
-function BookList({ books, readingStatus, username }) {
+function BookList({ books, username, status }) {
+  const filteredBooks =
+    status === '/library'
+      ? books.filter(book => book.finished === true)
+      : books.filter(book => book.finished === false)
+
   return (
     <Wrapper>
       <TitleContainer data-testid="booklist-title">
-        {readingStatus && (
-          <TitleBookList status={readingStatus} username={username} />
-        )}
+        {status && <TitleBookList status={status} username={username} />}
       </TitleContainer>
       <ul>
-        {books.map(book => (
+        {filteredBooks.map(book => (
           <Book
             key={book.id}
             title={book.volumeInfo.title}
@@ -32,7 +35,7 @@ export default BookList
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 200px 1fr 1fr 1fr 1fr;
+  grid-template-rows: 120px 1fr 1fr 1fr 1fr;
 
   ul {
     grid-row: 2 / 6;
@@ -44,21 +47,19 @@ const Wrapper = styled.div`
 const TitleContainer = styled.section`
   grid-row: 1 / 3;
   grid-column: 1;
-  height: 310px;
+  height: 225px;
   display: flex;
-  gap: 20px;
   flex-direction: column;
   align-items: left;
-  justify-content: flex-end;
   background-color: #4a4453;
   color: #fff;
-  padding: 4rem 1rem;
+  padding: 1.5rem 1rem;
 
   div {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    margin-bottom: 60px;
+    margin-bottom: 70px;
   }
 
   h2 {

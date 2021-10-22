@@ -5,38 +5,53 @@ import Start from './components/Start'
 import styled from 'styled-components/macro'
 import { Route, Switch, useLocation, Redirect } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import getLocalStorage from './lib/loadFromLocal'
+import setLocalStorage from './lib/saveToLocal'
+import { nanoid } from 'nanoid'
+import placeholder from './images/placeholder.png'
 
 function App({ data }) {
-  const [books, setBooks] = useState(data)
-  const [filteredBooks, setFilteredBooks] = useState(books)
-  const [readingStatus, setReadingStatus] = useState('')
+  const [username, setUsername] = useState(getLocalStorage('user') ?? '')
+  const [books, setBooks] = useState(
+    getLocalStorage(`books${username}`) ?? data
+  )
+  const [bookcover, setBookcover] = useState(placeholder)
   const { pathname } = useLocation()
-  const [username, setUsername] = useState('')
-
-  function handleBookList(status, books) {
-    setReadingStatus(status)
-    if (status === 'finishedBooks') {
-      const readBooks = books.filter(book => book.finished === true)
-      setFilteredBooks(readBooks)
-    }
-    if (status === 'currentlyReading') {
-      const currentlyReadBooks = books.filter(book => book.finished === false)
-      setFilteredBooks(currentlyReadBooks)
-    }
-    if (status === '') {
-      setFilteredBooks(books)
-    }
-  }
 
   useEffect(() => {
-    setReadingStatus(pathname)
-    if (pathname === '/currently-reading') {
-      handleBookList('currentlyReading', books)
+    setLocalStorage('user', username)
+  }, [username])
+
+  function getBookcoverPreview(previewEvent) {
+    const preview = previewEvent.target.files[0]
+    const reader = new FileReader()
+    reader.onload = event => {
+      setBookcover(event.target.result)
     }
-    if (pathname === '/library') {
-      handleBookList('finishedBooks', books)
-    }
-  }, [pathname, books])
+    reader.readAsDataURL(preview)
+  }
+
+  function createNewBook({ title, authors, readingSince, onPage }) {
+    const newBook = [
+      {
+        id: nanoid(),
+        finished: false,
+        readingSince: readingSince,
+        finishedSince: '',
+        onPage: onPage,
+        volumeInfo: {
+          title: title,
+          authors: authors,
+          imageLinks: {
+            thumbnail: bookcover,
+          },
+        },
+      },
+      ...books,
+    ]
+    setBooks(newBook)
+    setLocalStorage(`books${username}`, newBook)
+  }
 
   return (
     <AppContainer>
@@ -53,18 +68,17 @@ function App({ data }) {
             {!username ? (
               <Redirect to="/" />
             ) : (
-              <BookList
-                books={filteredBooks}
-                readingStatus={readingStatus}
-                username={username}
-              />
+              <BookList books={books} username={username} status={pathname} />
             )}
           </Route>
           <Route exact path="/add-book">
             {!username ? (
               <Redirect to="/" />
             ) : (
-              <AddBook books={books} setBooks={setBooks} />
+              <AddBook
+                onCreateNewBook={createNewBook}
+                onGetBookCoverPreview={getBookcoverPreview}
+              />
             )}
           </Route>
         </Main>

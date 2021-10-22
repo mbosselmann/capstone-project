@@ -1,7 +1,14 @@
 import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import AddBook from './AddBook'
+import { createMemoryHistory } from 'history'
+import { Router } from 'react-router-dom'
 
 describe('AddBook', () => {
+  const date = new Date()
+  const today =
+    date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+
   it('renders heading', () => {
     render(<AddBook />)
 
@@ -12,7 +19,7 @@ describe('AddBook', () => {
   it('has two required input fields (title and authors)', () => {
     render(<AddBook />)
 
-    const inputElTitle = screen.getByLabelText('Title:')
+    const inputElTitle = screen.getByLabelText('Book title:')
     expect(inputElTitle).toBeRequired()
 
     const inputElAuthors = screen.getByLabelText('Author or Authors:')
@@ -26,16 +33,18 @@ describe('AddBook', () => {
     expect(altText).toBeInTheDocument()
   })
 
-  it('has an input field "Reading since" with the type "date"', () => {
+  it('has an input field "Reading since" with the type "date" and the attribute "max"', () => {
     render(<AddBook />)
+
     const inputElReadingSince = screen.getByLabelText('Reading since:')
     expect(inputElReadingSince).toHaveAttribute('type', 'date')
+    expect(inputElReadingSince).toHaveAttribute('max', today)
   })
 
   it('has an input field "Currently on page" with the type "number"', () => {
     render(<AddBook />)
-    const inputElReadingSince = screen.getByLabelText('Currently on page:')
-    expect(inputElReadingSince).toHaveAttribute('type', 'number')
+    const inputElOnPage = screen.getByLabelText('Currently on page:')
+    expect(inputElOnPage).toHaveAttribute('type', 'number')
   })
 
   it('has an input field for uploading a bookcover with the type "file"', () => {
@@ -48,5 +57,47 @@ describe('AddBook', () => {
     render(<AddBook />)
     const inputElBookcover = screen.getByLabelText('Select')
     expect(inputElBookcover).toHaveAttribute('accept', '.png, .jpeg, .jpg')
+  })
+
+  it('calls onCreateNewBook with values of form', () => {
+    const history = createMemoryHistory()
+    const mockOnCreateNewBook = jest.fn()
+
+    render(
+      <Router history={history}>
+        <AddBook onCreateNewBook={mockOnCreateNewBook} />
+      </Router>
+    )
+
+    const inputElTitle = screen.getByLabelText('Book title:')
+    const inputElAuthors = screen.getByLabelText('Author or Authors:')
+    const inputElReadingSince = screen.getByLabelText('Reading since:')
+    const inputElOnPage = screen.getByLabelText('Currently on page:')
+
+    userEvent.type(inputElTitle, 'Das Haus')
+    userEvent.type(inputElAuthors, 'Marie Meier')
+    userEvent.type(inputElReadingSince, today)
+    userEvent.type(inputElOnPage, '10')
+
+    const button = screen.getByRole('button')
+    userEvent.click(button)
+
+    expect(mockOnCreateNewBook).toHaveBeenCalledWith({
+      title: 'Das Haus',
+      authors: 'Marie Meier',
+      readingSince: today,
+      onPage: '10',
+    })
+  })
+
+  it('calls onGetBookCoverPreview when input file types changes', () => {
+    const mockOnGetBookCoverPreview = jest.fn()
+    global.URL.createObjectURL = jest.fn()
+
+    render(<AddBook onGetBookCoverPreview={mockOnGetBookCoverPreview} />)
+
+    const inputElBookcover = screen.getByLabelText('Select')
+    userEvent.upload(inputElBookcover)
+    expect(mockOnGetBookCoverPreview).toHaveBeenCalledTimes(1)
   })
 })
