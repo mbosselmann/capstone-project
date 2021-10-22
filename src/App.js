@@ -7,17 +7,51 @@ import { Route, Switch, useLocation, Redirect } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import getLocalStorage from './lib/loadFromLocal'
 import setLocalStorage from './lib/saveToLocal'
+import { nanoid } from 'nanoid'
+import placeholder from './images/placeholder.png'
 
 function App({ data }) {
   const [username, setUsername] = useState(getLocalStorage('user') ?? '')
   const [books, setBooks] = useState(
     getLocalStorage(`books${username}`) ?? data
   )
+  const [bookcover, setBookcover] = useState(placeholder)
   const { pathname } = useLocation()
 
   useEffect(() => {
     setLocalStorage('user', username)
   }, [username])
+
+  function getBookcoverPreview(previewEvent) {
+    const preview = previewEvent.target.files[0]
+    const reader = new FileReader()
+    reader.onload = event => {
+      setBookcover(event.target.result)
+    }
+    reader.readAsDataURL(preview)
+  }
+
+  function createNewBook({ title, authors, readingSince, onPage }) {
+    const newBook = [
+      {
+        id: nanoid(),
+        finished: false,
+        readingSince: readingSince,
+        finishedSince: '',
+        onPage: onPage,
+        volumeInfo: {
+          title: title,
+          authors: authors,
+          imageLinks: {
+            thumbnail: bookcover,
+          },
+        },
+      },
+      ...books,
+    ]
+    setBooks(newBook)
+    setLocalStorage(`books${username}`, newBook)
+  }
 
   return (
     <AppContainer>
@@ -41,7 +75,10 @@ function App({ data }) {
             {!username ? (
               <Redirect to="/" />
             ) : (
-              <AddBook books={books} setBooks={setBooks} username={username} />
+              <AddBook
+                onCreateNewBook={createNewBook}
+                onGetBookCoverPreview={getBookcoverPreview}
+              />
             )}
           </Route>
         </Main>

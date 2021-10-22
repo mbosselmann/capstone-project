@@ -1,55 +1,21 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
-import { nanoid } from 'nanoid'
 import placeholder from '../images/placeholder.png'
 import previewPlaceholder from '../images/preview-placeholder.png'
-import setLocalStorage from '../lib/saveToLocal'
 
-function AddBook({ books, setBooks, username }) {
-  const [bookcover, setBookcover] = useState(placeholder)
+function AddBook({ onCreateNewBook, onGetBookCoverPreview }) {
   const history = useHistory()
-  function getBookcoverPreview(previewEvent) {
-    const preview = previewEvent.target.files[0]
-    const reader = new FileReader()
-    reader.onload = event => {
-      setBookcover(event.target.result)
-    }
-    reader.readAsDataURL(preview)
-  }
-
   const date = new Date()
   const today =
     date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
-
-  function createNewBook({ title, authors, readingSince, onPage }) {
-    const newBook = [
-      {
-        id: nanoid(),
-        finished: false,
-        readingSince: readingSince,
-        finishedSince: '',
-        onPage: onPage,
-        volumeInfo: {
-          title: title,
-          authors: authors,
-          imageLinks: {
-            thumbnail: bookcover,
-          },
-        },
-      },
-      ...books,
-    ]
-    setBooks(newBook)
-    setLocalStorage(`books${username}`, newBook)
-  }
 
   function handleSubmit(event) {
     event.preventDefault()
     const form = event.target
     const { title, authors, readingSince, onPage } = form.elements
 
-    createNewBook({
+    onCreateNewBook({
       title: title.value,
       authors: authors.value,
       readingSince: readingSince.value,
@@ -98,7 +64,7 @@ function AddBook({ books, setBooks, username }) {
               id="chooseBookcover"
               accept=".png, .jpeg, .jpg"
               onChange={preview => {
-                getBookcoverPreview(preview)
+                onGetBookCoverPreview(preview)
               }}
             />
             <label aria-label="select bookcover" htmlFor="chooseBookcover">
