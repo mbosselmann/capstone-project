@@ -1,10 +1,14 @@
 import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import AddBook from './AddBook'
 import { createMemoryHistory } from 'history'
 import { Router } from 'react-router-dom'
-import setLocalStorage from '../lib/saveToLocal'
 
 describe('AddBook', () => {
+  const date = new Date()
+  const today =
+    date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+
   it('renders heading', () => {
     render(<AddBook />)
 
@@ -30,10 +34,6 @@ describe('AddBook', () => {
   })
 
   it('has an input field "Reading since" with the type "date" and the attribute "max"', () => {
-    const date = new Date()
-    const today =
-      date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
-
     render(<AddBook />)
 
     const inputElReadingSince = screen.getByLabelText('Reading since:')
@@ -43,8 +43,8 @@ describe('AddBook', () => {
 
   it('has an input field "Currently on page" with the type "number"', () => {
     render(<AddBook />)
-    const inputElReadingSince = screen.getByLabelText('Currently on page:')
-    expect(inputElReadingSince).toHaveAttribute('type', 'number')
+    const inputElOnPage = screen.getByLabelText('Currently on page:')
+    expect(inputElOnPage).toHaveAttribute('type', 'number')
   })
 
   it('has an input field for uploading a bookcover with the type "file"', () => {
@@ -59,20 +59,45 @@ describe('AddBook', () => {
     expect(inputElBookcover).toHaveAttribute('accept', '.png, .jpeg, .jpg')
   })
 
-  it('saves the new list of books in LocalStorage', () => {
+  it('calls onCreateNewBook with values of form', () => {
     const history = createMemoryHistory()
-    const mockSetBooks = jest.fn()
-    const spyLocalStorage = jest.spyOn(
-      Object.getPrototypeOf(window.localStorage),
-      'setItem'
-    )
+    const mockOnCreateNewBook = jest.fn()
 
     render(
       <Router history={history}>
-        <AddBook books={'book'} setBooks={mockSetBooks} />
+        <AddBook onCreateNewBook={mockOnCreateNewBook} />
       </Router>
     )
-    setLocalStorage('books', 'new book')
-    expect(spyLocalStorage).toHaveBeenCalledWith('books', '"new book"')
+
+    const inputElTitle = screen.getByLabelText('Book title:')
+    const inputElAuthors = screen.getByLabelText('Author or Authors:')
+    const inputElReadingSince = screen.getByLabelText('Reading since:')
+    const inputElOnPage = screen.getByLabelText('Currently on page:')
+
+    userEvent.type(inputElTitle, 'Das Haus')
+    userEvent.type(inputElAuthors, 'Marie Meier')
+    userEvent.type(inputElReadingSince, today)
+    userEvent.type(inputElOnPage, '10')
+
+    const button = screen.getByRole('button')
+    userEvent.click(button)
+
+    expect(mockOnCreateNewBook).toHaveBeenCalledWith({
+      title: 'Das Haus',
+      authors: 'Marie Meier',
+      readingSince: today,
+      onPage: '10',
+    })
+  })
+
+  it('calls onGetBookCoverPreview when input file types changes', () => {
+    const mockOnGetBookCoverPreview = jest.fn()
+    global.URL.createObjectURL = jest.fn()
+
+    render(<AddBook onGetBookCoverPreview={mockOnGetBookCoverPreview} />)
+
+    const inputElBookcover = screen.getByLabelText('Select')
+    userEvent.upload(inputElBookcover)
+    expect(mockOnGetBookCoverPreview).toHaveBeenCalledTimes(1)
   })
 })
