@@ -32,17 +32,24 @@ describe('Book list', () => {
     },
   ]
 
-  it('renders two listitems', () => {
-    render(<BookList filteredBooks={books} />)
+  it('renders  one listitem when status is "/library"', () => {
+    render(<BookList books={books} status={'/library'} />)
 
     const bookListItems = screen.getAllByRole('listitem')
-    expect(bookListItems).toHaveLength(2)
+    expect(bookListItems).toHaveLength(1)
   })
 
-  it('renders no title according to pathname=""', () => {
-    render(<BookList filteredBooks={books} pathname={''} />)
+  it('renders  one listitem when status is not "/library"', () => {
+    render(<BookList books={books} status={'/currently-reading'} />)
+
+    const bookListItems = screen.getAllByRole('listitem')
+    expect(bookListItems).toHaveLength(1)
+  })
+
+  it('renders no title according to status=""', () => {
+    render(<BookList books={books} status={''} />)
 
     const titleSection = screen.getByTestId('booklist-title')
-    expect(titleSection).toHaveTextContent('')
+    expect(titleSection).toBeEmptyDOMElement()
   })
 })
