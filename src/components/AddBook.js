@@ -35,24 +35,26 @@ function AddBook({ onCreateNewBook, onGetBookCoverPreview, today }) {
           handleSubmit(event)
         }}
       >
-        <h2>New book:</h2>
-        <label htmlFor="bookTitle">Book title:</label>
-        <input
-          name="title"
-          type="text"
-          id="bookTitle"
-          placeholder="Title of the book you want to add"
-          required
-        />
-        <label htmlFor="bookAuthors">Author or Authors:</label>
-        <input
-          name="authors"
-          type="text"
-          id="bookAuthors"
-          placeholder="Name or names of the author/authors"
-          required
-        />
-        <Container>
+        <RequiredContainer>
+          <h2>New book:</h2>
+          <label htmlFor="bookTitle">Book title:</label>
+          <input
+            name="title"
+            type="text"
+            id="bookTitle"
+            placeholder="Title of the book you want to add"
+            required
+          />
+          <label htmlFor="bookAuthors">Author or Authors:</label>
+          <input
+            name="authors"
+            type="text"
+            id="bookAuthors"
+            placeholder="Name or names of the author/authors"
+            required
+          />
+        </RequiredContainer>
+        <OptionalContainer>
           <BookcoverContainer>
             <div id="bookcover-preview">
               {preview === placeholder ? (
@@ -91,8 +93,10 @@ function AddBook({ onCreateNewBook, onGetBookCoverPreview, today }) {
               placeholder="e. g. 72"
             />
           </div>
-        </Container>
-        <button aria-label="submit-book">Add book to list</button>
+        </OptionalContainer>
+        <ButtonContainer>
+          <button aria-label="submit-book">Add book to list</button>
+        </ButtonContainer>
       </Form>
     </Wrapper>
   )
@@ -104,7 +108,7 @@ const Wrapper = styled.div`
   background-color: #f6f6f6;
   display: flex;
   justify-content: center;
-  height: 100%;
+  height: 100vh;
 `
 const Form = styled.form`
   background-color: #fff;
@@ -124,7 +128,12 @@ const Form = styled.form`
   }
 `
 
-const Container = styled.div`
+const RequiredContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const OptionalContainer = styled.div`
   display: flex;
   gap: 0.5rem;
   margin-bottom: 2rem;
@@ -134,6 +143,11 @@ const Container = styled.div`
     flex-direction: column;
     flex: 1;
   }
+`
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
 `
 
 const BookcoverContainer = styled.div`
