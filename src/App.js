@@ -1,6 +1,7 @@
 import BookList from './components/BookList'
 import Navigation from './components/Navigation'
 import AddBook from './components/AddBook'
+import StartAddBook from './components/AddBookStart'
 import Start from './components/Start'
 import styled from 'styled-components/macro'
 import { Route, Switch, useLocation, Redirect } from 'react-router-dom'
@@ -90,6 +91,16 @@ function App({ data }) {
             )}
           </Route>
           <Route exact path="/add-book">
+            {!username ? (
+              <Redirect to="/" />
+            ) : (
+              <StartAddBook
+                onHandleISBNSearch={handleISBNSearch}
+                message={message}
+              />
+            )}
+          </Route>
+          <Route exact path="/add-book-form">
             {!username ? (
               <Redirect to="/" />
             ) : (
