@@ -4,7 +4,7 @@ import styled from 'styled-components/macro'
 import placeholder from '../images/placeholder.png'
 import previewPlaceholder from '../images/preview-placeholder.png'
 
-function AddBook({ onCreateNewBook, onGetBookCoverPreview }) {
+function AddBook({ onCreateNewBook, onGetBookCoverPreview, today }) {
   const history = useHistory()
   const [preview, setPreview] = useState(placeholder)
 
@@ -12,10 +12,6 @@ function AddBook({ onCreateNewBook, onGetBookCoverPreview }) {
     const preview = URL.createObjectURL(previewEvent.target.files[0])
     setPreview(preview)
   }
-
-  const date = new Date()
-  const today =
-    date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
 
   function handleSubmit(event) {
     event.preventDefault()

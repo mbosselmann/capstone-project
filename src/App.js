@@ -18,9 +18,14 @@ function App({ data }) {
   const [bookcover, setBookcover] = useState(placeholder)
   const { pathname } = useLocation()
 
+  const date = new Date()
+  const today =
+    date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+
   useEffect(() => {
     setLocalStorage('user', username)
-  }, [username])
+    setLocalStorage(`books${username}`, books)
+  }, [username, books])
 
   function getBookcoverPreview(previewEvent) {
     const preview = previewEvent.target.files[0]
@@ -31,21 +36,20 @@ function App({ data }) {
     reader.readAsDataURL(preview)
   }
 
-  function createNewBook({ title, authors, readingSince, onPage }) {
-    const newBook = [
-      {
-        id: nanoid(),
-        finished: false,
-        readingSince: readingSince,
-        finishedSince: '',
-        onPage: onPage,
-        volumeInfo: {
-          title: title,
-          authors: authors,
+  function createNewBook({ title, authors, readingSince, onPage, thumbnail }) {
+    const newBook = {
+      id: nanoid(),
+      finished: false,
+      readingSince: readingSince,
+      finishedSince: '',
+      onPage: onPage,
+      volumeInfo: {
+        title: title,
+        authors: authors,
+        imageLinks: {
           thumbnail: !thumbnail ? bookcover : thumbnail,
         },
       },
-          },
     }
     const newBooks = [newBook, ...books]
     setBooks(newBooks)
