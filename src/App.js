@@ -131,7 +131,10 @@ function App({ data }) {
           </Route>
         </Main>
       </Switch>
-      <Route exact path={['/currently-reading', '/library', '/add-book']}>
+      <Route
+        exact
+        path={['/currently-reading', '/library', '/add-book', '/add-book-form']}
+      >
         <Footer>
           <Navigation />
         </Footer>
