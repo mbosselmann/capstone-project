@@ -34,7 +34,7 @@ width: 100%;
 }
 `
 
-const Transition = styled.div`
+const Transition = styled.section`
   position: absolute;
   top: -300px;
   animation-duration: 5s;
