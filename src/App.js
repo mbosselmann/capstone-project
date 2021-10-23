@@ -67,7 +67,9 @@ function App({ data }) {
 
   function handleISBNSearch(isbn) {
     const searchedBook = data.filter(
-      book => book.volumeInfo.industryIdentifiers[0].identifier === isbn
+      book =>
+        book.volumeInfo.industryIdentifiers[0].identifier === isbn ||
+        book.volumeInfo.industryIdentifiers[1].identifier === isbn
     )
     if (!searchedBook[0]) {
       setMessage('ISBN error')
