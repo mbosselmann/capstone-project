@@ -1,7 +1,18 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
+import Message from './Message'
+import error from '../images/error.svg'
+import success from '../images/success.svg'
 
-function StartAddBook({ onHandleISBNSearch }) {
+function StartAddBook({ onHandleISBNSearch, message }) {
+  const errorMessage = `Oh no! The ISBN doesn't seem to exist. :-(`
+  const errorText =
+    'Please try again or use the possibility to add your book manually below.'
+  const successMessage =
+    'Yay! The book was successfully added to your book list. :-)'
+  const successText =
+    'You will shortly be redirected to your currently reading page.'
+
   function handleSubmit(event) {
     event.preventDefault()
     const form = event.target
@@ -12,6 +23,22 @@ function StartAddBook({ onHandleISBNSearch }) {
 
   return (
     <Wrapper>
+      {(message === 'ISBN error' && (
+        <Message
+          image={error}
+          message={errorMessage}
+          text={errorText}
+          alt-text="error"
+        />
+      )) ||
+        (message === 'Success!' && (
+          <Message
+            image={success}
+            message={successMessage}
+            text={successText}
+            altText="success"
+          />
+        ))}
       <h2>Add a new book:</h2>
       <form onSubmit={event => handleSubmit(event)}>
         <label htmlFor="isbn">

@@ -4,7 +4,13 @@ import AddBook from './components/AddBook'
 import StartAddBook from './components/AddBookStart'
 import Start from './components/Start'
 import styled from 'styled-components/macro'
-import { Route, Switch, useLocation, Redirect } from 'react-router-dom'
+import {
+  Route,
+  Switch,
+  useLocation,
+  Redirect,
+  useHistory,
+} from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import getLocalStorage from './lib/loadFromLocal'
 import setLocalStorage from './lib/saveToLocal'
@@ -17,7 +23,9 @@ function App({ data }) {
     getLocalStorage(`books${username}`) ?? data
   )
   const [bookcover, setBookcover] = useState(placeholder)
+  const [message, setMessage] = useState('')
   const { pathname } = useLocation()
+  const history = useHistory()
 
   const date = new Date()
   const today =
@@ -61,15 +69,25 @@ function App({ data }) {
     const searchedBook = data.filter(
       book => book.volumeInfo.industryIdentifiers[0].identifier === isbn
     )
-    setMessage('Success!')
-    createNewBook({
-      title: searchedBook[0].volumeInfo.title,
-      authors: searchedBook[0].volumeInfo.authors,
-      readingSince: today,
-      onPage: '',
-      thumbnail: searchedBook[0].volumeInfo.imageLinks.thumbnail,
-    })
-    setLocalStorage(`books${username}`, newBook)
+    if (!searchedBook[0]) {
+      setMessage('ISBN error')
+      setTimeout(() => {
+        setMessage('')
+      }, 5000)
+    } else {
+      setMessage('Success!')
+      createNewBook({
+        title: searchedBook[0].volumeInfo.title,
+        authors: searchedBook[0].volumeInfo.authors,
+        readingSince: today,
+        onPage: '',
+        thumbnail: searchedBook[0].volumeInfo.imageLinks.thumbnail,
+      })
+      setTimeout(() => {
+        history.push('/currently-reading')
+        setMessage('')
+      }, 5000)
+    }
   }
 
   return (
@@ -105,6 +123,7 @@ function App({ data }) {
               <Redirect to="/" />
             ) : (
               <AddBook
+                today={today}
                 onCreateNewBook={createNewBook}
                 onGetBookCoverPreview={getBookcoverPreview}
               />
