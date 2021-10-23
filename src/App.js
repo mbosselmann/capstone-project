@@ -42,14 +42,28 @@ function App({ data }) {
         volumeInfo: {
           title: title,
           authors: authors,
-          imageLinks: {
-            thumbnail: bookcover,
-          },
+          thumbnail: !thumbnail ? bookcover : thumbnail,
         },
       },
-      ...books,
-    ]
-    setBooks(newBook)
+          },
+    }
+    const newBooks = [newBook, ...books]
+    setBooks(newBooks)
+    setLocalStorage(`books${username}`, newBooks)
+  }
+
+  function handleISBNSearch(isbn) {
+    const searchedBook = data.filter(
+      book => book.volumeInfo.industryIdentifiers[0].identifier === isbn
+    )
+    setMessage('Success!')
+    createNewBook({
+      title: searchedBook[0].volumeInfo.title,
+      authors: searchedBook[0].volumeInfo.authors,
+      readingSince: today,
+      onPage: '',
+      thumbnail: searchedBook[0].volumeInfo.imageLinks.thumbnail,
+    })
     setLocalStorage(`books${username}`, newBook)
   }
 
