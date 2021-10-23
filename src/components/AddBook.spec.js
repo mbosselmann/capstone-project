@@ -34,7 +34,7 @@ describe('AddBook', () => {
   })
 
   it('has an input field "Reading since" with the type "date" and the attribute "max"', () => {
-    render(<AddBook />)
+    render(<AddBook today={today} />)
 
     const inputElReadingSince = screen.getByLabelText('Reading since:')
     expect(inputElReadingSince).toHaveAttribute('type', 'date')
