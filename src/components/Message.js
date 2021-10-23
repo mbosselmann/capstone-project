@@ -56,9 +56,10 @@ const Wrapper = styled.div`
   -webkit-box-shadow: var(--box-shadow);
 
   img {
-    width: 70%;
+    max-width: 70%;
     align-self: center;
     margin: 1rem 0;
+    height: 100px;
   }
 `
 
