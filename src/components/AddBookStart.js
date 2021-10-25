@@ -3,8 +3,9 @@ import styled from 'styled-components/macro'
 import Message from './Message'
 import error from '../images/error.svg'
 import success from '../images/success.svg'
+import getToday from '../utils/getToday'
 
-function StartAddBook({ onHandleISBNSearch, message }) {
+function StartAddBook({ books, message, onHandleCreateNewBook, setMessage }) {
   const errorMessage = `Oh no! The ISBN doesn't seem to exist. :-(`
   const errorText =
     'Please try again or use the possibility to add your book manually below.'
@@ -13,11 +14,31 @@ function StartAddBook({ onHandleISBNSearch, message }) {
   const successText =
     'You will shortly be redirected to your currently reading page.'
 
+  function handleISBNSearch(isbn) {
+    const searchedBook = books.find(
+      book =>
+        book.volumeInfo.industryIdentifiers[0].identifier === isbn ||
+        book.volumeInfo.industryIdentifiers[1].identifier === isbn
+    )
+    if (!searchedBook) {
+      setMessage('ISBN error')
+    } else {
+      setMessage('Success!')
+      onHandleCreateNewBook({
+        title: searchedBook.volumeInfo.title,
+        authors: searchedBook.volumeInfo.authors,
+        readingSince: getToday(),
+        onPage: '',
+        thumbnail: searchedBook.volumeInfo.imageLinks.thumbnail,
+      })
+    }
+  }
+
   function handleSubmit(event) {
     event.preventDefault()
     const form = event.target
     const { isbn } = form.elements
-    onHandleISBNSearch(isbn.value)
+    handleISBNSearch(isbn.value)
     form.reset()
   }
 

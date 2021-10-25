@@ -14,7 +14,6 @@ import {
 import { useState, useEffect } from 'react'
 import getLocalStorage from './lib/loadFromLocal'
 import setLocalStorage from './lib/saveToLocal'
-import getToday from './utils/getToday'
 import { nanoid } from 'nanoid'
 import placeholder from './images/placeholder.png'
 
@@ -79,26 +78,6 @@ function App({ data }) {
     setLocalStorage(`books${username}`, newBooks)
   }
 
-  function handleISBNSearch(isbn) {
-    const searchedBook = data.find(
-      book =>
-        book.volumeInfo.industryIdentifiers[0].identifier === isbn ||
-        book.volumeInfo.industryIdentifiers[1].identifier === isbn
-    )
-    if (!searchedBook) {
-      setMessage('ISBN error')
-    } else {
-      setMessage('Success!')
-      handleCreateNewBook({
-        title: searchedBook.volumeInfo.title,
-        authors: searchedBook.volumeInfo.authors,
-        readingSince: getToday(),
-        onPage: '',
-        thumbnail: searchedBook.volumeInfo.imageLinks.thumbnail,
-      })
-    }
-  }
-
   return (
     <AppContainer>
       <Switch>
@@ -122,8 +101,10 @@ function App({ data }) {
               <Redirect to="/" />
             ) : (
               <StartAddBook
-                onHandleISBNSearch={handleISBNSearch}
+                books={data}
                 message={message}
+                onHandleCreateNewBook={handleCreateNewBook}
+                setMessage={setMessage}
               />
             )}
           </Route>
@@ -132,7 +113,7 @@ function App({ data }) {
               <Redirect to="/" />
             ) : (
               <AddBook
-                onCreateNewBook={handleCreateNewBook}
+                onHandleCreateNewBook={handleCreateNewBook}
                 onGetBookCoverPreview={getBookcoverPreview}
               />
             )}
