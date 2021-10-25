@@ -5,7 +5,7 @@ import placeholder from '../images/placeholder.png'
 import previewPlaceholder from '../images/preview-placeholder.png'
 import getToday from '../utils/getToday'
 
-function AddBook({ onCreateNewBook, onGetBookCoverPreview, today }) {
+function AddBook({ onHandleCreateNewBook, onGetBookCoverPreview }) {
   const history = useHistory()
   const [preview, setPreview] = useState(placeholder)
 
@@ -19,7 +19,7 @@ function AddBook({ onCreateNewBook, onGetBookCoverPreview, today }) {
     const form = event.target
     const { title, authors, readingSince, onPage } = form.elements
 
-    onCreateNewBook({
+    onHandleCreateNewBook({
       title: title.value,
       authors: authors.value,
       readingSince: readingSince.value,

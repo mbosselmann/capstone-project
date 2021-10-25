@@ -54,7 +54,10 @@ function App({ data }) {
         imageLinks: {
           thumbnail: !thumbnail ? bookcover : thumbnail,
         },
-        industryIdentifiers: [{ identifier: identifier }],
+        industryIdentifiers: [
+          { type: 'ISBN01', identifier: identifier },
+          { type: 'ISBN02', identifier: identifier },
+        ],
       },
     }
     const newBooks = [newBook, ...books]
