@@ -35,6 +35,7 @@ width: 100%;
 `
 
 const Transition = styled.section`
+  max-width: 600px;
   position: absolute;
   top: -300px;
   animation-duration: 5s;
@@ -43,7 +44,6 @@ const Transition = styled.section`
 `
 
 const Wrapper = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
