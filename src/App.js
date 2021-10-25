@@ -64,12 +64,12 @@ function App({ data }) {
   }
 
   function handleISBNSearch(isbn) {
-    const searchedBook = data.filter(
+    const searchedBook = data.find(
       book =>
         book.volumeInfo.industryIdentifiers[0].identifier === isbn ||
         book.volumeInfo.industryIdentifiers[1].identifier === isbn
     )
-    if (!searchedBook[0]) {
+    if (!searchedBook) {
       setMessage('ISBN error')
       setTimeout(() => {
         setMessage('')
@@ -77,11 +77,11 @@ function App({ data }) {
     } else {
       setMessage('Success!')
       handleCreateNewBook({
-        title: searchedBook[0].volumeInfo.title,
-        authors: searchedBook[0].volumeInfo.authors,
+        title: searchedBook.volumeInfo.title,
+        authors: searchedBook.volumeInfo.authors,
         readingSince: getToday(),
         onPage: '',
-        thumbnail: searchedBook[0].volumeInfo.imageLinks.thumbnail,
+        thumbnail: searchedBook.volumeInfo.imageLinks.thumbnail,
       })
       setTimeout(() => {
         history.push('/currently-reading')
