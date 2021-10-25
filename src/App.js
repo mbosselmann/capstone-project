@@ -33,6 +33,22 @@ function App({ data }) {
     setLocalStorage(`books${username}`, books)
   }, [username, books])
 
+  useEffect(() => {
+    if (message === 'ISBN error') {
+      const timer = setTimeout(() => {
+        setMessage('')
+      }, 5000)
+      return () => clearTimeout(timer)
+    }
+    if (message === 'Success!') {
+      const timer = setTimeout(() => {
+        history.push('/currently-reading')
+        setMessage('')
+      }, 5000)
+      return () => clearTimeout(timer)
+    }
+  }, [message, history])
+
   function getBookcoverPreview(previewEvent) {
     const preview = previewEvent.target.files[0]
     const reader = new FileReader()
@@ -71,9 +87,6 @@ function App({ data }) {
     )
     if (!searchedBook) {
       setMessage('ISBN error')
-      setTimeout(() => {
-        setMessage('')
-      }, 5000)
     } else {
       setMessage('Success!')
       handleCreateNewBook({
@@ -83,10 +96,6 @@ function App({ data }) {
         onPage: '',
         thumbnail: searchedBook.volumeInfo.imageLinks.thumbnail,
       })
-      setTimeout(() => {
-        history.push('/currently-reading')
-        setMessage('')
-      }, 5000)
     }
   }
 
