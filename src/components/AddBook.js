@@ -94,9 +94,7 @@ function AddBook({ onCreateNewBook, onGetBookCoverPreview, today }) {
             />
           </div>
         </OptionalContainer>
-        <ButtonContainer>
-          <button aria-label="submit-book">Add book to list</button>
-        </ButtonContainer>
+        <button>Add book to list</button>
       </Form>
     </Wrapper>
   )
@@ -108,7 +106,6 @@ const Wrapper = styled.div`
   background-color: #f6f6f6;
   display: flex;
   justify-content: center;
-  height: 100vh;
 `
 const Form = styled.form`
   background-color: #fff;
@@ -125,6 +122,9 @@ const Form = styled.form`
 
   button {
     background-color: #504465;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `
 
@@ -143,11 +143,6 @@ const OptionalContainer = styled.div`
     flex-direction: column;
     flex: 1;
   }
-`
-
-const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
 `
 
 const BookcoverContainer = styled.div`
