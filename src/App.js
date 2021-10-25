@@ -14,6 +14,7 @@ import {
 import { useState, useEffect } from 'react'
 import getLocalStorage from './lib/loadFromLocal'
 import setLocalStorage from './lib/saveToLocal'
+import getToday from './utils/getToday'
 import { nanoid } from 'nanoid'
 import placeholder from './images/placeholder.png'
 
@@ -26,10 +27,6 @@ function App({ data }) {
   const [message, setMessage] = useState('')
   const { pathname } = useLocation()
   const history = useHistory()
-
-  const date = new Date()
-  const today =
-    date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
 
   useEffect(() => {
     setLocalStorage('user', username)
@@ -82,7 +79,7 @@ function App({ data }) {
       handleCreateNewBook({
         title: searchedBook[0].volumeInfo.title,
         authors: searchedBook[0].volumeInfo.authors,
-        readingSince: today,
+        readingSince: getToday(),
         onPage: '',
         thumbnail: searchedBook[0].volumeInfo.imageLinks.thumbnail,
       })
@@ -126,7 +123,6 @@ function App({ data }) {
               <Redirect to="/" />
             ) : (
               <AddBook
-                today={today}
                 onCreateNewBook={handleCreateNewBook}
                 onGetBookCoverPreview={getBookcoverPreview}
               />

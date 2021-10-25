@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import placeholder from '../images/placeholder.png'
 import previewPlaceholder from '../images/preview-placeholder.png'
+import getToday from '../utils/getToday'
 
 function AddBook({ onCreateNewBook, onGetBookCoverPreview, today }) {
   const history = useHistory()
@@ -83,7 +84,7 @@ function AddBook({ onCreateNewBook, onGetBookCoverPreview, today }) {
               name="readingSince"
               type="date"
               id="reading-since"
-              max={today}
+              max={getToday()}
             />
             <label htmlFor="onPage">Currently on page:</label>
             <input
