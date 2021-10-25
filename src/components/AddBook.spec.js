@@ -34,7 +34,7 @@ describe('AddBook', () => {
   })
 
   it('has an input field "Reading since" with the type "date" and the attribute "max"', () => {
-    render(<AddBook />)
+    render(<AddBook today={today} />)
 
     const inputElReadingSince = screen.getByLabelText('Reading since:')
     expect(inputElReadingSince).toHaveAttribute('type', 'date')
@@ -61,11 +61,11 @@ describe('AddBook', () => {
 
   it('calls onCreateNewBook with values of form', () => {
     const history = createMemoryHistory()
-    const mockOnCreateNewBook = jest.fn()
+    const mockOnHandleCreateNewBook = jest.fn()
 
     render(
       <Router history={history}>
-        <AddBook onCreateNewBook={mockOnCreateNewBook} />
+        <AddBook onHandleCreateNewBook={mockOnHandleCreateNewBook} />
       </Router>
     )
 
@@ -82,11 +82,12 @@ describe('AddBook', () => {
     const button = screen.getByRole('button')
     userEvent.click(button)
 
-    expect(mockOnCreateNewBook).toHaveBeenCalledWith({
+    expect(mockOnHandleCreateNewBook).toHaveBeenCalledWith({
       title: 'Das Haus',
       authors: 'Marie Meier',
       readingSince: today,
       onPage: '10',
+      identifier: '',
     })
   })
 

@@ -62,13 +62,6 @@ const TitleContainer = styled.section`
     margin-bottom: 70px;
   }
 
-  h2 {
-    font-size: 2rem;
-    font-weight: 600;
-    font-family: 'Libre Baskerville', serif;
-    margin-bottom: 0.5rem;
-  }
-
   p {
     font-size: 1.1rem;
   }

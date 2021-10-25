@@ -3,8 +3,9 @@ import { useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import placeholder from '../images/placeholder.png'
 import previewPlaceholder from '../images/preview-placeholder.png'
+import getToday from '../utils/getToday'
 
-function AddBook({ onCreateNewBook, onGetBookCoverPreview }) {
+function AddBook({ onHandleCreateNewBook, onGetBookCoverPreview }) {
   const history = useHistory()
   const [preview, setPreview] = useState(placeholder)
 
@@ -13,20 +14,17 @@ function AddBook({ onCreateNewBook, onGetBookCoverPreview }) {
     setPreview(preview)
   }
 
-  const date = new Date()
-  const today =
-    date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
-
   function handleSubmit(event) {
     event.preventDefault()
     const form = event.target
     const { title, authors, readingSince, onPage } = form.elements
 
-    onCreateNewBook({
+    onHandleCreateNewBook({
       title: title.value,
       authors: authors.value,
       readingSince: readingSince.value,
       onPage: onPage.value,
+      identifier: '',
     })
     form.reset()
     history.push('/currently-reading')
@@ -34,29 +32,27 @@ function AddBook({ onCreateNewBook, onGetBookCoverPreview }) {
 
   return (
     <Wrapper>
-      <Form
-        onSubmit={event => {
-          handleSubmit(event)
-        }}
-      >
-        <h2>New book:</h2>
-        <label htmlFor="bookTitle">Book title:</label>
-        <input
-          name="title"
-          type="text"
-          id="bookTitle"
-          placeholder="Title of the book you want to add"
-          required
-        />
-        <label htmlFor="bookAuthors">Author or Authors:</label>
-        <input
-          name="authors"
-          type="text"
-          id="bookAuthors"
-          placeholder="Name or names of the author/authors"
-          required
-        />
-        <Container>
+      <Form onSubmit={handleSubmit}>
+        <RequiredContainer>
+          <h2>New book:</h2>
+          <label htmlFor="bookTitle">Book title:</label>
+          <input
+            name="title"
+            type="text"
+            id="bookTitle"
+            placeholder="Title of the book you want to add"
+            required
+          />
+          <label htmlFor="bookAuthors">Author or Authors:</label>
+          <input
+            name="authors"
+            type="text"
+            id="bookAuthors"
+            placeholder="Name or names of the author/authors"
+            required
+          />
+        </RequiredContainer>
+        <OptionalContainer>
           <BookcoverContainer>
             <div id="bookcover-preview">
               {preview === placeholder ? (
@@ -85,7 +81,7 @@ function AddBook({ onCreateNewBook, onGetBookCoverPreview }) {
               name="readingSince"
               type="date"
               id="reading-since"
-              max={today}
+              max={getToday()}
             />
             <label htmlFor="onPage">Currently on page:</label>
             <input
@@ -95,8 +91,8 @@ function AddBook({ onCreateNewBook, onGetBookCoverPreview }) {
               placeholder="e. g. 72"
             />
           </div>
-        </Container>
-        <button aria-label="submit-book">Add book to list</button>
+        </OptionalContainer>
+        <button>Add book to list</button>
       </Form>
     </Wrapper>
   )
@@ -125,10 +121,19 @@ const Form = styled.form`
 
   button {
     background-color: #504465;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2.5rem;
   }
 `
 
-const Container = styled.div`
+const RequiredContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const OptionalContainer = styled.div`
   display: flex;
   gap: 0.5rem;
   margin-bottom: 2rem;

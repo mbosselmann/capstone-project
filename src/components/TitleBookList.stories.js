@@ -9,11 +9,11 @@ const Template = args => <TitleBookList {...args} />
 
 export const CurrentlyReading = Template.bind({})
 CurrentlyReading.args = {
-  status: 'currentlyReading',
+  status: '/currently-reading',
   username: 'Mareike',
 }
 
 export const FinishedReading = Template.bind({})
 FinishedReading.args = {
-  status: 'finishedBooks',
+  status: '/library',
 }

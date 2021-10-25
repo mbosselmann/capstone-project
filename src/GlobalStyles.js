@@ -13,6 +13,14 @@ const GlobalStyles = createGlobalStyle`
         --box-shadow: 5px 4px 10px 0px rgba(0, 0, 0, 0.25);
     }
 
+      h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    font-family: 'Libre Baskerville', serif;
+    margin-bottom: 0.5rem;
+  }
+
+
     form {
         display: flex;
         flex-direction: column;

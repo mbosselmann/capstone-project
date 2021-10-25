@@ -1,9 +1,16 @@
 import BookList from './components/BookList'
 import Navigation from './components/Navigation'
 import AddBook from './components/AddBook'
+import StartAddBook from './components/AddBookStart'
 import Start from './components/Start'
 import styled from 'styled-components/macro'
-import { Route, Switch, useLocation, Redirect } from 'react-router-dom'
+import {
+  Route,
+  Switch,
+  useLocation,
+  Redirect,
+  useHistory,
+} from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import getLocalStorage from './lib/loadFromLocal'
 import setLocalStorage from './lib/saveToLocal'
@@ -11,16 +18,18 @@ import { nanoid } from 'nanoid'
 import placeholder from './images/placeholder.png'
 
 function App({ data }) {
-  const [username, setUsername] = useState(getLocalStorage('user') ?? '')
+  const username = getLocalStorage('user') ?? ''
   const [books, setBooks] = useState(
     getLocalStorage(`books${username}`) ?? data
   )
   const [bookcover, setBookcover] = useState(placeholder)
   const { pathname } = useLocation()
+  const history = useHistory()
 
   useEffect(() => {
     setLocalStorage('user', username)
-  }, [username])
+    setLocalStorage(`books${username}`, books)
+  }, [username, books])
 
   function getBookcoverPreview(previewEvent) {
     const preview = previewEvent.target.files[0]
@@ -31,26 +40,36 @@ function App({ data }) {
     reader.readAsDataURL(preview)
   }
 
-  function createNewBook({ title, authors, readingSince, onPage }) {
-    const newBook = [
-      {
-        id: nanoid(),
-        finished: false,
-        readingSince: readingSince,
-        finishedSince: '',
-        onPage: onPage,
-        volumeInfo: {
-          title: title,
-          authors: authors,
-          imageLinks: {
-            thumbnail: bookcover,
-          },
+  function handleCreateNewBook(newBookData) {
+    const {
+      title,
+      authors,
+      readingSince,
+      onPage,
+      thumbnail,
+      identifier,
+    } = newBookData
+    const newBook = {
+      id: nanoid(),
+      finished: false,
+      readingSince: readingSince,
+      finishedSince: '',
+      onPage: onPage,
+      volumeInfo: {
+        title: title,
+        authors: authors,
+        imageLinks: {
+          thumbnail: !thumbnail ? bookcover : thumbnail,
         },
+        industryIdentifiers: [
+          { type: 'ISBN01', identifier: identifier },
+          { type: 'ISBN02', identifier: identifier },
+        ],
       },
-      ...books,
-    ]
-    setBooks(newBook)
-    setLocalStorage(`books${username}`, newBook)
+    }
+    const newBooks = [newBook, ...books]
+    setBooks(newBooks)
+    setLocalStorage(`books${username}`, newBooks)
   }
 
   return (
@@ -60,7 +79,7 @@ function App({ data }) {
           {username ? (
             <Redirect to="/currently-reading" />
           ) : (
-            <Start setUsername={setUsername} />
+            <Start history={history} />
           )}
         </Route>
         <Main>
@@ -75,15 +94,29 @@ function App({ data }) {
             {!username ? (
               <Redirect to="/" />
             ) : (
+              <StartAddBook
+                books={books}
+                onHandleCreateNewBook={handleCreateNewBook}
+                history={history}
+              />
+            )}
+          </Route>
+          <Route exact path="/add-book-form">
+            {!username ? (
+              <Redirect to="/" />
+            ) : (
               <AddBook
-                onCreateNewBook={createNewBook}
+                onHandleCreateNewBook={handleCreateNewBook}
                 onGetBookCoverPreview={getBookcoverPreview}
               />
             )}
           </Route>
         </Main>
       </Switch>
-      <Route exact path={['/currently-reading', '/library', '/add-book']}>
+      <Route
+        exact
+        path={['/currently-reading', '/library', '/add-book', '/add-book-form']}
+      >
         <Footer>
           <Navigation />
         </Footer>
