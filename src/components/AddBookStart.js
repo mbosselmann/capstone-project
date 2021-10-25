@@ -44,7 +44,7 @@ function StartAddBook({ onHandleISBNSearch, message }) {
         <label htmlFor="isbn">
           Please insert the ISBN of the book you want to add to your book list:
         </label>
-        <input name="isbn" id="isbn" type="number" placeholder="978123456789" />
+        <input name="isbn" id="isbn" type="text" placeholder="978123456789" />
         <button>Search</button>
       </form>
       <hr />
