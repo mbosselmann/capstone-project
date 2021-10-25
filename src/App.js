@@ -45,7 +45,8 @@ function App({ data }) {
     reader.readAsDataURL(preview)
   }
 
-  function createNewBook({ title, authors, readingSince, onPage, thumbnail }) {
+  function handleCreateNewBook(newBookData) {
+    const { title, authors, readingSince, onPage, thumbnail } = newBookData
     const newBook = {
       id: nanoid(),
       finished: false,
@@ -78,7 +79,7 @@ function App({ data }) {
       }, 5000)
     } else {
       setMessage('Success!')
-      createNewBook({
+      handleCreateNewBook({
         title: searchedBook[0].volumeInfo.title,
         authors: searchedBook[0].volumeInfo.authors,
         readingSince: today,
@@ -126,7 +127,7 @@ function App({ data }) {
             ) : (
               <AddBook
                 today={today}
-                onCreateNewBook={createNewBook}
+                onCreateNewBook={handleCreateNewBook}
                 onGetBookCoverPreview={getBookcoverPreview}
               />
             )}
