@@ -1,15 +1,12 @@
-import { keyframes } from 'styled-components'
-import styled from 'styled-components/macro'
+import styled, { keyframes } from 'styled-components/macro'
 
 function Message({ image, altText, message, text }) {
   return (
-    <Transition>
-      <Wrapper>
-        <img src={image} alt={altText} />
-        <p>{message}</p>
-        <p>{text}</p>
-      </Wrapper>
-    </Transition>
+    <Wrapper>
+      <img src={image} alt={altText} />
+      <p>{message}</p>
+      <p>{text}</p>
+    </Wrapper>
   )
 }
 
@@ -34,16 +31,13 @@ width: 100%;
 }
 `
 
-const Transition = styled.section`
+const Wrapper = styled.div`
   max-width: 600px;
   position: absolute;
   top: -300px;
   animation-duration: 5s;
   animation-name: ${animation};
   animation-iteration-count: 1;
-`
-
-const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
