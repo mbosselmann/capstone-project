@@ -58,7 +58,14 @@ function App({ data }) {
   }
 
   function handleCreateNewBook(newBookData) {
-    const { title, authors, readingSince, onPage, thumbnail } = newBookData
+    const {
+      title,
+      authors,
+      readingSince,
+      onPage,
+      thumbnail,
+      identifier,
+    } = newBookData
     const newBook = {
       id: nanoid(),
       finished: false,
@@ -71,6 +78,7 @@ function App({ data }) {
         imageLinks: {
           thumbnail: !thumbnail ? bookcover : thumbnail,
         },
+        industryIdentifiers: [{ identifier: identifier }],
       },
     }
     const newBooks = [newBook, ...books]
@@ -101,7 +109,7 @@ function App({ data }) {
               <Redirect to="/" />
             ) : (
               <StartAddBook
-                books={data}
+                books={books}
                 message={message}
                 onHandleCreateNewBook={handleCreateNewBook}
                 setMessage={setMessage}

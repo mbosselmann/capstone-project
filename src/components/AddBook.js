@@ -24,6 +24,7 @@ function AddBook({ onCreateNewBook, onGetBookCoverPreview, today }) {
       authors: authors.value,
       readingSince: readingSince.value,
       onPage: onPage.value,
+      identifier: '',
     })
     form.reset()
     history.push('/currently-reading')

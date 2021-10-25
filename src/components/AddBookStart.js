@@ -30,6 +30,7 @@ function StartAddBook({ books, message, onHandleCreateNewBook, setMessage }) {
         readingSince: getToday(),
         onPage: '',
         thumbnail: searchedBook.volumeInfo.imageLinks.thumbnail,
+        identifier: searchedBook.volumeInfo.industryIdentifiers[0].identifier,
       })
     }
   }
