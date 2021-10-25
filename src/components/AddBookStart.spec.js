@@ -4,7 +4,7 @@ import { MemoryRouter as Router } from 'react-router-dom'
 import userEvent from '@testing-library/user-event'
 
 describe('StartAddBook', () => {
-  it('has one input field with the type "number"', () => {
+  it('has one input field with the type "text"', () => {
     render(
       <Router>
         <StartAddBook />
@@ -14,7 +14,20 @@ describe('StartAddBook', () => {
     const inputElISBN = screen.getByLabelText(
       'Please insert the ISBN of the book you want to add to your book list:'
     )
-    expect(inputElISBN).toHaveAttribute('type', 'number')
+    expect(inputElISBN).toHaveAttribute('type', 'text')
+  })
+
+  it('has an input field for the ISBN search that is required', () => {
+    render(
+      <Router>
+        <StartAddBook />
+      </Router>
+    )
+
+    const inputElISBN = screen.getByLabelText(
+      'Please insert the ISBN of the book you want to add to your book list:'
+    )
+    expect(inputElISBN).toHaveAttribute('required')
   })
 
   it('has a search button', () => {
