@@ -4,7 +4,13 @@ import AddBook from './components/AddBook'
 import StartAddBook from './components/AddBookStart'
 import Start from './components/Start'
 import styled from 'styled-components/macro'
-import { Route, Switch, useLocation, Redirect } from 'react-router-dom'
+import {
+  Route,
+  Switch,
+  useLocation,
+  Redirect,
+  useHistory,
+} from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import getLocalStorage from './lib/loadFromLocal'
 import setLocalStorage from './lib/saveToLocal'
@@ -12,12 +18,13 @@ import { nanoid } from 'nanoid'
 import placeholder from './images/placeholder.png'
 
 function App({ data }) {
-  const [username, setUsername] = useState(getLocalStorage('user') ?? '')
+  const username = getLocalStorage('user') ?? ''
   const [books, setBooks] = useState(
     getLocalStorage(`books${username}`) ?? data
   )
   const [bookcover, setBookcover] = useState(placeholder)
   const { pathname } = useLocation()
+  const history = useHistory()
 
   useEffect(() => {
     setLocalStorage('user', username)
@@ -72,7 +79,7 @@ function App({ data }) {
           {username ? (
             <Redirect to="/currently-reading" />
           ) : (
-            <Start setUsername={setUsername} />
+            <Start history={history} />
           )}
         </Route>
         <Main>
@@ -90,6 +97,7 @@ function App({ data }) {
               <StartAddBook
                 books={books}
                 onHandleCreateNewBook={handleCreateNewBook}
+                history={history}
               />
             )}
           </Route>

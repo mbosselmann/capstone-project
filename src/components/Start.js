@@ -1,12 +1,14 @@
 import readaholicLogo from '../images/readaholic-logo.svg'
 import styled from 'styled-components/macro'
+import setLocalStorage from '../lib/saveToLocal'
 
-function Start({ setUsername }) {
+function Start({ history }) {
   function handleSubmit(startEvent) {
     startEvent.preventDefault()
     const form = startEvent.target
     const { username } = form.elements
-    setUsername(username.value)
+    setLocalStorage('user', username.value)
+    history.push('/currently-reading')
   }
 
   return (

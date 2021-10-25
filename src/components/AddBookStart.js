@@ -1,4 +1,4 @@
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import Message from './Message'
 import error from '../images/error.svg'
@@ -6,9 +6,8 @@ import success from '../images/success.svg'
 import getToday from '../utils/getToday'
 import { useState, useEffect } from 'react'
 
-function StartAddBook({ books, onHandleCreateNewBook }) {
+function StartAddBook({ books, onHandleCreateNewBook, history }) {
   const [message, setMessage] = useState('')
-  const history = useHistory()
 
   useEffect(() => {
     if (message === 'ISBN error') {
