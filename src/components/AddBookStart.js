@@ -1,11 +1,31 @@
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import Message from './Message'
 import error from '../images/error.svg'
 import success from '../images/success.svg'
 import getToday from '../utils/getToday'
+import { useState, useEffect } from 'react'
 
-function StartAddBook({ books, message, onHandleCreateNewBook, setMessage }) {
+function StartAddBook({ books, onHandleCreateNewBook }) {
+  const [message, setMessage] = useState('')
+  const history = useHistory()
+
+  useEffect(() => {
+    if (message === 'ISBN error') {
+      const timer = setTimeout(() => {
+        setMessage('')
+      }, 5000)
+      return () => clearTimeout(timer)
+    }
+    if (message === 'Success!') {
+      const timer = setTimeout(() => {
+        history.push('/currently-reading')
+        setMessage('')
+      }, 5000)
+      return () => clearTimeout(timer)
+    }
+  }, [message, history])
+
   const errorMessage = `Oh no! The ISBN doesn't seem to exist. :-(`
   const errorText =
     'Please try again or use the possibility to add your book manually below.'

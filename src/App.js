@@ -4,13 +4,7 @@ import AddBook from './components/AddBook'
 import StartAddBook from './components/AddBookStart'
 import Start from './components/Start'
 import styled from 'styled-components/macro'
-import {
-  Route,
-  Switch,
-  useLocation,
-  Redirect,
-  useHistory,
-} from 'react-router-dom'
+import { Route, Switch, useLocation, Redirect } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import getLocalStorage from './lib/loadFromLocal'
 import setLocalStorage from './lib/saveToLocal'
@@ -23,30 +17,12 @@ function App({ data }) {
     getLocalStorage(`books${username}`) ?? data
   )
   const [bookcover, setBookcover] = useState(placeholder)
-  const [message, setMessage] = useState('')
   const { pathname } = useLocation()
-  const history = useHistory()
 
   useEffect(() => {
     setLocalStorage('user', username)
     setLocalStorage(`books${username}`, books)
   }, [username, books])
-
-  useEffect(() => {
-    if (message === 'ISBN error') {
-      const timer = setTimeout(() => {
-        setMessage('')
-      }, 5000)
-      return () => clearTimeout(timer)
-    }
-    if (message === 'Success!') {
-      const timer = setTimeout(() => {
-        history.push('/currently-reading')
-        setMessage('')
-      }, 5000)
-      return () => clearTimeout(timer)
-    }
-  }, [message, history])
 
   function getBookcoverPreview(previewEvent) {
     const preview = previewEvent.target.files[0]
@@ -110,9 +86,7 @@ function App({ data }) {
             ) : (
               <StartAddBook
                 books={books}
-                message={message}
                 onHandleCreateNewBook={handleCreateNewBook}
-                setMessage={setMessage}
               />
             )}
           </Route>
