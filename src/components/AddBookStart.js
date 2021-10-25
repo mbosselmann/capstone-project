@@ -69,13 +69,6 @@ const Wrapper = styled.div`
     color: #fff;
   }
 
-  hr {
-    margin: 2rem;
-    border-radius: 5px;
-    background-color: #504465;
-    border: 0.1rem solid #504465;
-  }
-
   form {
     padding: 0 1rem;
   }
