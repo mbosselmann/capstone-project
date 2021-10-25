@@ -31,11 +31,7 @@ function AddBook({ onCreateNewBook, onGetBookCoverPreview, today }) {
 
   return (
     <Wrapper>
-      <Form
-        onSubmit={event => {
-          handleSubmit(event)
-        }}
-      >
+      <Form onSubmit={handleSubmit}>
         <RequiredContainer>
           <h2>New book:</h2>
           <label htmlFor="bookTitle">Book title:</label>
@@ -107,6 +103,7 @@ const Wrapper = styled.div`
   background-color: #f6f6f6;
   display: flex;
   justify-content: center;
+  height: 100%;
 `
 const Form = styled.form`
   background-color: #fff;
@@ -126,6 +123,7 @@ const Form = styled.form`
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 2.5rem;
   }
 `
 
