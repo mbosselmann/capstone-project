@@ -47,7 +47,7 @@ function StartAddBook({ onHandleISBNSearch, message }) {
         <input name="isbn" id="isbn" type="text" placeholder="978123456789" />
         <button>Search</button>
       </form>
-      <hr />
+      <Divider />
       <div>
         <p>
           You don't have the ISBN at hand or want to enter the book manually?
@@ -89,6 +89,13 @@ const Wrapper = styled.div`
     font-size: 0.9rem;
     margin: 0 0 0.5rem 0.6rem;
   }
+`
+
+const Divider = styled.hr`
+  margin: 2rem;
+  border-radius: 5px;
+  background-color: #504465;
+  border: 0.1rem solid #504465;
 `
 
 const LinkToForm = styled(Link)`
