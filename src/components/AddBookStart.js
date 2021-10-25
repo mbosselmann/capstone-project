@@ -40,11 +40,18 @@ function StartAddBook({ onHandleISBNSearch, message }) {
           />
         ))}
       <h2>Add a new book:</h2>
-      <form onSubmit={event => handleSubmit(event)}>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="isbn">
           Please insert the ISBN of the book you want to add to your book list:
         </label>
-        <input name="isbn" id="isbn" type="text" placeholder="978123456789" />
+        <input
+          name="isbn"
+          id="isbn"
+          type="text"
+          placeholder="978123456789"
+          required
+          autoComplete="off"
+        />
         <button>Search</button>
       </form>
       <Divider />
