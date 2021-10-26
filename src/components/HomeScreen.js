@@ -57,4 +57,8 @@ const Wrapper = styled.section`
     color: #4a4453;
     margin-top: 0.5rem;
   }
+
+  form {
+    margin-top: 3rem;
+  }
 `

@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro'
+import handleAuthorsLength from '../utils/handleAuthorsLength'
 
 function Book({
   bookCover,
@@ -8,21 +9,6 @@ function Book({
   readingStatusDate,
   finishedSince,
 }) {
-  function authorsLength(authors) {
-    if (authors.length === 2) {
-      if (authors[0].includes(authors[1])) {
-        return ` ${authors[0]}`
-      } else {
-        return ` ${authors[0]} and ${authors[1]}`
-      }
-    }
-    if (authors > 2) {
-      return ` ${authors[0]} and others`
-    } else {
-      return ` ${authors}`
-    }
-  }
-
   return (
     <Wrapper>
       <ImgContainer>
@@ -33,7 +19,7 @@ function Book({
           <h3>{title}</h3>
           <p>
             by
-            {authorsLength(authors)}
+            {handleAuthorsLength(authors)}
           </p>
         </div>
         <div>
@@ -82,7 +68,7 @@ const ImgContainer = styled.div`
 
 const Content = styled.div`
   flex: 2;
-  padding: 10px 0 10px 0;
+  padding: 10px 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

@@ -2,7 +2,7 @@ import BookList from './components/BookList'
 import Navigation from './components/Navigation'
 import AddBook from './components/AddBook'
 import StartAddBook from './components/AddBookStart'
-import Start from './components/Start'
+import HomeScreen from './components/HomeScreen'
 import styled from 'styled-components/macro'
 import {
   Route,
@@ -23,6 +23,7 @@ function App({ data }) {
     getLocalStorage(`books${username}`) ?? data
   )
   const [bookcover, setBookcover] = useState(placeholder)
+  const [successMessage, setSuccessMessage] = useState('')
   const { pathname } = useLocation()
   const history = useHistory()
 
@@ -30,6 +31,16 @@ function App({ data }) {
     setLocalStorage('user', username)
     setLocalStorage(`books${username}`, books)
   }, [username, books])
+
+  useEffect(() => {
+    if (successMessage === 'Success!') {
+      const timer = setTimeout(() => {
+        history.push('/currently-reading')
+        setSuccessMessage('')
+      }, 5000)
+      return () => clearTimeout(timer)
+    }
+  }, [successMessage, history])
 
   function getBookcoverPreview(previewEvent) {
     const preview = previewEvent.target.files[0]
@@ -70,6 +81,7 @@ function App({ data }) {
     const newBooks = [newBook, ...books]
     setBooks(newBooks)
     setLocalStorage(`books${username}`, newBooks)
+    setSuccessMessage('Success!')
   }
 
   return (
@@ -79,7 +91,7 @@ function App({ data }) {
           {username ? (
             <Redirect to="/currently-reading" />
           ) : (
-            <Start history={history} />
+            <HomeScreen history={history} />
           )}
         </Route>
         <Main>
@@ -106,6 +118,7 @@ function App({ data }) {
               <Redirect to="/" />
             ) : (
               <AddBook
+                successMessage={successMessage}
                 onHandleCreateNewBook={handleCreateNewBook}
                 onGetBookCoverPreview={getBookcoverPreview}
               />

@@ -2,37 +2,24 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import Message from './Message'
 import error from '../images/error.svg'
-import success from '../images/success.svg'
-import getToday from '../utils/getToday'
 import { useState, useEffect } from 'react'
+import setLocalStorage from '../lib/saveToLocal'
 
-function StartAddBook({ books, onHandleCreateNewBook, history }) {
-  const [message, setMessage] = useState('')
+function StartAddBook({ books, history }) {
+  const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
-    if (message === 'ISBN error') {
+    if (errorMessage === 'ISBN error') {
       const timer = setTimeout(() => {
-        setMessage('')
+        setErrorMessage('')
       }, 5000)
       return () => clearTimeout(timer)
     }
-    if (message === 'Success!') {
-      const timer = setTimeout(() => {
-        history.push('/currently-reading')
-        setMessage('')
-      }, 5000)
-      return () => clearTimeout(timer)
-    }
-  }, [message, history])
+  }, [errorMessage])
 
-  const errorMessage = `Oh no! The ISBN doesn't seem to exist. :-(`
-  const errorText =
+  const message = `Oh no! The ISBN doesn't seem to exist. :-(`
+  const text =
     'Please try again or use the possibility to add your book manually below.'
-  const successMessage =
-    'Yay! The book was successfully added to your book list. :-)'
-  const successText =
-    'You will shortly be redirected to your currently reading page.'
-
   function handleISBNSearch(isbn) {
     const searchedBook = books.find(
       book =>
@@ -40,17 +27,10 @@ function StartAddBook({ books, onHandleCreateNewBook, history }) {
         book.volumeInfo.industryIdentifiers[1].identifier === isbn
     )
     if (!searchedBook) {
-      setMessage('ISBN error')
+      setErrorMessage('ISBN error')
     } else {
-      setMessage('Success!')
-      onHandleCreateNewBook({
-        title: searchedBook.volumeInfo.title,
-        authors: searchedBook.volumeInfo.authors,
-        readingSince: getToday(),
-        onPage: '',
-        thumbnail: searchedBook.volumeInfo.imageLinks.thumbnail,
-        identifier: searchedBook.volumeInfo.industryIdentifiers[0].identifier,
-      })
+      setLocalStorage('searchedBook', searchedBook)
+      history.push('/add-book-form')
     }
   }
 
@@ -64,22 +44,9 @@ function StartAddBook({ books, onHandleCreateNewBook, history }) {
 
   return (
     <Wrapper>
-      {(message === 'ISBN error' && (
-        <Message
-          image={error}
-          message={errorMessage}
-          text={errorText}
-          alt-text="error"
-        />
-      )) ||
-        (message === 'Success!' && (
-          <Message
-            image={success}
-            message={successMessage}
-            text={successText}
-            altText="success"
-          />
-        ))}
+      {errorMessage === 'ISBN error' && (
+        <Message image={error} message={message} text={text} alt-text="error" />
+      )}
       <h2>Add a new book:</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="isbn">
@@ -92,6 +59,8 @@ function StartAddBook({ books, onHandleCreateNewBook, history }) {
           placeholder="978123456789"
           required
           autoComplete="off"
+          maxLength="13"
+          pattern="[A-Za-z0-9]+"
         />
         <button>Search</button>
       </form>
@@ -100,7 +69,12 @@ function StartAddBook({ books, onHandleCreateNewBook, history }) {
         <p>
           You don't have the ISBN at hand or want to enter the book manually?
         </p>
-        <LinkToForm to="/add-book-form">Click here</LinkToForm>
+        <LinkToForm
+          to="/add-book-form"
+          onClick={() => setLocalStorage('searchedBook', '')}
+        >
+          Click here
+        </LinkToForm>
       </div>
     </Wrapper>
   )
@@ -119,6 +93,7 @@ const Wrapper = styled.div`
 
   form {
     padding: 0 1rem;
+    margin-top: 3rem;
   }
 
   label {

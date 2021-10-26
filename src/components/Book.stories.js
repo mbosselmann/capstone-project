@@ -1,5 +1,6 @@
 import Book from './Book'
 import placeholder from '../images/placeholder.png'
+import { action } from '@storybook/addon-actions'
 
 export default {
   title: 'Component/Book',
@@ -24,6 +25,7 @@ BookCurrentlyRead.args = {
   finished: false,
   readingStatusDate: '05/2021',
   finishedSince: '',
+  onHandleAuthorsLength: action(authors => console.log(authors)),
 }
 
 export const BookAlreadyRead = Template.bind({})
@@ -35,4 +37,5 @@ BookAlreadyRead.args = {
   finished: true,
   readingStatusDate: '05/2021',
   finishedSince: '08/2021',
+  onHandleAuthorsLength: action(authors => console.log(authors)),
 }

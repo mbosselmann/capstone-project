@@ -1,5 +1,6 @@
 import BookList from './BookList'
 import placeholder from '../images/placeholder.png'
+import { action } from '@storybook/addon-actions'
 
 export default {
   title: 'Component/BookList',
@@ -38,4 +39,5 @@ Books.args = {
       finishedSince: '08/2021',
     },
   ],
+  onHandleAuthorsLength: action(authors => console.log(authors)),
 }
