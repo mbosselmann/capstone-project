@@ -4,14 +4,13 @@ import Message from './Message'
 import AddBookForm from './AddBookForm'
 import back from '../images/back-to.svg'
 import success from '../images/success.svg'
-import getLocalStorage from '../lib/loadFromLocal'
 
 function AddBook({
   onHandleCreateNewBook,
   onGetBookCoverPreview,
   successMessage,
+  searchedBook,
 }) {
-  const searchedBook = getLocalStorage('searchedBook') ?? ''
   const message = 'Yay! The book was successfully added to your book list. :-)'
   const text = 'You will shortly be redirected to your currently reading page.'
 
