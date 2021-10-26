@@ -5,7 +5,11 @@ import placeholder from '../images/placeholder.png'
 import previewPlaceholder from '../images/preview-placeholder.png'
 import getToday from '../utils/getToday'
 
-function AddBook({ onHandleCreateNewBook, onGetBookCoverPreview }) {
+function AddBook({
+  onHandleCreateNewBook,
+  onGetBookCoverPreview,
+  onHandleAuthorsLength,
+}) {
   const history = useHistory()
   const [preview, setPreview] = useState(placeholder)
 

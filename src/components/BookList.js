@@ -2,7 +2,7 @@ import Book from './Book'
 import styled from 'styled-components/macro'
 import TitleBookList from './TitleBookList'
 
-function BookList({ books, username, status }) {
+function BookList({ books, username, status, onHandleAuthorsLength }) {
   const filteredBooks =
     status === '/library'
       ? books.filter(book => book.finished === true)
@@ -23,6 +23,7 @@ function BookList({ books, username, status }) {
             readingStatusDate={book.readingSince}
             finishedSince={book.finishedSince}
             bookCover={book.volumeInfo.imageLinks.thumbnail}
+            onHandleAuthorsLength={onHandleAuthorsLength}
           />
         ))}
       </ul>
