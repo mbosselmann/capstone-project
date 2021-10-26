@@ -1,6 +1,5 @@
 import BookList from './BookList'
 import placeholder from '../images/placeholder.png'
-import { action } from '@storybook/addon-actions'
 
 export default {
   title: 'Component/BookList',
@@ -14,30 +13,21 @@ Books.args = {
   books: [
     {
       id: '1',
-      volumeInfo: {
-        title: 'Harry Potter and the Goblet of Fire',
-        authors: ['J. K. Rowling'],
-        imageLinks: {
-          thumbnail: placeholder,
-        },
-      },
+      title: 'Harry Potter and the Goblet of Fire',
+      authors: ['J. K. Rowling'],
+      thumbnail: placeholder,
       finished: false,
       readingSince: '05/2021',
       finishedSince: '',
     },
     {
       id: '2',
-      volumeInfo: {
-        title: 'Cathedral of the Sea',
-        authors: ['Ildefonso Falcones de Sierra'],
-        imageLinks: {
-          thumbnail: placeholder,
-        },
-      },
+      title: 'Cathedral of the Sea',
+      authors: ['Ildefonso Falcones de Sierra'],
+      thumbnail: placeholder,
       finished: true,
       readingSince: '05/2021',
       finishedSince: '08/2021',
     },
   ],
-  onHandleAuthorsLength: action(authors => console.log(authors)),
 }
