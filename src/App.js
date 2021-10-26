@@ -28,11 +28,6 @@ function App({ data }) {
   const history = useHistory()
 
   useEffect(() => {
-    setLocalStorage('user', username)
-    setLocalStorage(`books${username}`, books)
-  }, [username, books])
-
-  useEffect(() => {
     if (successMessage === 'Success!') {
       const timer = setTimeout(() => {
         history.push('/currently-reading')
