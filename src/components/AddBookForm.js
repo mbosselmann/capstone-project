@@ -48,7 +48,7 @@ export default function AddBookForm({
             <input
               name="isbn"
               type="text"
-              id="id"
+              id="isbn"
               placeholder="978123456789"
               defaultValue={
                 bookPreview.volumeInfo.industryIdentifiers[0].identifier ||
@@ -109,9 +109,9 @@ export default function AddBookForm({
             name="bookcover"
             id="bookcover"
             accept=".png, .jpeg, .jpg"
-            onChange={preview => {
-              onGetBookCoverPreview(preview)
-              getPreview(preview)
+            onChange={event => {
+              onGetBookCoverPreview(event)
+              getPreview(event)
             }}
           />
           <label aria-label="select bookcover" htmlFor="bookcover">
