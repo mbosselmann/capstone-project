@@ -9,7 +9,7 @@ import setLocalStorage from '../lib/saveToLocal'
 export default function AddBookForm({
   onHandleCreateNewBook,
   onGetBookCoverPreview,
-  bookPreview,
+  searchedBook,
 }) {
   const [preview, setPreview] = useState(placeholder)
 
@@ -27,11 +27,11 @@ export default function AddBookForm({
       authors: authors.value,
       readingSince: readingSince.value ? readingSince.value : getToday(),
       onPage: onPage.value,
-      thumbnail: bookPreview
-        ? bookPreview.volumeInfo.imageLinks.thumbnail
+      thumbnail: searchedBook
+        ? searchedBook.volumeInfo.imageLinks.thumbnail
         : preview,
-      identifier: bookPreview
-        ? bookPreview.volumeInfo.industryIdentifiers[0].identifier
+      identifier: searchedBook
+        ? searchedBook.volumeInfo.industryIdentifiers[0].identifier
         : '',
     })
     form.reset()
@@ -42,7 +42,7 @@ export default function AddBookForm({
     <Form onSubmit={event => handleSubmit(event)}>
       <MainContentContainer>
         <h2>New book:</h2>
-        {bookPreview && (
+        {searchedBook && (
           <>
             <label htmlFor="isbn">ISBN:</label>
             <input
@@ -51,8 +51,8 @@ export default function AddBookForm({
               id="isbn"
               placeholder="978123456789"
               defaultValue={
-                bookPreview.volumeInfo.industryIdentifiers[0].identifier ||
-                bookPreview.volumeInfo.industryIdentifiers[1].identifier
+                searchedBook.volumeInfo.industryIdentifiers[0].identifier ||
+                searchedBook.volumeInfo.industryIdentifiers[1].identifier
               }
               maxLength="13"
               pattern="[A-Za-z0-9]+"
@@ -67,7 +67,7 @@ export default function AddBookForm({
           type="text"
           id="bookTitle"
           placeholder="Title of the book you want to add"
-          defaultValue={bookPreview ? bookPreview.volumeInfo.title : ''}
+          defaultValue={searchedBook ? bookPreview.volumeInfo.title : ''}
           autoComplete="off"
           required
         />
@@ -78,8 +78,8 @@ export default function AddBookForm({
           id="bookAuthors"
           placeholder="Name or names of the author/authors"
           defaultValue={
-            bookPreview
-              ? handleAuthorsLength(bookPreview.volumeInfo.authors)
+            searchedBook
+              ? handleAuthorsLength(searchedBook.volumeInfo.authors)
               : ''
           }
           autoComplete="off"
@@ -88,10 +88,10 @@ export default function AddBookForm({
       </MainContentContainer>
       <OptionalContentContainer>
         <BookcoverContainer>
-          {bookPreview ? (
+          {searchedBook ? (
             <div id="bookcover-preview">
               <img
-                src={bookPreview.volumeInfo.imageLinks.thumbnail}
+                src={searchedBook.volumeInfo.imageLinks.thumbnail}
                 alt="bookcover"
               />
             </div>

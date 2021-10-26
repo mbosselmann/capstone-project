@@ -12,7 +12,7 @@ function AddBook({
   onGetBookCoverPreview,
   successMessage,
 }) {
-  const bookPreview = getLocalStorage('searchedBook') ?? ''
+  const searchedBook = getLocalStorage('searchedBook') ?? ''
   const message = 'Yay! The book was successfully added to your book list. :-)'
   const text = 'You will shortly be redirected to your currently reading page.'
 
@@ -34,7 +34,7 @@ function AddBook({
       </LinkBack>
       <AddBookForm
         onHandleCreateNewBook={onHandleCreateNewBook}
-        bookPreview={bookPreview}
+        searchedBook={searchedBook}
         onGetBookCoverPreview={onGetBookCoverPreview}
       />
     </Wrapper>
