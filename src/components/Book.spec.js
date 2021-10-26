@@ -3,8 +3,6 @@ import Book from './Book'
 import placeholder from '../images/placeholder.png'
 
 describe('Book', () => {
-  const mockOnHandleAuthorsLength = jest.fn()
-
   it('renders book currently read', () => {
     render(
       <Book
@@ -15,7 +13,6 @@ describe('Book', () => {
         readingStatusDate={'05/2021'}
         finishedSince={''}
         bookCover={placeholder}
-        onHandleAuthorsLength={mockOnHandleAuthorsLength}
       />
     )
 
@@ -33,7 +30,6 @@ describe('Book', () => {
         readingStatusDate={'05/2021'}
         finishedSince={'08/2021'}
         bookCover={placeholder}
-        onHandleAuthorsLength={mockOnHandleAuthorsLength}
       />
     )
 
@@ -51,15 +47,13 @@ describe('Book', () => {
         readingStatusDate={'05/2021'}
         finishedSince={'08/2021'}
         bookCover={placeholder}
-        onHandleAuthorsLength={mockOnHandleAuthorsLength}
       />
     )
 
     expect(screen.getByText('Cathedral of the Sea')).toBeInTheDocument()
-    expect(screen.getByText('by')).toBeInTheDocument()
-    expect(mockOnHandleAuthorsLength).toHaveBeenCalledWith([
-      'Ildefonso Falcones de Sierra',
-    ])
+    expect(
+      screen.getByText('by Ildefonso Falcones de Sierra')
+    ).toBeInTheDocument()
     expect(screen.getByText('Finished since: 08/2021')).toBeInTheDocument()
   })
 
@@ -73,7 +67,6 @@ describe('Book', () => {
         readingStatusDate={'05/2021'}
         finishedSince={'08/2021'}
         bookCover={placeholder}
-        onHandleAuthorsLength={mockOnHandleAuthorsLength}
       />
     )
     const displayedImage = screen.getByRole('img')
@@ -90,7 +83,6 @@ describe('Book', () => {
         readingStatusDate={'05/2021'}
         finishedSince={'08/2021'}
         bookCover={placeholder}
-        onHandleAuthorsLength={mockOnHandleAuthorsLength}
       />
     )
     const altText = screen.getByAltText('bookcover')
