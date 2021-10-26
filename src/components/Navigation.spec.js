@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event'
 import Navigation from './Navigation'
 
 describe('Navigation', () => {
-  it('renders two links', () => {
+  it('renders three links', () => {
     render(
       <Router>
         <Navigation />
