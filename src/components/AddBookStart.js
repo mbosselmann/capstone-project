@@ -59,6 +59,8 @@ function StartAddBook({ books, history }) {
           placeholder="978123456789"
           required
           autoComplete="off"
+          maxLength="13"
+          pattern="[A-Za-z0-9]+"
         />
         <button>Search</button>
       </form>
@@ -67,7 +69,12 @@ function StartAddBook({ books, history }) {
         <p>
           You don't have the ISBN at hand or want to enter the book manually?
         </p>
-        <LinkToForm to="/add-book-form">Click here</LinkToForm>
+        <LinkToForm
+          to="/add-book-form"
+          onClick={() => setLocalStorage('searchedBook', '')}
+        >
+          Click here
+        </LinkToForm>
       </div>
     </Wrapper>
   )
@@ -86,6 +93,7 @@ const Wrapper = styled.div`
 
   form {
     padding: 0 1rem;
+    margin-top: 3rem;
   }
 
   label {
