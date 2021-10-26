@@ -4,6 +4,11 @@ import styled from 'styled-components/macro'
 import placeholder from '../images/placeholder.png'
 import previewPlaceholder from '../images/preview-placeholder.png'
 import getToday from '../utils/getToday'
+import Message from './Message'
+import back from '../images/back-to.svg'
+import success from '../images/success.svg'
+import setLocalStorage from '../lib/saveToLocal'
+import getLocalStorage from '../lib/loadFromLocal'
 
 function AddBook({
   onHandleCreateNewBook,
