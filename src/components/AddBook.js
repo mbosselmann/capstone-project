@@ -13,7 +13,6 @@ import getLocalStorage from '../lib/loadFromLocal'
 function AddBook({
   onHandleCreateNewBook,
   onGetBookCoverPreview,
-  onHandleAuthorsLength,
 }) {
   const bookPreview = getLocalStorage('searchedBook') ?? ''
   const history = useHistory()

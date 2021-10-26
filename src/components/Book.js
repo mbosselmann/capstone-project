@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro'
+import handleAuthorsLength from '../utils/handleAuthorsLength'
 
 function Book({
   bookCover,
@@ -7,7 +8,6 @@ function Book({
   readingStatus,
   readingStatusDate,
   finishedSince,
-  onHandleAuthorsLength,
 }) {
   return (
     <Wrapper>
@@ -19,7 +19,7 @@ function Book({
           <h3>{title}</h3>
           <p>
             by
-            {onHandleAuthorsLength(authors)}
+            {handleAuthorsLength(authors)}
           </p>
         </div>
         <div>

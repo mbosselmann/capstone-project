@@ -102,12 +102,7 @@ function App({ data }) {
             {!username ? (
               <Redirect to="/" />
             ) : (
-              <BookList
-                books={books}
-                username={username}
-                status={pathname}
-                onHandleAuthorsLength={handleAuthorsLength}
-              />
+              <BookList books={books} username={username} status={pathname} />
             )}
           </Route>
           <Route exact path="/add-book">
@@ -128,7 +123,6 @@ function App({ data }) {
               <AddBook
                 onHandleCreateNewBook={handleCreateNewBook}
                 onGetBookCoverPreview={getBookcoverPreview}
-                onHandleAuthorsLength={handleAuthorsLength}
               />
             )}
           </Route>
