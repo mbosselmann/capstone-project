@@ -24,7 +24,7 @@
       "categories": ["Juvenile Fiction"],
       "imageLinks": {
         "smallThumbnail": "http://books.google.com/books/content?id=PXOqDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-        "thumbnail": "http://books.google.com/books/content?id=PXOqDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        "thumbnail": "https://books.google.com/books/content?id=PXOqDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
       },
       "language": "de",
       "previewLink": "http://books.google.de/books?id=PXOqDwAAQBAJ&printsec=frontcover&dq=isbn:9783551518415&hl=&cd=1&source=gbs_api",
@@ -63,7 +63,7 @@
       "categories": ["Juvenile Fiction"],
       "imageLinks": {
         "smallThumbnail": "http://books.google.com/books/content?id=xL34yAEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
-        "thumbnail": "http://books.google.com/books/content?id=xL34yAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        "thumbnail": "https://books.google.com/books/content?id=xL34yAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
       },
       "language": "en",
       "previewLink": "http://books.google.de/books?id=xL34yAEACAAJ&dq=isbn:9781526610324&hl=&cd=1&source=gbs_api",
@@ -102,7 +102,7 @@
       "categories": ["Fiction"],
       "imageLinks": {
         "smallThumbnail": "http://books.google.com/books/content?id=fimTNQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
-        "thumbnail": "http://books.google.com/books/content?id=fimTNQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        "thumbnail": "https://books.google.com/books/content?id=fimTNQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
       },
       "language": "en",
       "previewLink": "http://books.google.de/books?id=fimTNQEACAAJ&dq=isbn:9780451225993&hl=&cd=1&source=gbs_api",
@@ -142,7 +142,7 @@
       "categories": ["Business & Economics"],
       "imageLinks": {
         "smallThumbnail": "http://books.google.com/books/content?id=fkOKDQAAQBAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
-        "thumbnail": "http://books.google.com/books/content?id=fkOKDQAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        "thumbnail": "https://books.google.com/books/content?id=fkOKDQAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
       },
       "language": "en",
       "previewLink": "http://books.google.de/books?id=fkOKDQAAQBAJ&dq=isbn:9781591846444&hl=&cd=1&source=gbs_api",
@@ -178,7 +178,7 @@
       "printType": "BOOK",
       "imageLinks": {
         "smallThumbnail": "http://books.google.com/books/content?id=DrIGogEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
-        "thumbnail": "http://books.google.com/books/content?id=DrIGogEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        "thumbnail": "https://books.google.com/books/content?id=DrIGogEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
       },
       "language": "de",
       "previewLink": "http://books.google.de/books?id=DrIGogEACAAJ&dq=isbn:9783956140303&hl=&cd=1&source=gbs_api",
@@ -215,7 +215,7 @@
       "categories": ["Science"],
       "imageLinks": {
         "smallThumbnail": "http://books.google.com/books/content?id=jhK3JTPLSIgC&printsec=frontcover&img=1&zoom=5&source=gbs_api",
-        "thumbnail": "http://books.google.com/books/content?id=jhK3JTPLSIgC&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        "thumbnail": "https://books.google.com/books/content?id=jhK3JTPLSIgC&printsec=frontcover&img=1&zoom=1&source=gbs_api"
       },
       "language": "en",
       "previewLink": "http://books.google.de/books?id=jhK3JTPLSIgC&dq=isbn:9780140146868&hl=&cd=1&source=gbs_api",
@@ -255,7 +255,7 @@
       "categories": ["Business & Economics"],
       "imageLinks": {
         "smallThumbnail": "http://books.google.com/books/content?id=qBfRDQAAQBAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
-        "thumbnail": "http://books.google.com/books/content?id=qBfRDQAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        "thumbnail": "https://books.google.com/books/content?id=qBfRDQAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
       },
       "language": "en",
       "previewLink": "http://books.google.de/books?id=qBfRDQAAQBAJ&dq=isbn:9780465050659&hl=&cd=1&source=gbs_api",
@@ -295,7 +295,7 @@
       "categories": ["Fiction"],
       "imageLinks": {
         "smallThumbnail": "http://books.google.com/books/content?id=AmxFtwEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
-        "thumbnail": "http://books.google.com/books/content?id=AmxFtwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        "thumbnail": "https://books.google.com/books/content?id=AmxFtwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
       },
       "language": "en",
       "previewLink": "http://books.google.de/books?id=AmxFtwEACAAJ&dq=isbn:9780393356687&hl=&cd=1&source=gbs_api",
@@ -334,7 +334,7 @@
       "printType": "BOOK",
       "imageLinks": {
         "smallThumbnail": "http://books.google.com/books/content?id=VLJdMQAACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
-        "thumbnail": "http://books.google.com/books/content?id=VLJdMQAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        "thumbnail": "https://books.google.com/books/content?id=VLJdMQAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
       },
       "language": "en",
       "previewLink": "http://books.google.de/books?id=VLJdMQAACAAJ&dq=isbn:9780008220563&hl=&cd=1&source=gbs_api",
