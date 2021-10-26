@@ -2,7 +2,7 @@ import BookList from './components/BookList'
 import Navigation from './components/Navigation'
 import AddBook from './components/AddBook'
 import StartAddBook from './components/AddBookStart'
-import Start from './components/Start'
+import HomeScreen from './components/HomeScreen'
 import styled from 'styled-components/macro'
 import {
   Route,
@@ -91,7 +91,7 @@ function App({ data }) {
           {username ? (
             <Redirect to="/currently-reading" />
           ) : (
-            <Start history={history} />
+            <HomeScreen history={history} />
           )}
         </Route>
         <Main>
