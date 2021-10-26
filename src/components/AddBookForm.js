@@ -67,7 +67,7 @@ export default function AddBookForm({
           type="text"
           id="bookTitle"
           placeholder="Title of the book you want to add"
-          defaultValue={searchedBook ? bookPreview.volumeInfo.title : ''}
+          defaultValue={searchedBook ? searchedBook.volumeInfo.title : ''}
           autoComplete="off"
           required
         />

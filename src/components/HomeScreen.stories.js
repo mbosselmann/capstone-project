@@ -6,7 +6,7 @@ export default {
   component: HomeScreen,
 }
 
-const Template = args => <Start {...args} />
+const Template = args => <HomeScreen {...args} />
 
 export const Welcome = Template.bind({})
 Welcome.args = {
