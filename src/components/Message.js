@@ -48,6 +48,8 @@ const Wrapper = styled.div`
   border-radius: 0 0 25px 25px;
   box-shadow: var(--box-shadow);
   -webkit-box-shadow: var(--box-shadow);
+  padding: 2rem;
+  z-index: 100;
 
   img {
     max-width: 70%;

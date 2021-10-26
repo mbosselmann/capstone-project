@@ -68,7 +68,7 @@ const ImgContainer = styled.div`
 
 const Content = styled.div`
   flex: 2;
-  padding: 10px 0 10px 0;
+  padding: 10px 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

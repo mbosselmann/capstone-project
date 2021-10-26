@@ -24,7 +24,6 @@ const GlobalStyles = createGlobalStyle`
     form {
         display: flex;
         flex-direction: column;
-        margin-top: 4rem;
     }
 
     label {

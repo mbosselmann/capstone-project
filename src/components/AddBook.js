@@ -36,6 +36,12 @@ function AddBook({
 
   return (
     <Wrapper>
+      <LinkBack
+        to="/add-book"
+        onClick={() => setLocalStorage('searchedBook', '')}
+      >
+        <img src={back} alt="back to start adding a new book" />
+      </LinkBack>
       <Form onSubmit={handleSubmit}>
         <RequiredContainer>
           <h2>New book:</h2>
@@ -107,15 +113,24 @@ export default AddBook
 const Wrapper = styled.div`
   background-color: #f6f6f6;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   height: 100%;
 `
+
+const LinkBack = styled(Link)`
+  flex: 1;
+  img {
+    width: 60px;
+    margin: 0.5rem 0.5rem 0.2rem 0.5rem;
+  }
+`
+
 const Form = styled.form`
   background-color: #fff;
   border-radius: 25px 25px 0 0;
   box-shadow: var(--box-shadow);
   padding: 1rem;
-  width: 100%;
+  flex: 10;
 
   h2 {
     font-family: 'Libre Baskerville', serif;
@@ -132,12 +147,12 @@ const Form = styled.form`
   }
 `
 
-const RequiredContainer = styled.div`
+const MainContentContainer = styled.div`
   display: flex;
   flex-direction: column;
 `
 
-const OptionalContainer = styled.div`
+const OptionalContentContainer = styled.div`
   display: flex;
   gap: 0.5rem;
   margin-bottom: 2rem;
