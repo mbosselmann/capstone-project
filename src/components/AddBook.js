@@ -4,7 +4,6 @@ import Message from './Message'
 import AddBookForm from './AddBookForm'
 import back from '../images/back-to.svg'
 import success from '../images/success.svg'
-import setLocalStorage from '../lib/saveToLocal'
 import getLocalStorage from '../lib/loadFromLocal'
 
 function AddBook({
@@ -26,10 +25,7 @@ function AddBook({
           altText="success"
         />
       )}
-      <LinkBack
-        to="/add-book"
-        onClick={() => setLocalStorage('searchedBook', '')}
-      >
+      <LinkBack to="/add-book">
         <img src={back} alt="back to start adding a new book" />
       </LinkBack>
       <AddBookForm
