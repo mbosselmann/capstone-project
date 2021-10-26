@@ -31,14 +31,11 @@ describe('Start', () => {
     expect(inputEl).toBeRequired()
   })
 
-  it('has an onSubmit event', () => {
-    const mockSetUsername = jest.fn()
-    render(<Start setUsername={mockSetUsername} />)
+  it('user can type "Mareike" in input', () => {
+    render(<Start />)
 
-    const button = screen.getByRole('button')
     const inputEl = screen.getByLabelText('Enter your name:')
     userEvent.type(inputEl, 'Mareike')
-    userEvent.click(button)
-    expect(mockSetUsername).toHaveBeenCalledWith('Mareike')
+    expect(inputEl).toHaveValue('Mareike')
   })
 })

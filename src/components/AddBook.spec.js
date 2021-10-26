@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event'
 import AddBook from './AddBook'
 import { createMemoryHistory } from 'history'
 import { Router } from 'react-router-dom'
+import { MemoryRouter } from 'react-router-dom'
 
 describe('AddBook', () => {
   const date = new Date()
@@ -10,14 +11,22 @@ describe('AddBook', () => {
     date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
 
   it('renders heading', () => {
-    render(<AddBook />)
+    render(
+      <MemoryRouter>
+        <AddBook />
+      </MemoryRouter>
+    )
 
     const title = screen.getByRole('heading', { level: 2 })
     expect(title).toHaveTextContent('New book:')
   })
 
   it('has two required input fields (title and authors)', () => {
-    render(<AddBook />)
+    render(
+      <MemoryRouter>
+        <AddBook />
+      </MemoryRouter>
+    )
 
     const inputElTitle = screen.getByLabelText('Book title:')
     expect(inputElTitle).toBeRequired()
@@ -27,14 +36,22 @@ describe('AddBook', () => {
   })
 
   it('displays image with alt-text', () => {
-    render(<AddBook />)
+    render(
+      <MemoryRouter>
+        <AddBook />
+      </MemoryRouter>
+    )
 
     const altText = screen.getByAltText('bookcover')
     expect(altText).toBeInTheDocument()
   })
 
   it('has an input field "Reading since" with the type "date" and the attribute "max"', () => {
-    render(<AddBook today={today} />)
+    render(
+      <MemoryRouter>
+        <AddBook today={today} />
+      </MemoryRouter>
+    )
 
     const inputElReadingSince = screen.getByLabelText('Reading since:')
     expect(inputElReadingSince).toHaveAttribute('type', 'date')
@@ -42,19 +59,31 @@ describe('AddBook', () => {
   })
 
   it('has an input field "Currently on page" with the type "number"', () => {
-    render(<AddBook />)
+    render(
+      <MemoryRouter>
+        <AddBook />
+      </MemoryRouter>
+    )
     const inputElOnPage = screen.getByLabelText('Currently on page:')
     expect(inputElOnPage).toHaveAttribute('type', 'number')
   })
 
   it('has an input field for uploading a bookcover with the type "file"', () => {
-    render(<AddBook />)
+    render(
+      <MemoryRouter>
+        <AddBook />
+      </MemoryRouter>
+    )
     const inputElBookcover = screen.getByLabelText('Select')
     expect(inputElBookcover).toHaveAttribute('type', 'file')
   })
 
   it('has an input field for uploading a bookcover that only accepts .png and .jpeg files', () => {
-    render(<AddBook />)
+    render(
+      <MemoryRouter>
+        <AddBook />
+      </MemoryRouter>
+    )
     const inputElBookcover = screen.getByLabelText('Select')
     expect(inputElBookcover).toHaveAttribute('accept', '.png, .jpeg, .jpg')
   })
@@ -88,6 +117,7 @@ describe('AddBook', () => {
       readingSince: today,
       onPage: '10',
       identifier: '',
+      thumbnail: 'placeholder.png',
     })
   })
 
@@ -95,7 +125,11 @@ describe('AddBook', () => {
     const mockOnGetBookCoverPreview = jest.fn()
     global.URL.createObjectURL = jest.fn()
 
-    render(<AddBook onGetBookCoverPreview={mockOnGetBookCoverPreview} />)
+    render(
+      <MemoryRouter>
+        <AddBook onGetBookCoverPreview={mockOnGetBookCoverPreview} />
+      </MemoryRouter>
+    )
 
     const inputElBookcover = screen.getByLabelText('Select')
     userEvent.upload(inputElBookcover)
