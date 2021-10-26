@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { useHistory, Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import placeholder from '../images/placeholder.png'
 import previewPlaceholder from '../images/preview-placeholder.png'
@@ -15,6 +15,7 @@ function AddBook({
   onGetBookCoverPreview,
   onHandleAuthorsLength,
 }) {
+  const bookPreview = getLocalStorage('searchedBook') ?? ''
   const history = useHistory()
   const [preview, setPreview] = useState(placeholder)
   const [successMessage, setSuccessMessage] = useState('')
@@ -40,13 +41,17 @@ function AddBook({
     event.preventDefault()
     const form = event.target
     const { title, authors, readingSince, onPage } = form.elements
-
     onHandleCreateNewBook({
       title: title.value,
       authors: authors.value,
-      readingSince: readingSince.value,
+      readingSince: readingSince.value ? readingSince.value : getToday(),
       onPage: onPage.value,
-      identifier: '',
+      thumbnail: bookPreview
+        ? bookPreview.volumeInfo.imageLinks.thumbnail
+        : preview,
+      identifier: bookPreview
+        ? bookPreview.volumeInfo.industryIdentifiers[0].identifier
+        : '',
     })
     setSuccessMessage('Success!')
     setLocalStorage('searchedBook', '')
@@ -71,14 +76,35 @@ function AddBook({
         <img src={back} alt="back to start adding a new book" />
       </LinkBack>
       <Form onSubmit={handleSubmit}>
-        <RequiredContainer>
+        <MainContentContainer>
           <h2>New book:</h2>
+          {bookPreview && (
+            <>
+              <label htmlFor="isbn">ISBN:</label>
+              <input
+                name="isbn"
+                type="text"
+                id="id"
+                placeholder="978123456789"
+                defaultValue={
+                  bookPreview.volumeInfo.industryIdentifiers[0].identifier ||
+                  bookPreview.volumeInfo.industryIdentifiers[1].identifier
+                }
+                maxLength="13"
+                pattern="[A-Za-z0-9]+"
+                autoComplete="off"
+                required
+              />
+            </>
+          )}
           <label htmlFor="bookTitle">Book title:</label>
           <input
             name="title"
             type="text"
             id="bookTitle"
             placeholder="Title of the book you want to add"
+            defaultValue={bookPreview ? bookPreview.volumeInfo.title : ''}
+            autoComplete="off"
             required
           />
           <label htmlFor="bookAuthors">Author or Authors:</label>
@@ -87,29 +113,44 @@ function AddBook({
             type="text"
             id="bookAuthors"
             placeholder="Name or names of the author/authors"
+            defaultValue={
+              bookPreview
+                ? onHandleAuthorsLength(bookPreview.volumeInfo.authors)
+                : ''
+            }
+            autoComplete="off"
             required
           />
-        </RequiredContainer>
-        <OptionalContainer>
+        </MainContentContainer>
+        <OptionalContentContainer>
           <BookcoverContainer>
-            <div id="bookcover-preview">
-              {preview === placeholder ? (
-                <img src={previewPlaceholder} alt="bookcover"></img>
-              ) : (
-                <img src={preview} alt="bookcover"></img>
-              )}
-            </div>
+            {bookPreview ? (
+              <div id="bookcover-preview">
+                <img
+                  src={bookPreview.volumeInfo.imageLinks.thumbnail}
+                  alt="bookcover"
+                />
+              </div>
+            ) : (
+              <div id="bookcover-preview">
+                {preview === placeholder ? (
+                  <img src={previewPlaceholder} alt="bookcover" />
+                ) : (
+                  <img src={preview} alt="bookcover" />
+                )}
+              </div>
+            )}
             <input
               type="file"
               name="bookcover"
-              id="chooseBookcover"
+              id="bookcover"
               accept=".png, .jpeg, .jpg"
               onChange={preview => {
                 onGetBookCoverPreview(preview)
                 getPreview(preview)
               }}
             />
-            <label aria-label="select bookcover" htmlFor="chooseBookcover">
+            <label aria-label="select bookcover" htmlFor="bookcover">
               Select
             </label>
           </BookcoverContainer>
@@ -127,9 +168,10 @@ function AddBook({
               type="number"
               id="onPage"
               placeholder="e. g. 72"
+              autoComplete="off"
             />
           </div>
-        </OptionalContainer>
+        </OptionalContentContainer>
         <button>Add book to list</button>
       </Form>
     </Wrapper>
