@@ -12,6 +12,19 @@ function AddBook({
 }) {
   const history = useHistory()
   const [preview, setPreview] = useState(placeholder)
+  const [successMessage, setSuccessMessage] = useState('')
+  const message = 'Yay! The book was successfully added to your book list. :-)'
+  const text = 'You will shortly be redirected to your currently reading page.'
+
+  useEffect(() => {
+    if (successMessage === 'Success!') {
+      const timer = setTimeout(() => {
+        history.push('/currently-reading')
+        setSuccessMessage('')
+      }, 5000)
+      return () => clearTimeout(timer)
+    }
+  }, [successMessage, history])
 
   function getPreview(previewEvent) {
     const preview = URL.createObjectURL(previewEvent.target.files[0])
@@ -30,12 +43,22 @@ function AddBook({
       onPage: onPage.value,
       identifier: '',
     })
+    setSuccessMessage('Success!')
+    setLocalStorage('searchedBook', '')
     form.reset()
-    history.push('/currently-reading')
   }
 
   return (
     <Wrapper>
+      {successMessage === 'Success!' && (
+        <Message
+          image={success}
+          message={message}
+          text={text}
+          altText="success"
+        />
+      )}
+
       <LinkBack
         to="/add-book"
         onClick={() => setLocalStorage('searchedBook', '')}
