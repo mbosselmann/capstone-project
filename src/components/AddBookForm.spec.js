@@ -71,14 +71,16 @@ describe('AddBookForm', () => {
 
     const button = screen.getByRole('button')
     userEvent.click(button)
+    expect(mockOnHandleCreateNewBook).toHaveBeenCalledTimes(1)
 
     expect(mockOnHandleCreateNewBook).toHaveBeenCalledWith({
       title: 'Das Haus',
       authors: 'Marie Meier',
       readingSince: getToday(),
       onPage: '10',
-      identifier: '',
       thumbnail: 'placeholder.png',
+      isbn10: '',
+      isbn13: '',
     })
   })
 
