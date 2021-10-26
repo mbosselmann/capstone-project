@@ -20,6 +20,7 @@ import placeholder from './images/placeholder.png'
 function App() {
   const username = getLocalStorage('user') ?? ''
   const [books, setBooks] = useState(getLocalStorage(`books${username}`) ?? [])
+  const [searchedBook, setSearchedBook] = useState('')
   const [bookcover, setBookcover] = useState(placeholder)
   const [successMessage, setSuccessMessage] = useState('')
   const { pathname } = useLocation()
@@ -44,6 +45,10 @@ function App() {
     reader.readAsDataURL(preview)
   }
 
+  function handleSetSearchedBook(searchedBook) {
+    setSearchedBook(searchedBook)
+  }
+
   function handleCreateNewBook(newBookData) {
     const {
       title,
@@ -51,7 +56,8 @@ function App() {
       readingSince,
       onPage,
       thumbnail,
-      identifier,
+      isbn10,
+      isbn13,
     } = newBookData
     const newBook = {
       id: nanoid(),
@@ -59,22 +65,17 @@ function App() {
       readingSince: readingSince,
       finishedSince: '',
       onPage: onPage,
-      volumeInfo: {
-        title: title,
-        authors: authors,
-        imageLinks: {
-          thumbnail: !thumbnail ? bookcover : thumbnail,
-        },
-        industryIdentifiers: [
-          { type: 'ISBN01', identifier: identifier },
-          { type: 'ISBN02', identifier: identifier },
-        ],
-      },
+      title: title,
+      authors: authors,
+      thumbnail: !thumbnail ? bookcover : thumbnail,
+      isbn10: isbn10,
+      isbn13: isbn13,
     }
     const newBooks = [newBook, ...books]
     setBooks(newBooks)
     setLocalStorage(`books${username}`, newBooks)
     setSuccessMessage('Success!')
+    setSearchedBook('')
   }
 
   return (
@@ -100,9 +101,9 @@ function App() {
               <Redirect to="/" />
             ) : (
               <StartAddBook
-                books={books}
                 onHandleCreateNewBook={handleCreateNewBook}
                 history={history}
+                onHandleSetSearchedBook={handleSetSearchedBook}
               />
             )}
           </Route>
@@ -111,6 +112,7 @@ function App() {
               <Redirect to="/" />
             ) : (
               <AddBook
+                searchedBook={searchedBook}
                 successMessage={successMessage}
                 onHandleCreateNewBook={handleCreateNewBook}
                 onGetBookCoverPreview={getBookcoverPreview}
