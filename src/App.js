@@ -17,11 +17,9 @@ import setLocalStorage from './lib/saveToLocal'
 import { nanoid } from 'nanoid'
 import placeholder from './images/placeholder.png'
 
-function App({ data }) {
+function App() {
   const username = getLocalStorage('user') ?? ''
-  const [books, setBooks] = useState(
-    getLocalStorage(`books${username}`) ?? data
-  )
+  const [books, setBooks] = useState(getLocalStorage(`books${username}`) ?? [])
   const [bookcover, setBookcover] = useState(placeholder)
   const [successMessage, setSuccessMessage] = useState('')
   const { pathname } = useLocation()
