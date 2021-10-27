@@ -11,7 +11,7 @@ function AddBook({
   successMessage,
   searchedBook,
 }) {
-  const message = 'Yay! The book was successfully added to your book list. :-)'
+  const message = 'Yay! The book was successfully added to your book list. :)'
   const text = 'You will shortly be redirected to your currently reading page.'
 
   return (

@@ -8,9 +8,8 @@ import placeholder from '../images/placeholder.png'
 
 function StartAddBook({ history, onHandleSetSearchedBook }) {
   const [errorMessage, setErrorMessage] = useState('')
-  const message = `Oh no! The ISBN doesn't seem to exist. :-(`
-  const text =
-    'Please try again or use the possibility to add your book manually below.'
+  const message = `Oh no! The ISBN doesn't seem to exist. :(`
+  const text = 'Please try again or add your book manually below.'
 
   function getBook(isbn) {
     fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`)
