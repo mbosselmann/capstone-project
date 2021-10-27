@@ -72,10 +72,4 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 0.2rem;
-  }
 `
