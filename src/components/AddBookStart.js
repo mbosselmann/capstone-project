@@ -15,7 +15,6 @@ function StartAddBook({ history, onHandleSetSearchedBook }) {
     fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`)
       .then(res => res.json())
       .then(book => {
-        console.log(book)
         const searchResult = {
           title: book.items[0].volumeInfo.title,
           subtitle: book.items[0].volumeInfo.subtitle,
@@ -39,7 +38,6 @@ function StartAddBook({ history, onHandleSetSearchedBook }) {
               ? book.items[0].volumeInfo.industryIdentifiers[1].identifier
               : book.items[0].volumeInfo.industryIdentifiers[0].identifier,
         }
-        console.log(searchResult)
         onHandleSetSearchedBook(searchResult)
         history.push('/add-book-form')
       })
