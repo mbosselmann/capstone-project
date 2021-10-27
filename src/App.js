@@ -17,20 +17,14 @@ import setLocalStorage from './lib/saveToLocal'
 import { nanoid } from 'nanoid'
 import placeholder from './images/placeholder.png'
 
-function App({ data }) {
+function App() {
   const username = getLocalStorage('user') ?? ''
-  const [books, setBooks] = useState(
-    getLocalStorage(`books${username}`) ?? data
-  )
+  const [books, setBooks] = useState(getLocalStorage(`books${username}`) ?? [])
+  const [searchedBook, setSearchedBook] = useState('')
   const [bookcover, setBookcover] = useState(placeholder)
   const [successMessage, setSuccessMessage] = useState('')
   const { pathname } = useLocation()
   const history = useHistory()
-
-  useEffect(() => {
-    setLocalStorage('user', username)
-    setLocalStorage(`books${username}`, books)
-  }, [username, books])
 
   useEffect(() => {
     if (successMessage === 'Success!') {
@@ -51,6 +45,10 @@ function App({ data }) {
     reader.readAsDataURL(preview)
   }
 
+  function handleSetSearchedBook(searchedBook) {
+    setSearchedBook(searchedBook)
+  }
+
   function handleCreateNewBook(newBookData) {
     const {
       title,
@@ -58,7 +56,8 @@ function App({ data }) {
       readingSince,
       onPage,
       thumbnail,
-      identifier,
+      isbn10,
+      isbn13,
     } = newBookData
     const newBook = {
       id: nanoid(),
@@ -66,22 +65,17 @@ function App({ data }) {
       readingSince: readingSince,
       finishedSince: '',
       onPage: onPage,
-      volumeInfo: {
-        title: title,
-        authors: authors,
-        imageLinks: {
-          thumbnail: !thumbnail ? bookcover : thumbnail,
-        },
-        industryIdentifiers: [
-          { type: 'ISBN01', identifier: identifier },
-          { type: 'ISBN02', identifier: identifier },
-        ],
-      },
+      title: title,
+      authors: authors,
+      thumbnail: !thumbnail ? bookcover : thumbnail,
+      isbn10: isbn10,
+      isbn13: isbn13,
     }
     const newBooks = [newBook, ...books]
     setBooks(newBooks)
     setLocalStorage(`books${username}`, newBooks)
     setSuccessMessage('Success!')
+    setSearchedBook('')
   }
 
   return (
@@ -107,9 +101,9 @@ function App({ data }) {
               <Redirect to="/" />
             ) : (
               <StartAddBook
-                books={books}
                 onHandleCreateNewBook={handleCreateNewBook}
                 history={history}
+                onHandleSetSearchedBook={handleSetSearchedBook}
               />
             )}
           </Route>
@@ -118,6 +112,7 @@ function App({ data }) {
               <Redirect to="/" />
             ) : (
               <AddBook
+                searchedBook={searchedBook}
                 successMessage={successMessage}
                 onHandleCreateNewBook={handleCreateNewBook}
                 onGetBookCoverPreview={getBookcoverPreview}
