@@ -28,6 +28,11 @@ export default function AddBookForm({
       thumbnail: !searchedBook ? preview : searchedBook.thumbnail,
       isbn10: searchedBook ? searchedBook.isbn10 : '',
       isbn13: searchedBook ? searchedBook.isbn13 : '',
+      year: searchedBook ? searchedBook.year : 'Unknown',
+      publisher: searchedBook ? searchedBook.publisher : 'Unknown',
+      description: searchedBook ? searchedBook.description : '',
+      subtitle: searchedBook ? searchedBook.subtitle : '',
+      pages: searchedBook ? searchedBook.pages : '',
     })
     form.reset()
   }

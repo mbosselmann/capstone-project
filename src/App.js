@@ -59,6 +59,11 @@ function App() {
       thumbnail,
       isbn10,
       isbn13,
+      year,
+      publisher,
+      description,
+      subtitle,
+      pages,
     } = newBookData
     const newBook = {
       id: nanoid(),
@@ -71,6 +76,11 @@ function App() {
       thumbnail: !thumbnail ? bookcover : thumbnail,
       isbn10: isbn10,
       isbn13: isbn13,
+      year: year,
+      publisher: publisher,
+      description: description,
+      subtitle: subtitle,
+      pages: pages,
     }
     const newBooks = [newBook, ...books]
     setBooks(newBooks)
@@ -102,7 +112,6 @@ function App() {
               <Redirect to="/" />
             ) : (
               <StartAddBook
-                onHandleCreateNewBook={handleCreateNewBook}
                 history={history}
                 onHandleSetSearchedBook={handleSetSearchedBook}
               />
