@@ -3,6 +3,7 @@ import Navigation from './components/Navigation'
 import AddBook from './components/AddBook'
 import StartAddBook from './components/AddBookStart'
 import HomeScreen from './components/HomeScreen'
+import BookDetails from './components/BookDetails'
 import styled from 'styled-components/macro'
 import {
   Route,
@@ -119,11 +120,20 @@ function App() {
               />
             )}
           </Route>
+          <Route exact path="/book/:id">
+            <BookDetails books={books} pathname={pathname} />
+          </Route>
         </Main>
       </Switch>
       <Route
         exact
-        path={['/currently-reading', '/library', '/add-book', '/add-book-form']}
+        path={[
+          '/currently-reading',
+          '/library',
+          '/add-book',
+          '/add-book-form',
+          '/book/:id',
+        ]}
       >
         <Footer>
           <Navigation />

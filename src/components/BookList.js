@@ -17,6 +17,7 @@ function BookList({ books, username, status }) {
         {filteredBooks.map(book => (
           <Book
             key={book.id}
+            id={book.id}
             title={book.title}
             authors={book.authors}
             readingStatus={book.finished}

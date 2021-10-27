@@ -1,7 +1,9 @@
 import styled from 'styled-components/macro'
 import handleAuthorsLength from '../utils/handleAuthorsLength'
+import { Link } from 'react-router-dom'
 
 function Book({
+  id,
   bookCover,
   title,
   authors,
@@ -10,28 +12,30 @@ function Book({
   finishedSince,
 }) {
   return (
-    <Wrapper>
-      <ImgContainer>
-        <img src={bookCover} alt="bookcover" />
-      </ImgContainer>
-      <Content>
-        <div>
-          <h3>{title}</h3>
-          <p>
-            by
-            {handleAuthorsLength(authors)}
-          </p>
-        </div>
-        <div>
-          <div>{!readingStatus ? '' : 'Rating'}</div>
+    <LinkBookDetails to={`/book/:${id}`}>
+      <Wrapper>
+        <ImgContainer>
+          <img src={bookCover} alt="bookcover" />
+        </ImgContainer>
+        <Content>
           <div>
-            {!readingStatus
-              ? `Reading since: ${readingStatusDate}`
-              : `Finished since: ${finishedSince}`}
+            <h3>{title}</h3>
+            <p>
+              by
+              {handleAuthorsLength(authors)}
+            </p>
           </div>
-        </div>
-      </Content>
-    </Wrapper>
+          <div>
+            <div>{!readingStatus ? '' : 'Rating'}</div>
+            <div>
+              {!readingStatus
+                ? `Reading since: ${readingStatusDate}`
+                : `Finished since: ${finishedSince}`}
+            </div>
+          </div>
+        </Content>
+      </Wrapper>
+    </LinkBookDetails>
   )
 }
 
@@ -49,6 +53,12 @@ const Wrapper = styled.li`
   box-shadow: var(--box-shadow);
   -webkit-box-shadow: var(--box-shadow);
 `
+
+const LinkBookDetails = styled(Link)`
+  text-decoration: none;
+  color: #000;
+`
+
 const ImgContainer = styled.div`
   flex: 1;
   background-color: #f6f6f6;
