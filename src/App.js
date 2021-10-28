@@ -13,11 +13,15 @@ import { useState, useEffect } from 'react'
 import placeholder from './images/placeholder.png'
 
 function App() {
-  const username = getLocalStorage('user') ?? ''
+  const [username, setUsername] = useState(getLocalStorage('user') ?? '')
   const [books, setBooks] = useState(getLocalStorage(`books${username}`) ?? [])
   const [searchedBook, setSearchedBook] = useState('')
   const [bookcover, setBookcover] = useState(placeholder)
   const [successMessage, setSuccessMessage] = useState('')
+
+  function handleSetUsername(name) {
+    setUsername(name)
+  }
 
   useEffect(() => {
     if (successMessage === 'Success!') {
@@ -85,7 +89,11 @@ function App() {
     <AppContainer>
       <Switch>
         <Route exact path="/">
-          {username ? <Redirect to="/currently-reading" /> : <HomeScreen />}
+          {username ? (
+            <Redirect to="/currently-reading" />
+          ) : (
+            <HomeScreen onHandleSetUsername={handleSetUsername} />
+          )}
         </Route>
         <Main>
           <Route exact path={['/currently-reading', '/library']}>
