@@ -1,12 +1,11 @@
 import back from '../images/back-to.svg'
 import styled from 'styled-components/macro'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
-function BookDetails({ books, pathname }) {
-  const bookId = pathname.slice(7)
-  const book = books.find(book => book.id === bookId)
-  console.log(pathname)
-  console.log(book)
+function BookDetails({ books }) {
+  const { id } = useParams()
+  console.log(id)
+  const book = books.find(book => book.id === id)
 
   return (
     <Article>

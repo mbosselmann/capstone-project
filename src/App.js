@@ -130,7 +130,7 @@ function App() {
             )}
           </Route>
           <Route exact path="/book/:id">
-            <BookDetails books={books} pathname={pathname} />
+            <BookDetails books={books} />
           </Route>
         </Main>
       </Switch>

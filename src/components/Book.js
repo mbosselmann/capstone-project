@@ -12,7 +12,7 @@ function Book({
   finishedSince,
 }) {
   return (
-    <LinkBookDetails to={`/book/:${id}`}>
+    <LinkBookDetails to={`/book/${id}`}>
       <Wrapper>
         <ImgContainer>
           <img src={bookCover} alt="bookcover" />
