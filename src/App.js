@@ -3,6 +3,7 @@ import Navigation from './components/Navigation'
 import AddBook from './components/AddBook'
 import StartAddBook from './components/AddBookStart'
 import HomeScreen from './components/HomeScreen'
+import BookDetails from './components/BookDetails'
 import styled from 'styled-components/macro'
 import {
   Route,
@@ -58,6 +59,11 @@ function App() {
       thumbnail,
       isbn10,
       isbn13,
+      year,
+      publisher,
+      description,
+      subtitle,
+      pages,
     } = newBookData
     const newBook = {
       id: nanoid(),
@@ -70,6 +76,11 @@ function App() {
       thumbnail: !thumbnail ? bookcover : thumbnail,
       isbn10: isbn10,
       isbn13: isbn13,
+      year: year,
+      publisher: publisher,
+      description: description,
+      subtitle: subtitle,
+      pages: pages,
     }
     const newBooks = [newBook, ...books]
     setBooks(newBooks)
@@ -101,7 +112,6 @@ function App() {
               <Redirect to="/" />
             ) : (
               <StartAddBook
-                onHandleCreateNewBook={handleCreateNewBook}
                 history={history}
                 onHandleSetSearchedBook={handleSetSearchedBook}
               />
@@ -119,11 +129,20 @@ function App() {
               />
             )}
           </Route>
+          <Route exact path="/book/:id">
+            <BookDetails books={books} />
+          </Route>
         </Main>
       </Switch>
       <Route
         exact
-        path={['/currently-reading', '/library', '/add-book', '/add-book-form']}
+        path={[
+          '/currently-reading',
+          '/library',
+          '/add-book',
+          '/add-book-form',
+          '/book/:id',
+        ]}
       >
         <Footer>
           <Navigation />

@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import BookList from './BookList'
 import placeholder from '../images/placeholder.png'
+import { MemoryRouter as Router } from 'react-router-dom'
 
 describe('Book list', () => {
   const books = [
@@ -25,21 +26,33 @@ describe('Book list', () => {
   ]
 
   it('renders  one listitem when status is "/library"', () => {
-    render(<BookList books={books} status={'/library'} />)
+    render(
+      <Router>
+        <BookList books={books} status={'/library'} />
+      </Router>
+    )
 
     const bookListItems = screen.getAllByRole('listitem')
     expect(bookListItems).toHaveLength(1)
   })
 
   it('renders  one listitem when status is not "/library"', () => {
-    render(<BookList books={books} status={'/currently-reading'} />)
+    render(
+      <Router>
+        <BookList books={books} status={'/currently-reading'} />
+      </Router>
+    )
 
     const bookListItems = screen.getAllByRole('listitem')
     expect(bookListItems).toHaveLength(1)
   })
 
   it('renders no title according to status=""', () => {
-    render(<BookList books={books} status={''} />)
+    render(
+      <Router>
+        <BookList books={books} status={''} />
+      </Router>
+    )
 
     const titleSection = screen.getByTestId('booklist-title')
     expect(titleSection).toBeEmptyDOMElement()

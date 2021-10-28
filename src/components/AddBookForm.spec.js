@@ -81,6 +81,11 @@ describe('AddBookForm', () => {
       thumbnail: 'placeholder.png',
       isbn10: '',
       isbn13: '',
+      description: '',
+      pages: '',
+      publisher: 'Unknown',
+      subtitle: '',
+      year: 'Unknown',
     })
   })
 
