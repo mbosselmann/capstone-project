@@ -4,7 +4,6 @@ import { Link, useParams } from 'react-router-dom'
 
 function BookDetails({ books }) {
   const { id } = useParams()
-  console.log(id)
   const book = books.find(book => book.id === id)
 
   return (
