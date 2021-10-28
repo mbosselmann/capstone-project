@@ -42,41 +42,13 @@ function App() {
     reader.readAsDataURL(preview)
   }
 
-  function handleSetSearchedBook(searchedBook) {
-    setSearchedBook(searchedBook)
-  }
-
   function handleCreateNewBook(newBookData) {
-    const {
-      title,
-      authors,
-      readingSince,
-      onPage,
-      thumbnail,
-      isbn10,
-      isbn13,
-      year,
-      publisher,
-      description,
-      subtitle,
-      pages,
-    } = newBookData
     const newBook = {
+      ...newBookData,
       id: nanoid(),
       finished: false,
-      readingSince: readingSince,
       finishedSince: '',
-      onPage: onPage,
-      title: title,
-      authors: authors,
-      thumbnail: !thumbnail ? bookcover : thumbnail,
-      isbn10: isbn10,
-      isbn13: isbn13,
-      year: year,
-      publisher: publisher,
-      description: description,
-      subtitle: subtitle,
-      pages: pages,
+      thumbnail: newBookData.thumbnail || bookcover,
     }
     const newBooks = [newBook, ...books]
     setBooks(newBooks)
