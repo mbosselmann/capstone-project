@@ -6,6 +6,7 @@ import handleAuthorsLength from '../utils/handleAuthorsLength'
 import placeholder from '../images/placeholder.png'
 
 export default function AddBookForm({
+  onHandleSetSuccessMessage,
   onHandleCreateNewBook,
   onGetBookCoverPreview,
   searchedBook,
@@ -34,6 +35,7 @@ export default function AddBookForm({
       subtitle: searchedBook ? searchedBook.subtitle : '',
       pages: searchedBook ? searchedBook.pages : '',
     })
+    onHandleSetSuccessMessage('Success!')
     form.reset()
   }
 

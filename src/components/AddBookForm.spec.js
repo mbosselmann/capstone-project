@@ -56,8 +56,14 @@ describe('AddBookForm', () => {
 
   it('calls onCreateNewBook with values of form', () => {
     const mockOnHandleCreateNewBook = jest.fn()
+    const mockOnHandlSetSuccessMessage = jest.fn()
 
-    render(<AddBookForm onHandleCreateNewBook={mockOnHandleCreateNewBook} />)
+    render(
+      <AddBookForm
+        onHandleCreateNewBook={mockOnHandleCreateNewBook}
+        onHandleSetSuccessMessage={mockOnHandlSetSuccessMessage}
+      />
+    )
 
     const inputElTitle = screen.getByLabelText('Book title:')
     const inputElAuthors = screen.getByLabelText('Author or Authors:')

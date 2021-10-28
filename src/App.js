@@ -9,7 +9,7 @@ import getLocalStorage from './lib/loadFromLocal'
 import setLocalStorage from './lib/saveToLocal'
 import { nanoid } from 'nanoid'
 import { Route, Switch, Redirect } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import placeholder from './images/placeholder.png'
 
 function App() {
@@ -17,21 +17,13 @@ function App() {
   const [books, setBooks] = useState(getLocalStorage(`books${username}`) ?? [])
   const [searchedBook, setSearchedBook] = useState('')
   const [bookcover, setBookcover] = useState(placeholder)
-  const [successMessage, setSuccessMessage] = useState('')
 
   function handleSetUsername(name) {
     setUsername(name)
   }
-
-  useEffect(() => {
-    if (successMessage === 'Success!') {
-      const timer = setTimeout(() => {
-        history.push('/currently-reading')
-        setSuccessMessage('')
-      }, 5000)
-      return () => clearTimeout(timer)
-    }
-  }, [successMessage, history])
+  function handleSetSearchedBook(searchedBook) {
+    setSearchedBook(searchedBook)
+  }
 
   function getBookcoverPreview(previewEvent) {
     const preview = previewEvent.target.files[0]
@@ -53,7 +45,6 @@ function App() {
     const newBooks = [newBook, ...books]
     setBooks(newBooks)
     setLocalStorage(`books${username}`, newBooks)
-    setSuccessMessage('Success!')
     setSearchedBook('')
   }
 
@@ -88,7 +79,6 @@ function App() {
             ) : (
               <AddBook
                 searchedBook={searchedBook}
-                successMessage={successMessage}
                 onHandleCreateNewBook={handleCreateNewBook}
                 onGetBookCoverPreview={getBookcoverPreview}
               />
