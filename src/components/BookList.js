@@ -1,8 +1,11 @@
 import Book from './Book'
 import styled from 'styled-components/macro'
 import TitleBookList from './TitleBookList'
+import { useLocation } from 'react-router-dom'
 
-function BookList({ books, username, status }) {
+function BookList({ books, username }) {
+  const { pathname: status } = useLocation()
+
   const filteredBooks =
     status === '/library'
       ? books.filter(book => book.finished === true)

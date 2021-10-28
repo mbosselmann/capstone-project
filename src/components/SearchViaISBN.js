@@ -3,11 +3,14 @@ import styled from 'styled-components/macro'
 import Message from './Message'
 import error from '../images/error.svg'
 import { useState, useEffect } from 'react'
+import { Link, useHistory } from 'react-router-dom'
+import styled from 'styled-components/macro'
 import setLocalStorage from '../lib/saveToLocal'
 import placeholder from '../images/placeholder.png'
 
-export default function SearchViaISBN({ history, onHandleSetSearchedBook }) {
+export default function SearchViaISBN({ onHandleSetSearchedBook }) {
   const [errorMessage, setErrorMessage] = useState('')
+  const history = useHistory()
   const message = `Oh no! The ISBN doesn't seem to exist. :(`
   const text = 'Please try again or add your book manually below.'
 
