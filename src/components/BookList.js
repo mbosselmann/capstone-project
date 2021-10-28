@@ -14,7 +14,7 @@ function BookList({ books, username }) {
   return (
     <Wrapper>
       <TitleContainer data-testid="booklist-title">
-        {status && <TitleBookList status={status} username={username} />}
+        {status && <TitleBookList username={username} />}
       </TitleContainer>
       <ul>
         {filteredBooks.map(book => (

@@ -1,9 +1,16 @@
 import { render, screen } from '@testing-library/react'
 import TitleBookList from './TitleBookList'
+import { MemoryRouter as Router, Route } from 'react-router-dom'
 
 describe('Title for BookList Component', () => {
   it('returns correct title according to readingStatus= "currentlyReading" and username', () => {
-    render(<TitleBookList status={'/currently-reading'} username={'Mareike'} />)
+    render(
+      <Router initialEntries={['/currently-reading']}>
+        <Route path="/currently-reading">
+          <TitleBookList username={'Mareike'} />
+        </Route>
+      </Router>
+    )
 
     const titleHeading = screen.getByText('Hi Mareike!')
     expect(titleHeading).toBeInTheDocument()
@@ -15,7 +22,13 @@ describe('Title for BookList Component', () => {
   })
 
   it('returns correct title according to readingStatus= "finishedBooks"', () => {
-    render(<TitleBookList status={'/library'} />)
+    render(
+      <Router initialEntries={['/library']}>
+        <Route path="/library">
+          <TitleBookList />
+        </Route>
+      </Router>
+    )
 
     const titleHeading = screen.getByText('Your library')
     expect(titleHeading).toBeInTheDocument()
