@@ -1,10 +1,13 @@
-import BookList from './components/BookList'
-import Navigation from './components/Navigation'
 import AddBook from './components/AddBook'
-import StartAddBook from './components/AddBookStart'
-import HomeScreen from './components/HomeScreen'
 import BookDetails from './components/BookDetails'
+import BookList from './components/BookList'
+import HomeScreen from './components/HomeScreen'
+import Navigation from './components/Navigation'
+import StartAddBook from './components/AddBookStart'
 import styled from 'styled-components/macro'
+import getLocalStorage from './lib/loadFromLocal'
+import setLocalStorage from './lib/saveToLocal'
+import { nanoid } from 'nanoid'
 import {
   Route,
   Switch,
@@ -13,9 +16,6 @@ import {
   useHistory,
 } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import getLocalStorage from './lib/loadFromLocal'
-import setLocalStorage from './lib/saveToLocal'
-import { nanoid } from 'nanoid'
 import placeholder from './images/placeholder.png'
 
 function App() {
