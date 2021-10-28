@@ -3,7 +3,7 @@ import BookDetails from './components/BookDetails'
 import BookList from './components/BookList'
 import HomeScreen from './components/HomeScreen'
 import Navigation from './components/Navigation'
-import StartAddBook from './components/AddBookStart'
+import SearchViaISBN from './components/SearchViaISBN'
 import styled from 'styled-components/macro'
 import getLocalStorage from './lib/loadFromLocal'
 import setLocalStorage from './lib/saveToLocal'
@@ -111,7 +111,7 @@ function App() {
             {!username ? (
               <Redirect to="/" />
             ) : (
-              <StartAddBook
+              <SearchViaISBN
                 history={history}
                 onHandleSetSearchedBook={handleSetSearchedBook}
               />

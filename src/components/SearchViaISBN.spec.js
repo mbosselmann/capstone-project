@@ -1,17 +1,12 @@
 import { render, screen } from '@testing-library/react'
-import StartAddBook from './AddBookStart'
+import SearchViaISBN from './SearchViaISBN'
 import { MemoryRouter as Router } from 'react-router-dom'
-import userEvent from '@testing-library/user-event'
 
-describe('StartAddBook', () => {
-  const date = new Date()
-  const today =
-    date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
-
+describe('SearchViaISBN', () => {
   it('has one input field with the type "text"', () => {
     render(
       <Router>
-        <StartAddBook />
+        <SearchViaISBN />
       </Router>
     )
 
@@ -24,7 +19,7 @@ describe('StartAddBook', () => {
   it('has an input field for the ISBN search that is required', () => {
     render(
       <Router>
-        <StartAddBook />
+        <SearchViaISBN />
       </Router>
     )
 
@@ -37,7 +32,7 @@ describe('StartAddBook', () => {
   it('has a search button', () => {
     render(
       <Router>
-        <StartAddBook />
+        <SearchViaISBN />
       </Router>
     )
 
@@ -48,7 +43,7 @@ describe('StartAddBook', () => {
   it('has a link', () => {
     render(
       <Router>
-        <StartAddBook />
+        <SearchViaISBN />
       </Router>
     )
 

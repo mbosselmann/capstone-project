@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react'
 import setLocalStorage from '../lib/saveToLocal'
 import placeholder from '../images/placeholder.png'
 
-function StartAddBook({ history, onHandleSetSearchedBook }) {
+export default function SearchViaISBN({ history, onHandleSetSearchedBook }) {
   const [errorMessage, setErrorMessage] = useState('')
   const message = `Oh no! The ISBN doesn't seem to exist. :(`
   const text = 'Please try again or add your book manually below.'
@@ -101,8 +101,6 @@ function StartAddBook({ history, onHandleSetSearchedBook }) {
     </Wrapper>
   )
 }
-
-export default StartAddBook
 
 const Wrapper = styled.div`
   width: 100%;
