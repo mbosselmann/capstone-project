@@ -17,37 +17,30 @@ function BookDetails({ books }) {
         <p>by {book.authors}</p>
       </TitleSection>
       <InfoSection>
-        <div>
-          {book.subtitle && <h3>{book.subtitle}</h3>}
-          <p>
-            <strong>Published:</strong> {book.year}
-          </p>
-          <p>
-            <strong>Publisher:</strong> {book.publisher}
-          </p>
-        </div>
-        <div>
-          <p>
-            <strong>Pages:</strong> {book.pages ? book.pages : 'Unknown'}
-          </p>
-          <p>
-            <strong>Reading since:</strong> {book.readingSince}
-          </p>
-          <p>
-            <strong>Currently on page:</strong>{' '}
-            {book.onPage ? book.onPage : '0'}/
-            {book.pages ? book.pages : 'Unknown'}
-          </p>
-        </div>
-        {book.description ? (
+        {book.subtitle && <h3>{book.subtitle}</h3>}
+        <p>
+          <span>Published:</span> {book.year}
+        </p>
+        <p>
+          <span>Publisher:</span> {book.publisher}
+        </p>
+        <p>
+          <span>Pages:</span> {book.pages ? book.pages : 'Unknown'}
+        </p>
+        <p>
+          <span>Reading since:</span> {book.readingSince}
+        </p>
+        <p>
+          <span>Currently on page:</span> {book.onPage ? book.onPage : '0'}/
+          {book.pages ? book.pages : 'Unknown'}
+        </p>
+        {book.description && (
           <div>
             <p>
-              <strong>Description:</strong>
+              <span>Description:</span>
             </p>
             <p>{book.description}</p>
           </div>
-        ) : (
-          ''
         )}
       </InfoSection>
     </Article>
@@ -69,15 +62,17 @@ const InfoSection = styled.div`
   -webkit-box-shadow: var(--box-shadow);
   flex-grow: 1;
 
-  div {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 0 1rem;
-  }
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0 2rem;
 
   p {
     margin: 0.5rem 0;
+  }
+
+  span {
+    font-weight: 600;
   }
 `
 
