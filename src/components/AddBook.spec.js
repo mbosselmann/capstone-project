@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react'
-import back from '../images/back-to.svg'
 import AddBook from './AddBook'
 import { MemoryRouter as Router } from 'react-router-dom'
 

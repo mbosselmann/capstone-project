@@ -1,7 +1,7 @@
 import AddBookForm from './AddBookForm'
 import Message from './Message'
 import styled from 'styled-components/macro'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import back from '../images/back-to.svg'
 import success from '../images/success.svg'
@@ -12,19 +12,8 @@ function AddBook({
   searchedBook,
 }) {
   const [successMessage, setSuccessMessage] = useState('')
-  const history = useHistory()
   const message = 'Yay! The book was successfully added to your book list. :)'
   const text = 'You will shortly be redirected to your currently reading page.'
-
-  useEffect(() => {
-    if (successMessage === 'Success!') {
-      const timer = setTimeout(() => {
-        history.push('/currently-reading')
-        setSuccessMessage('')
-      }, 5000)
-      return () => clearTimeout(timer)
-    }
-  }, [successMessage, history])
 
   function handleSetSuccessMessage(success) {
     setSuccessMessage(success)
@@ -44,6 +33,7 @@ function AddBook({
         <img src={back} alt="back to start adding a new book" />
       </LinkBack>
       <AddBookForm
+        successMessage={successMessage}
         onHandleSetSuccessMessage={handleSetSuccessMessage}
         onHandleCreateNewBook={onHandleCreateNewBook}
         searchedBook={searchedBook}

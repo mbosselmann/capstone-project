@@ -4,13 +4,27 @@ import previewPlaceholder from '../images/preview-placeholder.png'
 import getToday from '../utils/getToday'
 import handleAuthorsLength from '../utils/handleAuthorsLength'
 import placeholder from '../images/placeholder.png'
+import { useEffect } from 'react'
+import { useHistory } from 'react-router'
 
 export default function AddBookForm({
   onHandleSetSuccessMessage,
   onHandleCreateNewBook,
   searchedBook,
+  successMessage,
 }) {
   const [bookcover, setBookcover] = useState(placeholder)
+  const history = useHistory()
+
+  useEffect(() => {
+    if (successMessage === 'Success!') {
+      const timer = setTimeout(() => {
+        history.push('/currently-reading')
+        onHandleSetSuccessMessage('')
+      }, 5000)
+      return () => clearTimeout(timer)
+    }
+  }, [successMessage, history])
 
   function getBookcoverPreview(previewEvent) {
     const bookcover = previewEvent.target.files[0]
