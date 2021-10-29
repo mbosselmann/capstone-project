@@ -24,7 +24,7 @@ export default function AddBookForm({
       }, 5000)
       return () => clearTimeout(timer)
     }
-  }, [successMessage, history])
+  }, [successMessage, history, onHandleSetSuccessMessage])
 
   function getBookcoverPreview(previewEvent) {
     const bookcover = previewEvent.target.files[0]

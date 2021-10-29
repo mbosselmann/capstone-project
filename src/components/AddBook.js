@@ -2,7 +2,7 @@ import AddBookForm from './AddBookForm'
 import Message from './Message'
 import styled from 'styled-components/macro'
 import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import back from '../images/back-to.svg'
 import success from '../images/success.svg'
 
