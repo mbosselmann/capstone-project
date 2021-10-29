@@ -19,19 +19,22 @@ export default function SearchViaISBN({ onHandleSetSearchedBook }) {
       }, 5000)
       return () => clearTimeout(timer)
     }
-  }, [errorMessage])
+  }, [errorMessage, bookISBN, history])
 
   function handleSubmit(event) {
     event.preventDefault()
     const form = event.target
     const { isbn } = form.elements
-    getBook(isbn.value.replace('-', '')).then(onHandleSetSearchedBook)
-    setBookISBN(isbn.value)
-    if (bookISBN) {
-      history.push('/add-book-form')
-    } else {
-      setErrorMessage('ISBN error')
-    }
+    getBook(isbn.value.replace('-', ''))
+      .then(onHandleSetSearchedBook)
+      .then(() => {
+        setBookISBN(isbn.value)
+        if (!bookISBN) {
+          setErrorMessage('ISBN error')
+        } else {
+          history.push('/add-book-form')
+        }
+      })
     form.reset()
   }
 
