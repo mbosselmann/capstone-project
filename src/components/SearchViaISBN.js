@@ -7,6 +7,7 @@ import getBook from '../services/getBook'
 
 export default function SearchViaISBN({ onHandleSetSearchedBook }) {
   const [errorMessage, setErrorMessage] = useState('')
+  const [bookISBN, setBookISBN] = useState('')
   const history = useHistory()
   const message = `Oh no! The ISBN doesn't seem to exist. :(`
   const text = 'Please try again or add your book manually below.'
@@ -25,7 +26,12 @@ export default function SearchViaISBN({ onHandleSetSearchedBook }) {
     const form = event.target
     const { isbn } = form.elements
     getBook(isbn.value.replace('-', '')).then(onHandleSetSearchedBook)
-    history.push('/add-book-form')
+    setBookISBN(isbn.value)
+    if (bookISBN) {
+      history.push('/add-book-form')
+    } else {
+      setErrorMessage('ISBN error')
+    }
     form.reset()
   }
 
