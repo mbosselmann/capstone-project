@@ -20,7 +20,6 @@ export default function AddBookForm({
     if (successMessage === 'Success!') {
       const timer = setTimeout(() => {
         history.push('/currently-reading')
-        onHandleSetSuccessMessage('')
       }, 5000)
       return () => clearTimeout(timer)
     }

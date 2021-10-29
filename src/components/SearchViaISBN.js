@@ -7,7 +7,6 @@ import getBook from '../services/getBook'
 
 export default function SearchViaISBN({ onHandleSetSearchedBook }) {
   const [errorMessage, setErrorMessage] = useState('')
-  const [bookISBN, setBookISBN] = useState('')
   const history = useHistory()
   const message = `Oh no! The ISBN doesn't seem to exist. :(`
   const text = 'Please try again or add your book manually below.'
@@ -19,22 +18,19 @@ export default function SearchViaISBN({ onHandleSetSearchedBook }) {
       }, 5000)
       return () => clearTimeout(timer)
     }
-  }, [errorMessage, bookISBN, history])
+  }, [errorMessage, history])
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault()
     const form = event.target
     const { isbn } = form.elements
-    getBook(isbn.value.replace('-', ''))
-      .then(onHandleSetSearchedBook)
-      .then(() => {
-        setBookISBN(isbn.value)
-        if (!bookISBN) {
-          setErrorMessage('ISBN error')
-        } else {
-          history.push('/add-book-form')
-        }
-      })
+    try {
+      const book = await getBook(isbn.value.replace('-', ''))
+      onHandleSetSearchedBook(book)
+      history.push('/add-book-form')
+    } catch (error) {
+      setErrorMessage('ISBN error')
+    }
     form.reset()
   }
 
