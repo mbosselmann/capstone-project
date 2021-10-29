@@ -8,13 +8,14 @@ import styled from 'styled-components/macro'
 import getLocalStorage from './lib/loadFromLocal'
 import setLocalStorage from './lib/saveToLocal'
 import { nanoid } from 'nanoid'
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { Route, Switch, Redirect, useLocation } from 'react-router-dom'
 import { useState } from 'react'
 
 function App() {
   const [username, setUsername] = useState(getLocalStorage('user') ?? '')
   const [books, setBooks] = useState(getLocalStorage(`books${username}`) ?? [])
   const [searchedBook, setSearchedBook] = useState('')
+  const { pathname } = useLocation()
 
   function handleSetUsername(name) {
     setUsername(name)
@@ -36,62 +37,58 @@ function App() {
     setSearchedBook('')
   }
 
-  return (
-    <AppContainer>
-      <Switch>
-        <Route exact path="/">
-          {username ? (
-            <Redirect to="/currently-reading" />
-          ) : (
+  if (!username) {
+    if (pathname === '/') {
+      return (
+        <AppContainer>
+          <HomeScreen onHandleSetUsername={handleSetUsername} />
+        </AppContainer>
+      )
+    } else {
+      return <Redirect to="/" />
+    }
+  } else {
+    return (
+      <AppContainer>
+        <Switch>
+          <Route exact path="/">
             <HomeScreen onHandleSetUsername={handleSetUsername} />
-          )}
-        </Route>
-        <Main>
-          <Route exact path={['/currently-reading', '/library']}>
-            {!username ? (
-              <Redirect to="/" />
-            ) : (
+          </Route>
+          <Main>
+            <Route exact path={['/currently-reading', '/library']}>
               <BookList books={books} username={username} />
-            )}
-          </Route>
-          <Route exact path="/add-book">
-            {!username ? (
-              <Redirect to="/" />
-            ) : (
+            </Route>
+            <Route exact path="/add-book">
               <SearchViaISBN onHandleSetSearchedBook={handleSetSearchedBook} />
-            )}
-          </Route>
-          <Route exact path="/add-book-form">
-            {!username ? (
-              <Redirect to="/" />
-            ) : (
+            </Route>
+            <Route exact path="/add-book-form">
               <AddBook
                 searchedBook={searchedBook}
                 onHandleCreateNewBook={handleCreateNewBook}
               />
-            )}
-          </Route>
-          <Route exact path="/book/:id">
-            <BookDetails books={books} />
-          </Route>
-        </Main>
-      </Switch>
-      <Route
-        exact
-        path={[
-          '/currently-reading',
-          '/library',
-          '/add-book',
-          '/add-book-form',
-          '/book/:id',
-        ]}
-      >
-        <Footer>
-          <Navigation />
-        </Footer>
-      </Route>
-    </AppContainer>
-  )
+            </Route>
+            <Route exact path="/book/:id">
+              <BookDetails books={books} />
+            </Route>
+          </Main>
+        </Switch>
+        <Route
+          exact
+          path={[
+            '/currently-reading',
+            '/library',
+            '/add-book',
+            '/add-book-form',
+            '/book/:id',
+          ]}
+        >
+          <Footer>
+            <Navigation />
+          </Footer>
+        </Route>
+      </AppContainer>
+    )
+  }
 }
 
 const Main = styled.main`
