@@ -1,5 +1,9 @@
-function TitleBookList({ status, username }) {
-  if (status === '/library') {
+import { useLocation } from 'react-router-dom'
+
+function TitleBookList({ username }) {
+  const { pathname } = useLocation()
+
+  if (pathname === '/library') {
     return (
       <div>
         <h2>Your library</h2>
@@ -7,7 +11,7 @@ function TitleBookList({ status, username }) {
       </div>
     )
   }
-  if (status === '/currently-reading') {
+  if (pathname === '/currently-reading') {
     return (
       <div>
         <h2>Hi {username}! </h2>

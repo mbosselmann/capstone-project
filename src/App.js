@@ -1,155 +1,94 @@
-import BookList from './components/BookList'
-import Navigation from './components/Navigation'
 import AddBook from './components/AddBook'
-import StartAddBook from './components/AddBookStart'
-import HomeScreen from './components/HomeScreen'
 import BookDetails from './components/BookDetails'
+import BookList from './components/BookList'
+import HomeScreen from './components/HomeScreen'
+import Navigation from './components/Navigation'
+import SearchViaISBN from './components/SearchViaISBN'
 import styled from 'styled-components/macro'
-import {
-  Route,
-  Switch,
-  useLocation,
-  Redirect,
-  useHistory,
-} from 'react-router-dom'
-import { useState, useEffect } from 'react'
 import getLocalStorage from './lib/loadFromLocal'
 import setLocalStorage from './lib/saveToLocal'
 import { nanoid } from 'nanoid'
-import placeholder from './images/placeholder.png'
+import { Route, Switch, Redirect, useLocation } from 'react-router-dom'
+import { useState } from 'react'
 
 function App() {
-  const username = getLocalStorage('user') ?? ''
+  const [username, setUsername] = useState(getLocalStorage('user') ?? '')
   const [books, setBooks] = useState(getLocalStorage(`books${username}`) ?? [])
   const [searchedBook, setSearchedBook] = useState('')
-  const [bookcover, setBookcover] = useState(placeholder)
-  const [successMessage, setSuccessMessage] = useState('')
   const { pathname } = useLocation()
-  const history = useHistory()
 
-  useEffect(() => {
-    if (successMessage === 'Success!') {
-      const timer = setTimeout(() => {
-        history.push('/currently-reading')
-        setSuccessMessage('')
-      }, 5000)
-      return () => clearTimeout(timer)
-    }
-  }, [successMessage, history])
-
-  function getBookcoverPreview(previewEvent) {
-    const preview = previewEvent.target.files[0]
-    const reader = new FileReader()
-    reader.onload = event => {
-      setBookcover(event.target.result)
-    }
-    reader.readAsDataURL(preview)
+  function handleSetUsername(name) {
+    setUsername(name)
   }
-
   function handleSetSearchedBook(searchedBook) {
     setSearchedBook(searchedBook)
   }
 
   function handleCreateNewBook(newBookData) {
-    const {
-      title,
-      authors,
-      readingSince,
-      onPage,
-      thumbnail,
-      isbn10,
-      isbn13,
-      year,
-      publisher,
-      description,
-      subtitle,
-      pages,
-    } = newBookData
     const newBook = {
+      ...newBookData,
       id: nanoid(),
       finished: false,
-      readingSince: readingSince,
       finishedSince: '',
-      onPage: onPage,
-      title: title,
-      authors: authors,
-      thumbnail: !thumbnail ? bookcover : thumbnail,
-      isbn10: isbn10,
-      isbn13: isbn13,
-      year: year,
-      publisher: publisher,
-      description: description,
-      subtitle: subtitle,
-      pages: pages,
     }
     const newBooks = [newBook, ...books]
     setBooks(newBooks)
     setLocalStorage(`books${username}`, newBooks)
-    setSuccessMessage('Success!')
     setSearchedBook('')
   }
 
-  return (
-    <AppContainer>
-      <Switch>
-        <Route exact path="/">
-          {username ? (
-            <Redirect to="/currently-reading" />
-          ) : (
-            <HomeScreen history={history} />
-          )}
-        </Route>
-        <Main>
-          <Route exact path={['/currently-reading', '/library']}>
-            {!username ? (
-              <Redirect to="/" />
-            ) : (
-              <BookList books={books} username={username} status={pathname} />
-            )}
+  if (!username) {
+    if (pathname === '/') {
+      return (
+        <AppContainer>
+          <HomeScreen onHandleSetUsername={handleSetUsername} />
+        </AppContainer>
+      )
+    } else {
+      return <Redirect to="/" />
+    }
+  } else {
+    return (
+      <AppContainer>
+        <Switch>
+          <Route exact path="/">
+            <HomeScreen onHandleSetUsername={handleSetUsername} />
           </Route>
-          <Route exact path="/add-book">
-            {!username ? (
-              <Redirect to="/" />
-            ) : (
-              <StartAddBook
-                history={history}
-                onHandleSetSearchedBook={handleSetSearchedBook}
-              />
-            )}
-          </Route>
-          <Route exact path="/add-book-form">
-            {!username ? (
-              <Redirect to="/" />
-            ) : (
+          <Main>
+            <Route exact path={['/currently-reading', '/library']}>
+              <BookList books={books} username={username} />
+            </Route>
+            <Route exact path="/add-book">
+              <SearchViaISBN onHandleSetSearchedBook={handleSetSearchedBook} />
+            </Route>
+            <Route exact path="/add-book-form">
               <AddBook
                 searchedBook={searchedBook}
-                successMessage={successMessage}
                 onHandleCreateNewBook={handleCreateNewBook}
-                onGetBookCoverPreview={getBookcoverPreview}
               />
-            )}
-          </Route>
-          <Route exact path="/book/:id">
-            <BookDetails books={books} />
-          </Route>
-        </Main>
-      </Switch>
-      <Route
-        exact
-        path={[
-          '/currently-reading',
-          '/library',
-          '/add-book',
-          '/add-book-form',
-          '/book/:id',
-        ]}
-      >
-        <Footer>
-          <Navigation />
-        </Footer>
-      </Route>
-    </AppContainer>
-  )
+            </Route>
+            <Route exact path="/book/:id">
+              <BookDetails books={books} />
+            </Route>
+          </Main>
+        </Switch>
+        <Route
+          exact
+          path={[
+            '/currently-reading',
+            '/library',
+            '/add-book',
+            '/add-book-form',
+            '/book/:id',
+          ]}
+        >
+          <Footer>
+            <Navigation />
+          </Footer>
+        </Route>
+      </AppContainer>
+    )
+  }
 }
 
 const Main = styled.main`

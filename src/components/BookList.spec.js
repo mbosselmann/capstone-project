@@ -55,6 +55,6 @@ describe('Book list', () => {
     )
 
     const titleSection = screen.getByTestId('booklist-title')
-    expect(titleSection).toBeEmptyDOMElement()
+    expect(titleSection).toHaveTextContent('')
   })
 })

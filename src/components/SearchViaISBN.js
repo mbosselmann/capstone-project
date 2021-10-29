@@ -1,51 +1,16 @@
-import { Link } from 'react-router-dom'
-import styled from 'styled-components/macro'
 import Message from './Message'
-import error from '../images/error.svg'
 import { useState, useEffect } from 'react'
-import setLocalStorage from '../lib/saveToLocal'
-import placeholder from '../images/placeholder.png'
+import { Link, useHistory } from 'react-router-dom'
+import styled from 'styled-components/macro'
+import error from '../images/error.svg'
+import getBook from '../services/getBook'
 
-function StartAddBook({ history, onHandleSetSearchedBook }) {
+export default function SearchViaISBN({ onHandleSetSearchedBook }) {
   const [errorMessage, setErrorMessage] = useState('')
+  const [bookISBN, setBookISBN] = useState('')
+  const history = useHistory()
   const message = `Oh no! The ISBN doesn't seem to exist. :(`
   const text = 'Please try again or add your book manually below.'
-
-  function getBook(isbn) {
-    fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`)
-      .then(res => res.json())
-      .then(book => {
-        const searchResult = {
-          title: book.items[0].volumeInfo.title,
-          subtitle: book.items[0].volumeInfo.subtitle,
-          authors: book.items[0].volumeInfo.authors,
-          thumbnail: !book.items[0].volumeInfo.imageLinks
-            ? placeholder
-            : book.items[0].volumeInfo.imageLinks.thumbnail.replace(
-                'http',
-                'https'
-              ),
-          year: book.items[0].volumeInfo.publishedDate.slice(0, 4),
-          publisher: book.items[0].volumeInfo.publisher,
-          pages: book.items[0].volumeInfo.pageCount,
-          description: book.items[0].volumeInfo.description,
-          isbn10:
-            book.items[0].volumeInfo.industryIdentifiers[0].type === 'ISBN_10'
-              ? book.items[0].volumeInfo.industryIdentifiers[0].identifier
-              : book.items[0].volumeInfo.industryIdentifiers[1].identifier,
-          isbn13:
-            book.items[0].volumeInfo.industryIdentifiers[1].type === 'ISBN_13'
-              ? book.items[0].volumeInfo.industryIdentifiers[1].identifier
-              : book.items[0].volumeInfo.industryIdentifiers[0].identifier,
-        }
-        onHandleSetSearchedBook(searchResult)
-        history.push('/add-book-form')
-      })
-      .catch(error => {
-        console.error(error)
-        setErrorMessage('ISBN error')
-      })
-  }
 
   useEffect(() => {
     if (errorMessage === 'ISBN error') {
@@ -54,13 +19,22 @@ function StartAddBook({ history, onHandleSetSearchedBook }) {
       }, 5000)
       return () => clearTimeout(timer)
     }
-  }, [errorMessage])
+  }, [errorMessage, bookISBN, history])
 
   function handleSubmit(event) {
     event.preventDefault()
     const form = event.target
     const { isbn } = form.elements
     getBook(isbn.value.replace('-', ''))
+      .then(onHandleSetSearchedBook)
+      .then(() => {
+        setBookISBN(isbn.value)
+        if (!bookISBN) {
+          setErrorMessage('ISBN error')
+        } else {
+          history.push('/add-book-form')
+        }
+      })
     form.reset()
   }
 
@@ -91,18 +65,11 @@ function StartAddBook({ history, onHandleSetSearchedBook }) {
         <p>
           You don't have the ISBN at hand or want to enter the book manually?
         </p>
-        <LinkToForm
-          to="/add-book-form"
-          onClick={() => setLocalStorage('searchedBook', '')}
-        >
-          Click here
-        </LinkToForm>
+        <LinkToForm to="/add-book-form">Click here</LinkToForm>
       </div>
     </Wrapper>
   )
 }
-
-export default StartAddBook
 
 const Wrapper = styled.div`
   width: 100%;

@@ -4,16 +4,35 @@ import previewPlaceholder from '../images/preview-placeholder.png'
 import getToday from '../utils/getToday'
 import handleAuthorsLength from '../utils/handleAuthorsLength'
 import placeholder from '../images/placeholder.png'
+import { useEffect } from 'react'
+import { useHistory } from 'react-router'
 
 export default function AddBookForm({
+  onHandleSetSuccessMessage,
   onHandleCreateNewBook,
-  onGetBookCoverPreview,
   searchedBook,
+  successMessage,
 }) {
-  const [preview, setPreview] = useState(placeholder)
-  function getPreview(previewEvent) {
-    const preview = URL.createObjectURL(previewEvent.target.files[0])
-    setPreview(preview)
+  const [bookcover, setBookcover] = useState(placeholder)
+  const history = useHistory()
+
+  useEffect(() => {
+    if (successMessage === 'Success!') {
+      const timer = setTimeout(() => {
+        history.push('/currently-reading')
+        onHandleSetSuccessMessage('')
+      }, 5000)
+      return () => clearTimeout(timer)
+    }
+  }, [successMessage, history, onHandleSetSuccessMessage])
+
+  function getBookcoverPreview(previewEvent) {
+    const bookcover = previewEvent.target.files[0]
+    const reader = new FileReader()
+    reader.onload = event => {
+      setBookcover(event.target.result)
+    }
+    reader.readAsDataURL(bookcover)
   }
 
   function handleSubmit(event) {
@@ -25,7 +44,7 @@ export default function AddBookForm({
       authors: authors.value,
       readingSince: readingSince.value ? readingSince.value : getToday(),
       onPage: onPage.value,
-      thumbnail: !searchedBook ? preview : searchedBook.thumbnail,
+      thumbnail: !searchedBook ? bookcover : searchedBook.thumbnail,
       isbn10: searchedBook ? searchedBook.isbn10 : '',
       isbn13: searchedBook ? searchedBook.isbn13 : '',
       year: searchedBook ? searchedBook.year : 'Unknown',
@@ -34,6 +53,7 @@ export default function AddBookForm({
       subtitle: searchedBook ? searchedBook.subtitle : '',
       pages: searchedBook ? searchedBook.pages : '',
     })
+    onHandleSetSuccessMessage('Success!')
     form.reset()
   }
 
@@ -88,10 +108,10 @@ export default function AddBookForm({
             </div>
           ) : (
             <div id="bookcover-preview">
-              {preview === placeholder ? (
+              {bookcover === placeholder ? (
                 <img src={previewPlaceholder} alt="bookcover" />
               ) : (
-                <img src={preview} alt="bookcover" />
+                <img src={bookcover} alt="bookcover" />
               )}
             </div>
           )}
@@ -101,8 +121,7 @@ export default function AddBookForm({
             id="bookcover"
             accept=".png, .jpeg, .jpg"
             onChange={event => {
-              onGetBookCoverPreview(event)
-              getPreview(event)
+              getBookcoverPreview(event)
             }}
           />
           <label aria-label="select bookcover" htmlFor="bookcover">

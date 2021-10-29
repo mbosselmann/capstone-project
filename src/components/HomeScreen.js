@@ -1,13 +1,17 @@
 import readaholicLogo from '../images/readaholic-logo.svg'
 import styled from 'styled-components/macro'
 import setLocalStorage from '../lib/saveToLocal'
+import { useHistory } from 'react-router'
 
-function Start({ history }) {
+function Start({ onHandleSetUsername }) {
+  const history = useHistory()
+
   function handleSubmit(startEvent) {
     startEvent.preventDefault()
     const form = startEvent.target
     const { username } = form.elements
     setLocalStorage('user', username.value)
+    onHandleSetUsername(username.value)
     history.push('/currently-reading')
   }
 

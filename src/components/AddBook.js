@@ -1,18 +1,23 @@
-import { Link } from 'react-router-dom'
-import styled from 'styled-components/macro'
-import Message from './Message'
 import AddBookForm from './AddBookForm'
+import Message from './Message'
+import styled from 'styled-components/macro'
+import { Link } from 'react-router-dom'
+import { useState } from 'react'
 import back from '../images/back-to.svg'
 import success from '../images/success.svg'
 
 function AddBook({
   onHandleCreateNewBook,
   onGetBookCoverPreview,
-  successMessage,
   searchedBook,
 }) {
+  const [successMessage, setSuccessMessage] = useState('')
   const message = 'Yay! The book was successfully added to your book list. :)'
   const text = 'You will shortly be redirected to your currently reading page.'
+
+  function handleSetSuccessMessage(success) {
+    setSuccessMessage(success)
+  }
 
   return (
     <Wrapper>
@@ -28,6 +33,8 @@ function AddBook({
         <img src={back} alt="back to start adding a new book" />
       </LinkBack>
       <AddBookForm
+        successMessage={successMessage}
+        onHandleSetSuccessMessage={handleSetSuccessMessage}
         onHandleCreateNewBook={onHandleCreateNewBook}
         searchedBook={searchedBook}
         onGetBookCoverPreview={onGetBookCoverPreview}
