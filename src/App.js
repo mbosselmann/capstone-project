@@ -10,13 +10,11 @@ import setLocalStorage from './lib/saveToLocal'
 import { nanoid } from 'nanoid'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import { useState } from 'react'
-import placeholder from './images/placeholder.png'
 
 function App() {
   const [username, setUsername] = useState(getLocalStorage('user') ?? '')
   const [books, setBooks] = useState(getLocalStorage(`books${username}`) ?? [])
   const [searchedBook, setSearchedBook] = useState('')
-  const [bookcover, setBookcover] = useState(placeholder)
 
   function handleSetUsername(name) {
     setUsername(name)
@@ -25,22 +23,12 @@ function App() {
     setSearchedBook(searchedBook)
   }
 
-  function getBookcoverPreview(previewEvent) {
-    const preview = previewEvent.target.files[0]
-    const reader = new FileReader()
-    reader.onload = event => {
-      setBookcover(event.target.result)
-    }
-    reader.readAsDataURL(preview)
-  }
-
   function handleCreateNewBook(newBookData) {
     const newBook = {
       ...newBookData,
       id: nanoid(),
       finished: false,
       finishedSince: '',
-      thumbnail: newBookData.thumbnail || bookcover,
     }
     const newBooks = [newBook, ...books]
     setBooks(newBooks)
@@ -80,7 +68,6 @@ function App() {
               <AddBook
                 searchedBook={searchedBook}
                 onHandleCreateNewBook={handleCreateNewBook}
-                onGetBookCoverPreview={getBookcoverPreview}
               />
             )}
           </Route>
