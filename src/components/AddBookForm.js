@@ -29,7 +29,7 @@ export default function AddBookForm({
       }, 5000)
       return () => clearTimeout(timer)
     }
-  }, [successMessage, history, onHandleSetSuccessMessage])
+  }, [successMessage, history, isFinished])
 
   function getBookcoverPreview(previewEvent) {
     const bookcover = previewEvent.target.files[0]
@@ -44,7 +44,6 @@ export default function AddBookForm({
     event.preventDefault()
     const form = event.target
     const { title, authors, readingSince, onPage, finishedOn } = form.elements
-    console.log(form.elements)
     onHandleCreateNewBook({
       title: title.value,
       authors: authors.value,

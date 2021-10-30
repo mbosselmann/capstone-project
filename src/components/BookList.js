@@ -25,7 +25,7 @@ function BookList({ books, username }) {
             authors={book.authors}
             readingStatus={book.finished}
             readingStatusDate={book.readingSince}
-            finishedSince={book.finishedSince}
+            finishedOn={book.finishedOn}
             bookCover={book.thumbnail}
           />
         ))}

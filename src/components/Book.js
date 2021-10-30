@@ -9,7 +9,7 @@ function Book({
   authors,
   readingStatus,
   readingStatusDate,
-  finishedSince,
+  finishedOn,
 }) {
   return (
     <LinkBookDetails to={`/book/${id}`}>
@@ -26,11 +26,10 @@ function Book({
             </p>
           </div>
           <div>
-            <div>{!readingStatus ? '' : 'Rating'}</div>
             <div>
               {!readingStatus
                 ? `Reading since: ${readingStatusDate}`
-                : `Finished since: ${finishedSince}`}
+                : `Finished on: ${finishedOn}`}
             </div>
           </div>
         </Content>
