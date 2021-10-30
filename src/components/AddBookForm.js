@@ -12,6 +12,7 @@ import { useHistory, Link } from 'react-router-dom'
 export default function AddBookForm({
   onHandleSetSuccessMessage,
   onHandleCreateNewBook,
+  onHandleSetSearchedBook,
   searchedBook,
   successMessage,
 }) {
@@ -22,7 +23,9 @@ export default function AddBookForm({
   useEffect(() => {
     if (successMessage === 'Success!') {
       const timer = setTimeout(() => {
-        history.push('/currently-reading')
+        !isFinished
+          ? history.push('/currently-reading')
+          : history.push('/library')
       }, 5000)
       return () => clearTimeout(timer)
     }
@@ -40,20 +43,14 @@ export default function AddBookForm({
   function handleSubmit(event) {
     event.preventDefault()
     const form = event.target
-    const {
-      title,
-      authors,
-      readingSince,
-      onPage,
-      finishedSince,
-    } = form.elements
+    const { title, authors, readingSince, onPage, finishedOn } = form.elements
     console.log(form.elements)
     onHandleCreateNewBook({
       title: title.value,
       authors: authors.value,
       finished: isFinished,
       readingSince: !isFinished ? readingSince.value : '',
-      finishedSince: isFinished ? finishedSince.value : '',
+      finishedOn: isFinished ? finishedOn.value : '',
       onPage: !isFinished ? onPage.value : '',
       thumbnail: !searchedBook ? bookcover : searchedBook.thumbnail,
       isbn10: searchedBook ? searchedBook.isbn10 : '',
@@ -74,7 +71,7 @@ export default function AddBookForm({
         <LinkBack to="/add-book">
           <img src={back} alt="back to start adding a new book" />
         </LinkBack>
-        <button type="reset">
+        <button type="reset" onClick={() => onHandleSetSearchedBook('')}>
           <img src={reset} alt="reset" />
         </button>
       </ActionContainer>
@@ -170,11 +167,11 @@ export default function AddBookForm({
               </>
             ) : (
               <div>
-                <label htmlFor="finishedSince">Finished since:</label>
+                <label htmlFor="finishedOn">Finished on:</label>
                 <input
-                  name="finishedSince"
+                  name="finishedOn"
                   type="date"
-                  id="finishedSince"
+                  id="finishedOn"
                   max={getToday()}
                   defaultValue={getToday()}
                 />

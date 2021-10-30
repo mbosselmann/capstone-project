@@ -63,6 +63,7 @@ function App() {
               <AddBook
                 searchedBook={searchedBook}
                 onHandleCreateNewBook={handleCreateNewBook}
+                onHandleSetSearchedBook={handleSetSearchedBook}
               />
             </Route>
             <Route exact path="/book/:id">

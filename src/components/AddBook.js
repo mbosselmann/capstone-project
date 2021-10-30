@@ -6,7 +6,7 @@ import success from '../images/success.svg'
 
 function AddBook({
   onHandleCreateNewBook,
-  onGetBookCoverPreview,
+  onHandleSetSearchedBook,
   searchedBook,
 }) {
   const [successMessage, setSuccessMessage] = useState('')
@@ -30,9 +30,9 @@ function AddBook({
       <AddBookForm
         successMessage={successMessage}
         onHandleSetSuccessMessage={handleSetSuccessMessage}
+        onHandleSetSearchedBook={onHandleSetSearchedBook}
         onHandleCreateNewBook={onHandleCreateNewBook}
         searchedBook={searchedBook}
-        onGetBookCoverPreview={onGetBookCoverPreview}
       />
     </Wrapper>
   )
