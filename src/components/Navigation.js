@@ -4,15 +4,12 @@ import styled from 'styled-components/macro'
 function Navigation() {
   return (
     <Wrapper>
-      <NavBarLink to="/currently-reading" activeClassName="is-active">
-        Currently Reading
-      </NavBarLink>
-      <NavBarLink to="/library" activeClassName="is-active">
-        Finished Reading
-      </NavBarLink>
-      <NavBarLink to="/add-book" activeClassName="is-active">
-        Add Book
-      </NavBarLink>
+      <NavBarLinkCurrentlyReading
+        to="/currently-reading"
+        activeClassName="is-active"
+      />
+      <NavBarLinkLibrary to="/library" activeClassName="is-active" />
+      <NavBarLinkAddBook to="/add-book" activeClassName="is-active" />
     </Wrapper>
   )
 }
@@ -38,10 +35,39 @@ const NavBarLink = styled(NavLink)`
   text-align: center;
   text-decoration: none;
   color: #4a4453;
+  background-image: url('/images/currently-reading.svg');
+  background-repeat: no-repeat;
   background-color: #fff;
+  background-size: 3rem;
+  background-position: center;
 
   &.${props => props.activeClassName} {
     background-color: #4a4453;
     color: #fff;
+  }
+`
+
+const NavBarLinkCurrentlyReading = styled(NavBarLink)`
+  background-image: url('/images/currently-reading.svg');
+  background-repeat: no-repeat;
+
+  &.${props => props.activeClassName} {
+    background-image: url('/images/currently-reading-active.svg');
+  }
+`
+const NavBarLinkLibrary = styled(NavBarLink)`
+  background-image: url('/images/library.svg');
+  background-repeat: no-repeat;
+
+  &.${props => props.activeClassName} {
+    background-image: url('/images/library-active.svg');
+  }
+`
+const NavBarLinkAddBook = styled(NavBarLink)`
+  background-image: url('/images/add-book.svg');
+  background-repeat: no-repeat;
+
+  &.${props => props.activeClassName} {
+    background-image: url('/images/add-book-active.svg');
   }
 `
