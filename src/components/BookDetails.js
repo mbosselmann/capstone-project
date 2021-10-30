@@ -120,6 +120,7 @@ const Article = styled.article`
 const ActionContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  padding: 0.4rem;
 `
 
 const DropDownMenu = styled.div`
@@ -131,7 +132,7 @@ const DropDownMenu = styled.div`
     position: absolute;
     z-index: 1;
     top: 60px;
-    right: 1rem;
+    margin-right: 1rem;
     border-radius: 5px;
     border: 0.2rem solid #fff;
     box-shadow: var(--box-shadow);
