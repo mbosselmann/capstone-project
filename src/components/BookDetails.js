@@ -4,17 +4,38 @@ import back from '../images/back-to.svg'
 import burger from '../images/burger.svg'
 import burgerOpen from '../images/burger-open.svg'
 import { useState } from 'react'
+import setLocalStorage from '../lib/saveToLocal'
+import getToday from '../utils/getToday'
 
-function BookDetails({ books }) {
+function BookDetails({ books, onHandleSetBooks }) {
   const { id } = useParams()
   const book = books.find(book => book.id === id)
   const [isOpen, setIsOpen] = useState(false)
 
+  function handleBookStatusUpdate(book) {
+    const updatedBook = {
+      ...book,
+      finished: book.finished ? false : true,
+      readingSince: book.readingSince ? book.readingSince : getToday(),
+      finishedOn: book.finished ? book.finished : getToday(),
+    }
+    const updatedBookList = books.filter(b => b.id !== book.id)
+    const newBooklist = [updatedBook, ...updatedBookList]
+    onHandleSetBooks(newBooklist)
+    setLocalStorage('books', newBooklist)
+  }
+
   return (
     <Article>
-      <Link to="/currently-reading">
-        <img src={back} alt="back to book list" />
-      </Link>
+      <ActionContainer>
+        {book.finished ? (
+          <Link to="/library">
+            <img src={back} alt="back to book list of finished books" />
+          </Link>
+        ) : (
+          <Link to="/currently-reading">
+            <img src={back} alt="back to book list of currently read books" />
+          </Link>
         )}
         <DropDownMenu>
           <MenuButton onClick={() => setIsOpen(!isOpen)}>
