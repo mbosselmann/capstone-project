@@ -13,12 +13,16 @@ import { useState } from 'react'
 
 function App() {
   const [username, setUsername] = useState(getLocalStorage('user') ?? '')
-  const [books, setBooks] = useState(getLocalStorage(`books${username}`) ?? [])
+  const [books, setBooks] = useState(getLocalStorage('books') ?? [])
   const [searchedBook, setSearchedBook] = useState('')
   const { pathname } = useLocation()
 
   function handleSetUsername(name) {
     setUsername(name)
+  }
+
+  function handleSetBooks(books) {
+    setBooks(books)
   }
   function handleSetSearchedBook(searchedBook) {
     setSearchedBook(searchedBook)
@@ -28,12 +32,10 @@ function App() {
     const newBook = {
       ...newBookData,
       id: nanoid(),
-      finished: false,
-      finishedSince: '',
     }
     const newBooks = [newBook, ...books]
     setBooks(newBooks)
-    setLocalStorage(`books${username}`, newBooks)
+    setLocalStorage('books', newBooks)
     setSearchedBook('')
   }
 
@@ -65,10 +67,11 @@ function App() {
               <AddBook
                 searchedBook={searchedBook}
                 onHandleCreateNewBook={handleCreateNewBook}
+                onHandleSetSearchedBook={handleSetSearchedBook}
               />
             </Route>
             <Route exact path="/book/:id">
-              <BookDetails books={books} />
+              <BookDetails books={books} onHandleSetBooks={handleSetBooks} />
             </Route>
           </Main>
         </Switch>

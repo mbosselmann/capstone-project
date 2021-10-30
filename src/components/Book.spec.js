@@ -51,7 +51,7 @@ describe('Book', () => {
           authors={['Ildefonso Falcones de Sierra']}
           readingStatus={true}
           readingStatusDate={'05/2021'}
-          finishedSince={'08/2021'}
+          finishedOn={'08/2021'}
           bookCover={placeholder}
         />
       </Router>
@@ -61,7 +61,7 @@ describe('Book', () => {
     expect(
       screen.getByText('by Ildefonso Falcones de Sierra')
     ).toBeInTheDocument()
-    expect(screen.getByText('Finished since: 08/2021')).toBeInTheDocument()
+    expect(screen.getByText('Finished on: 08/2021')).toBeInTheDocument()
   })
 
   it('displays image', () => {
