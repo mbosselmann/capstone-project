@@ -35,8 +35,6 @@ const NavBarLink = styled(NavLink)`
   text-align: center;
   text-decoration: none;
   color: #4a4453;
-  background-image: url('/images/currently-reading.svg');
-  background-repeat: no-repeat;
   background-color: #fff;
   background-size: 3rem;
   background-position: center;
