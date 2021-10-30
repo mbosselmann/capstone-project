@@ -28,8 +28,6 @@ function App() {
     const newBook = {
       ...newBookData,
       id: nanoid(),
-      finished: false,
-      finishedSince: '',
     }
     const newBooks = [newBook, ...books]
     setBooks(newBooks)
