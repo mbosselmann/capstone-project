@@ -27,13 +27,17 @@ function BookDetails({ books }) {
         <p>
           <span>Pages:</span> {book.pages ? book.pages : 'Unknown'}
         </p>
-        <p>
-          <span>Reading since:</span> {book.readingSince}
-        </p>
-        <p>
-          <span>Currently on page:</span> {book.onPage ? book.onPage : '0'}/
-          {book.pages ? book.pages : 'Unknown'}
-        </p>
+        {!book.finished && (
+          <>
+            <p>
+              <span>Reading since:</span> {book.readingSince}
+            </p>
+            <p>
+              <span>Currently on page:</span> {book.onPage ? book.onPage : '0'}/
+              {book.pages ? book.pages : 'Unknown'}
+            </p>
+          </>
+        )}
         {book.description && (
           <div>
             <p>
