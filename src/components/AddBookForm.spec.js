@@ -125,7 +125,8 @@ describe('AddBookForm', () => {
     userEvent.type(inputElReadingSince, getToday())
     userEvent.type(inputElOnPage, '10')
 
-    const button = screen.getByRole('button')
+    const buttons = screen.getAllByRole('button')
+    const button = buttons[2]
     userEvent.click(button)
 
     expect(mockOnHandleCreateNewBook).toHaveBeenCalledWith({
@@ -141,6 +142,8 @@ describe('AddBookForm', () => {
       publisher: 'Unknown',
       subtitle: '',
       year: 'Unknown',
+      finished: false,
+      finishedOn: '',
     })
   })
 })
