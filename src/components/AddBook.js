@@ -1,9 +1,7 @@
 import AddBookForm from './AddBookForm'
 import Message from './Message'
 import styled from 'styled-components/macro'
-import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import back from '../images/back-to.svg'
 import success from '../images/success.svg'
 
 function AddBook({
@@ -29,9 +27,6 @@ function AddBook({
           altText="success"
         />
       )}
-      <LinkBack to="/add-book">
-        <img src={back} alt="back to start adding a new book" />
-      </LinkBack>
       <AddBookForm
         successMessage={successMessage}
         onHandleSetSuccessMessage={handleSetSuccessMessage}
@@ -50,12 +45,4 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-`
-
-const LinkBack = styled(Link)`
-  flex: 1;
-  img {
-    width: 60px;
-    margin: 0.5rem 0.5rem 0.2rem 0.5rem;
-  }
 `

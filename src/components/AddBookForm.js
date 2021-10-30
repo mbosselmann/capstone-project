@@ -4,8 +4,10 @@ import previewPlaceholder from '../images/preview-placeholder.png'
 import getToday from '../utils/getToday'
 import handleAuthorsLength from '../utils/handleAuthorsLength'
 import placeholder from '../images/placeholder.png'
+import back from '../images/back-to.svg'
+import reset from '../images/reset.svg'
 import { useEffect } from 'react'
-import { useHistory } from 'react-router'
+import { useHistory, Link } from 'react-router-dom'
 
 export default function AddBookForm({
   onHandleSetSuccessMessage,
@@ -58,6 +60,15 @@ export default function AddBookForm({
 
   return (
     <Form onSubmit={handleSubmit}>
+      <ActionContainer>
+        <LinkBack to="/add-book">
+          <img src={back} alt="back to start adding a new book" />
+        </LinkBack>
+        <button type="reset">
+          <img src={reset} alt="reset" />
+        </button>
+      </ActionContainer>
+      <Wrapper>
       <MainContentContainer>
         <h2>New book:</h2>
         {searchedBook && (
@@ -146,6 +157,7 @@ export default function AddBookForm({
         </div>
       </OptionalContentContainer>
       <button>Add book to list</button>
+      </Wrapper>
     </Form>
   )
 }
@@ -169,6 +181,47 @@ const Form = styled.form`
     justify-content: center;
     align-items: center;
     height: 2.5rem;
+  }
+`
+
+const Wrapper = styled.div`
+  background-color: #fff;
+  border-radius: 25px;
+  box-shadow: var(--box-shadow);
+  padding: 1rem 1rem 1.5rem 1rem;
+`
+
+const LinkBack = styled(Link)`
+  flex: 1;
+`
+
+const ActionContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: auto 1rem;
+
+  button {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 60px;
+    width: 60px;
+    border: none;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+  }
+
+  button:focus {
+    width: 60px;
+  }
+
+  img {
+    width: 60px;
+    margin-left: 0.3rem;
   }
 `
 
