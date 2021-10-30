@@ -23,9 +23,9 @@ export default function AddBookForm({
   useEffect(() => {
     if (successMessage === 'Success!') {
       const timer = setTimeout(() => {
-        !isFinished
-          ? history.push('/currently-reading')
-          : history.push('/library')
+        isFinished
+          ? history.push('/library')
+          : history.push('/currently-reading')
       }, 5000)
       return () => clearTimeout(timer)
     }
@@ -48,10 +48,10 @@ export default function AddBookForm({
       title: title.value,
       authors: authors.value,
       finished: isFinished,
-      readingSince: !isFinished ? readingSince.value : '',
+      readingSince: isFinished ? '' : readingSince.value,
       finishedOn: isFinished ? finishedOn.value : '',
-      onPage: !isFinished ? onPage.value : '',
-      thumbnail: !searchedBook ? bookcover : searchedBook.thumbnail,
+      onPage: isFinished ? '' : onPage.value,
+      thumbnail: searchedBook ? searchedBook.thumbnail : bookcover,
       isbn10: searchedBook ? searchedBook.isbn10 : '',
       isbn13: searchedBook ? searchedBook.isbn13 : '',
       year: searchedBook ? searchedBook.year : 'Unknown',
@@ -145,7 +145,18 @@ export default function AddBookForm({
             </label>
           </BookcoverContainer>
           <ReadingStatus>
-            {!isFinished ? (
+            {isFinished ? (
+              <div>
+                <label htmlFor="finishedOn">Finished on:</label>
+                <input
+                  name="finishedOn"
+                  type="date"
+                  id="finishedOn"
+                  max={getToday()}
+                  defaultValue={getToday()}
+                />
+              </div>
+            ) : (
               <>
                 <label htmlFor="readingSince">Reading since:</label>
                 <input
@@ -164,20 +175,9 @@ export default function AddBookForm({
                   autoComplete="off"
                 />
               </>
-            ) : (
-              <div>
-                <label htmlFor="finishedOn">Finished on:</label>
-                <input
-                  name="finishedOn"
-                  type="date"
-                  id="finishedOn"
-                  max={getToday()}
-                  defaultValue={getToday()}
-                />
-              </div>
             )}
             <button type="button" onClick={() => setIsFinished(!isFinished)}>
-              {!isFinished ? 'Or finished?' : 'Not finished?'}
+              {isFinished ? 'Not finished?' : 'Or finished?'}
             </button>
           </ReadingStatus>
         </OptionalContentContainer>
@@ -190,7 +190,6 @@ export default function AddBookForm({
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  width: 100%;
 
   h2 {
     font-family: 'Libre Baskerville', serif;
@@ -211,7 +210,7 @@ const Wrapper = styled.div`
   background-color: #fff;
   border-radius: 25px;
   box-shadow: var(--box-shadow);
-  padding: 1rem 1rem 1.5rem 1rem;
+  padding: 1rem 1rem 1.5rem;
 `
 
 const LinkBack = styled(Link)`
@@ -222,7 +221,7 @@ const ActionContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: auto 1rem;
+  margin: auto 1rem;
 
   button {
     flex: 1;

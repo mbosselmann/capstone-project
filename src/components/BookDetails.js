@@ -15,7 +15,7 @@ function BookDetails({ books, onHandleSetBooks }) {
   function handleBookStatusUpdate(book) {
     const updatedBook = {
       ...book,
-      finished: book.finished ? false : true,
+      finished: !book.finished,
       readingSince: book.readingSince ? book.readingSince : getToday(),
       finishedOn: book.finished ? book.finished : getToday(),
     }
