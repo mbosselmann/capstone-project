@@ -43,11 +43,11 @@ export default function UpdatePage({
 
 const Form = styled.form`
   position: absolute;
-  z-index: 10;
   top: 0;
-  margin: 0 auto;
-  background-color: #fff;
+  width: 100%;
   max-width: 600px;
+  margin-right: 0;
+  background-color: #fff;
   padding: 1rem 2rem 2rem;
   border-radius: 0 0 25px 25px;
   box-shadow: var(--box-shadow);
@@ -68,6 +68,7 @@ const Form = styled.form`
 
   button {
     margin: 0.5rem 0;
+    width: 100%;
   }
 `
 
