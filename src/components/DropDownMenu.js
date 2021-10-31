@@ -3,7 +3,11 @@ import burger from '../images/burger.svg'
 import burgerOpen from '../images/burger-open.svg'
 import { useState } from 'react'
 
-export default function DropDownMenu({ book, onHandleBookStatusUpdate }) {
+export default function DropDownMenu({
+  book,
+  onHandleBookStatusUpdate,
+  onHandleDeleteBook,
+}) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -36,6 +40,13 @@ export default function DropDownMenu({ book, onHandleBookStatusUpdate }) {
               Finished?
             </button>
           )}
+          <button
+            onClick={() => {
+              onHandleDeleteBook(book)
+            }}
+          >
+            Delete book
+          </button>
         </div>
       )}
     </Wrapper>

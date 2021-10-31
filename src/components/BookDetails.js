@@ -1,12 +1,13 @@
 import DropDownMenu from './DropDownMenu'
 import styled from 'styled-components/macro'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useHistory } from 'react-router-dom'
 import back from '../images/back-to.svg'
 import setLocalStorage from '../lib/saveToLocal'
 import getToday from '../utils/getToday'
 
 function BookDetails({ books, onHandleSetBooks }) {
   const { id } = useParams()
+  const history = useHistory()
   const book = books.find(book => book.id === id)
 
   function handleBookStatusUpdate(book) {
@@ -20,6 +21,17 @@ function BookDetails({ books, onHandleSetBooks }) {
     const newBooklist = [updatedBook, ...updatedBookList]
     onHandleSetBooks(newBooklist)
     setLocalStorage('books', newBooklist)
+  }
+
+  function handleDeleteBook(book) {
+    const filteredBooks = books.filter(b => b.id !== book.id)
+    onHandleSetBooks(filteredBooks)
+    setLocalStorage('books', filteredBooks)
+    if (book.finished) {
+      history.push('/library')
+    } else {
+      history.push('/currently-reading')
+    }
   }
 
   return (
@@ -37,6 +49,7 @@ function BookDetails({ books, onHandleSetBooks }) {
         <DropDownMenu
           book={book}
           onHandleBookStatusUpdate={handleBookStatusUpdate}
+          onHandleDeleteBook={handleDeleteBook}
         />
       </ActionContainer>
       <TitleSection>
