@@ -1,16 +1,28 @@
+import DropDownMenu from './DropDownMenu'
+import UpdatePage from './UpdatePage'
 import styled from 'styled-components/macro'
-import { Link, useParams } from 'react-router-dom'
-import back from '../images/back-to.svg'
-import burger from '../images/burger.svg'
-import burgerOpen from '../images/burger-open.svg'
+import { Link, useParams, useHistory } from 'react-router-dom'
 import { useState } from 'react'
+import back from '../images/back-to.svg'
 import setLocalStorage from '../lib/saveToLocal'
 import getToday from '../utils/getToday'
 
 function BookDetails({ books, onHandleSetBooks }) {
+  const [updatePage, setUpdatePage] = useState(false)
   const { id } = useParams()
+  const history = useHistory()
   const book = books.find(book => book.id === id)
-  const [isOpen, setIsOpen] = useState(false)
+
+  function handleSetUpdatePage() {
+    setUpdatePage(!updatePage)
+  }
+
+  function handleUpdateBookList(updatedBook) {
+    const updatedBookList = books.filter(b => b.id !== book.id)
+    const newBooklist = [updatedBook, ...updatedBookList]
+    onHandleSetBooks(newBooklist)
+    setLocalStorage('books', newBooklist)
+  }
 
   function handleBookStatusUpdate(book) {
     const updatedBook = {
@@ -19,14 +31,30 @@ function BookDetails({ books, onHandleSetBooks }) {
       readingSince: book.readingSince ? book.readingSince : getToday(),
       finishedOn: book.finished ? book.finished : getToday(),
     }
-    const updatedBookList = books.filter(b => b.id !== book.id)
-    const newBooklist = [updatedBook, ...updatedBookList]
-    onHandleSetBooks(newBooklist)
-    setLocalStorage('books', newBooklist)
+    handleUpdateBookList(updatedBook)
+  }
+
+  function handleDeleteBook(book) {
+    const filteredBooks = books.filter(b => b.id !== book.id)
+    onHandleSetBooks(filteredBooks)
+    setLocalStorage('books', filteredBooks)
+    if (book.finished) {
+      history.push('/library')
+    } else {
+      history.push('/currently-reading')
+    }
   }
 
   return (
     <Article>
+      {updatePage && (
+        <UpdatePage
+          book={book}
+          onHandleSetBooks={onHandleSetBooks}
+          onHandleSetUpdatePage={handleSetUpdatePage}
+          onHandleUpdateBookList={handleUpdateBookList}
+        />
+      )}
       <ActionContainer>
         {book.finished ? (
           <Link to="/library">
@@ -37,38 +65,12 @@ function BookDetails({ books, onHandleSetBooks }) {
             <img src={back} alt="back to book list of currently read books" />
           </Link>
         )}
-        <DropDownMenu>
-          <MenuButton onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? (
-              <img src={burgerOpen} alt="close drop down menu" />
-            ) : (
-              <img src={burger} alt="open drop down menu" />
-            )}
-          </MenuButton>
-          {isOpen && (
-            <div>
-              {book.finished ? (
-                <button
-                  onClick={() => {
-                    handleBookStatusUpdate(book)
-                    setIsOpen(!isOpen)
-                  }}
-                >
-                  Not finished yet?
-                </button>
-              ) : (
-                <button
-                  onClick={() => {
-                    handleBookStatusUpdate(book)
-                    setIsOpen(!isOpen)
-                  }}
-                >
-                  Finished?
-                </button>
-              )}
-            </div>
-          )}
-        </DropDownMenu>
+        <DropDownMenu
+          book={book}
+          onHandleBookStatusUpdate={handleBookStatusUpdate}
+          onHandleDeleteBook={handleDeleteBook}
+          onHandleSetUpdatePage={handleSetUpdatePage}
+        />
       </ActionContainer>
       <TitleSection>
         <img src={book.thumbnail} alt="bookcover" />
@@ -102,7 +104,7 @@ function BookDetails({ books, onHandleSetBooks }) {
             <p>
               <span>Description:</span>
             </p>
-            <p>{book.description}</p>
+            <DescriptionText>{book.description}</DescriptionText>
           </div>
         )}
       </InfoSection>
@@ -121,38 +123,6 @@ const ActionContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0.4rem;
-`
-
-const DropDownMenu = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-
-  div {
-    position: absolute;
-    z-index: 1;
-    top: 60px;
-    margin-right: 1rem;
-    border-radius: 5px;
-    border: 0.2rem solid #fff;
-    box-shadow: var(--box-shadow);
-    -webkit-box-shadow: var(--box-shadow);
-  }
-
-  div button {
-    height: 2rem;
-    padding: 0 0.5rem;
-    background-color: #fff;
-    border: none;
-  }
-`
-
-const MenuButton = styled.button`
-  width: 60px;
-  height: 60px;
-  margin-right: 0.2rem;
-  border: none;
-  background-color: transparent;
 `
 
 const InfoSection = styled.div`
@@ -195,6 +165,13 @@ const TitleSection = styled.div`
   p {
     margin-bottom: 1rem;
   }
+`
+
+const DescriptionText = styled.p`
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
 `
 
 export default BookDetails

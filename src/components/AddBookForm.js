@@ -32,12 +32,12 @@ export default function AddBookForm({
   }, [successMessage, history, isFinished])
 
   function getBookcoverPreview(previewEvent) {
-    const bookcover = previewEvent.target.files[0]
+    const image = previewEvent.target.files[0]
     const reader = new FileReader()
     reader.onload = event => {
       setBookcover(event.target.result)
     }
-    reader.readAsDataURL(bookcover)
+    reader.readAsDataURL(image)
   }
 
   function handleSubmit(event) {
@@ -173,6 +173,8 @@ export default function AddBookForm({
                   id="onPage"
                   placeholder="e. g. 72"
                   autoComplete="off"
+                  min="0"
+                  max={searchedBook ? searchedBook.pages : ''}
                 />
               </>
             )}
