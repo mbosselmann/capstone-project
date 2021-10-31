@@ -71,7 +71,7 @@ function BookDetails({ books, onHandleSetBooks }) {
             <p>
               <span>Description:</span>
             </p>
-            <p>{book.description}</p>
+            <DescriptionText>{book.description}</DescriptionText>
           </div>
         )}
       </InfoSection>
@@ -132,6 +132,13 @@ const TitleSection = styled.div`
   p {
     margin-bottom: 1rem;
   }
+`
+
+const DescriptionText = styled.p`
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
 `
 
 export default BookDetails
