@@ -7,12 +7,17 @@ export default function DropDownMenu({
   book,
   onHandleBookStatusUpdate,
   onHandleDeleteBook,
+  onHandleSetUpdatePage,
 }) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
     <Wrapper>
-      <MenuButton onClick={() => setIsOpen(!isOpen)}>
+      <MenuButton
+        onClick={() => {
+          setIsOpen(!isOpen)
+        }}
+      >
         {isOpen ? (
           <img src={burgerOpen} alt="close drop down menu" />
         ) : (
@@ -31,14 +36,24 @@ export default function DropDownMenu({
               Not finished yet?
             </button>
           ) : (
-            <button
-              onClick={() => {
-                onHandleBookStatusUpdate(book)
-                setIsOpen(!isOpen)
-              }}
-            >
-              Finished?
-            </button>
+            <>
+              <button
+                onClick={() => {
+                  onHandleBookStatusUpdate(book)
+                  setIsOpen(!isOpen)
+                }}
+              >
+                Finished?
+              </button>
+              <button
+                onClick={() => {
+                  onHandleSetUpdatePage()
+                  setIsOpen(!isOpen)
+                }}
+              >
+                Now on page?
+              </button>
+            </>
           )}
           <button
             onClick={() => {

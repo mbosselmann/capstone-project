@@ -1,14 +1,21 @@
 import DropDownMenu from './DropDownMenu'
+import UpdatePage from './UpdatePage'
 import styled from 'styled-components/macro'
 import { Link, useParams, useHistory } from 'react-router-dom'
+import { useState } from 'react'
 import back from '../images/back-to.svg'
 import setLocalStorage from '../lib/saveToLocal'
 import getToday from '../utils/getToday'
 
 function BookDetails({ books, onHandleSetBooks }) {
+  const [updatePage, setUpdatePage] = useState(false)
   const { id } = useParams()
   const history = useHistory()
   const book = books.find(book => book.id === id)
+
+  function handleSetUpdatePage() {
+    setUpdatePage(!updatePage)
+  }
 
   function handleUpdateBookList(updatedBook) {
     const updatedBookList = books.filter(b => b.id !== book.id)
@@ -40,6 +47,14 @@ function BookDetails({ books, onHandleSetBooks }) {
 
   return (
     <Article>
+      {updatePage && (
+        <UpdatePage
+          book={book}
+          onHandleSetBooks={onHandleSetBooks}
+          onHandleSetUpdatePage={handleSetUpdatePage}
+          onHandleUpdateBookList={handleUpdateBookList}
+        />
+      )}
       <ActionContainer>
         {book.finished ? (
           <Link to="/library">
@@ -54,6 +69,7 @@ function BookDetails({ books, onHandleSetBooks }) {
           book={book}
           onHandleBookStatusUpdate={handleBookStatusUpdate}
           onHandleDeleteBook={handleDeleteBook}
+          onHandleSetUpdatePage={handleSetUpdatePage}
         />
       </ActionContainer>
       <TitleSection>
