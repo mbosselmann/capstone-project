@@ -1,16 +1,13 @@
+import DropDownMenu from './DropDownMenu'
 import styled from 'styled-components/macro'
 import { Link, useParams } from 'react-router-dom'
 import back from '../images/back-to.svg'
-import burger from '../images/burger.svg'
-import burgerOpen from '../images/burger-open.svg'
-import { useState } from 'react'
 import setLocalStorage from '../lib/saveToLocal'
 import getToday from '../utils/getToday'
 
 function BookDetails({ books, onHandleSetBooks }) {
   const { id } = useParams()
   const book = books.find(book => book.id === id)
-  const [isOpen, setIsOpen] = useState(false)
 
   function handleBookStatusUpdate(book) {
     const updatedBook = {
@@ -37,38 +34,10 @@ function BookDetails({ books, onHandleSetBooks }) {
             <img src={back} alt="back to book list of currently read books" />
           </Link>
         )}
-        <DropDownMenu>
-          <MenuButton onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? (
-              <img src={burgerOpen} alt="close drop down menu" />
-            ) : (
-              <img src={burger} alt="open drop down menu" />
-            )}
-          </MenuButton>
-          {isOpen && (
-            <div>
-              {book.finished ? (
-                <button
-                  onClick={() => {
-                    handleBookStatusUpdate(book)
-                    setIsOpen(!isOpen)
-                  }}
-                >
-                  Not finished yet?
-                </button>
-              ) : (
-                <button
-                  onClick={() => {
-                    handleBookStatusUpdate(book)
-                    setIsOpen(!isOpen)
-                  }}
-                >
-                  Finished?
-                </button>
-              )}
-            </div>
-          )}
-        </DropDownMenu>
+        <DropDownMenu
+          book={book}
+          onHandleBookStatusUpdate={handleBookStatusUpdate}
+        />
       </ActionContainer>
       <TitleSection>
         <img src={book.thumbnail} alt="bookcover" />
@@ -121,38 +90,6 @@ const ActionContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0.4rem;
-`
-
-const DropDownMenu = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-
-  div {
-    position: absolute;
-    z-index: 1;
-    top: 60px;
-    margin-right: 1rem;
-    border-radius: 5px;
-    border: 0.2rem solid #fff;
-    box-shadow: var(--box-shadow);
-    -webkit-box-shadow: var(--box-shadow);
-  }
-
-  div button {
-    height: 2rem;
-    padding: 0 0.5rem;
-    background-color: #fff;
-    border: none;
-  }
-`
-
-const MenuButton = styled.button`
-  width: 60px;
-  height: 60px;
-  margin-right: 0.2rem;
-  border: none;
-  background-color: transparent;
 `
 
 const InfoSection = styled.div`
