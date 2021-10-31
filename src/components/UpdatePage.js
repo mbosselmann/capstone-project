@@ -47,7 +47,7 @@ const Form = styled.form`
   top: 0;
   margin: 0 auto;
   background-color: #fff;
-  width: 100%;
+  max-width: 600px;
   padding: 1rem 2rem 2rem;
   border-radius: 0 0 25px 25px;
   box-shadow: var(--box-shadow);
