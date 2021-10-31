@@ -10,6 +10,13 @@ function BookDetails({ books, onHandleSetBooks }) {
   const history = useHistory()
   const book = books.find(book => book.id === id)
 
+  function handleUpdateBookList(updatedBook) {
+    const updatedBookList = books.filter(b => b.id !== book.id)
+    const newBooklist = [updatedBook, ...updatedBookList]
+    onHandleSetBooks(newBooklist)
+    setLocalStorage('books', newBooklist)
+  }
+
   function handleBookStatusUpdate(book) {
     const updatedBook = {
       ...book,
@@ -17,10 +24,7 @@ function BookDetails({ books, onHandleSetBooks }) {
       readingSince: book.readingSince ? book.readingSince : getToday(),
       finishedOn: book.finished ? book.finished : getToday(),
     }
-    const updatedBookList = books.filter(b => b.id !== book.id)
-    const newBooklist = [updatedBook, ...updatedBookList]
-    onHandleSetBooks(newBooklist)
-    setLocalStorage('books', newBooklist)
+    handleUpdateBookList(updatedBook)
   }
 
   function handleDeleteBook(book) {
