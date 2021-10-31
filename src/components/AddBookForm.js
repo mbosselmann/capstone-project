@@ -173,6 +173,8 @@ export default function AddBookForm({
                   id="onPage"
                   placeholder="e. g. 72"
                   autoComplete="off"
+                  min="0"
+                  max={searchedBook ? searchedBook.pages : ''}
                 />
               </>
             )}

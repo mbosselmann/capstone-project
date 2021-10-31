@@ -29,6 +29,7 @@ export default function UpdatePage({
           id="nowOnPage"
           name="nowOnPage"
           placeholder="e. g. 45"
+          min="0"
           max={book.pages}
           required
         />
