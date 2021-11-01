@@ -2,6 +2,7 @@ import { render, screen, act } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import AddBookForm from './AddBookForm'
 import getToday from '../utils/getToday'
+import formatDate from '../utils/formatDate'
 import placeholder from '../images/placeholder.png'
 import { Router } from 'react-router'
 import { createMemoryHistory } from 'history'
@@ -136,7 +137,7 @@ describe('AddBookForm', () => {
     expect(mockOnHandleCreateNewBook).toHaveBeenCalledWith({
       title: 'Das Haus',
       authors: 'Marie Meier',
-      readingSince: getToday(),
+      readingSince: formatDate(getToday()),
       onPage: '10',
       thumbnail: placeholder,
       isbn10: '',
