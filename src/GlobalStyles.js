@@ -21,7 +21,6 @@ const GlobalStyles = createGlobalStyle`
         font-size: 2rem;
         font-weight: 600;
         font-family: 'Libre Baskerville', serif;
-        margin-bottom: 0.5rem;
     }
 
     h3 {
