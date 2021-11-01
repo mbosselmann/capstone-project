@@ -34,12 +34,13 @@ const Wrapper = styled.div`
   max-width: 600px;
   position: absolute;
   top: -300px;
-  animation-duration: 5s;
+  animation-duration: 4s;
   animation-name: ${animation};
   animation-iteration-count: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding: 0.5rem;
   background-color: #fff;
   color: #000;
@@ -51,10 +52,10 @@ const Wrapper = styled.div`
   z-index: 100;
 
   img {
-    max-width: 70%;
+    max-width: 80%;
     align-self: center;
     margin: 1rem 0;
-    height: 100px;
+    height: 120px;
   }
 `
 const Text = styled.p`

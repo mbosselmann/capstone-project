@@ -1,17 +1,34 @@
 import DropDownMenu from './DropDownMenu'
+import Message from './Message'
 import UpdatePage from './UpdatePage'
 import styled from 'styled-components/macro'
 import { Link, useParams, useHistory } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import back from '../images/back-to.svg'
+import success from '../images/success.svg'
 import setLocalStorage from '../lib/saveToLocal'
 import getToday from '../utils/getToday'
 
 function BookDetails({ books, onHandleSetBooks }) {
   const [updatePage, setUpdatePage] = useState(false)
+  const [updateMessage, setUpdateMessage] = useState('')
   const { id } = useParams()
   const history = useHistory()
   const book = books.find(book => book.id === id)
+  const message = 'Update was successful!'
+
+  useEffect(() => {
+    if (updateMessage === 'Updated!') {
+      const timer = setTimeout(() => {
+        setUpdateMessage('')
+      }, 4000)
+      return () => clearTimeout(timer)
+    }
+  }, [updateMessage])
+
+  function handleSetUpdateMessage(update) {
+    setUpdateMessage(update)
+  }
 
   function handleSetUpdatePage() {
     setUpdatePage(!updatePage)
@@ -47,12 +64,16 @@ function BookDetails({ books, onHandleSetBooks }) {
 
   return (
     <Article>
+      {updateMessage === 'Updated!' && (
+        <Message image={success} message={message} altText="success" />
+      )}
       {updatePage && (
         <UpdatePage
           book={book}
           onHandleSetBooks={onHandleSetBooks}
           onHandleSetUpdatePage={handleSetUpdatePage}
           onHandleUpdateBookList={handleUpdateBookList}
+          onHandleSetUpdateMessage={handleSetUpdateMessage}
         />
       )}
       <ActionContainer>

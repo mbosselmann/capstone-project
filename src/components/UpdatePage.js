@@ -5,6 +5,7 @@ export default function UpdatePage({
   book,
   onHandleSetUpdatePage,
   onHandleUpdateBookList,
+  onHandleSetUpdateMessage,
 }) {
   function handleSubmit(event) {
     event.preventDefault()
@@ -16,6 +17,7 @@ export default function UpdatePage({
     }
     onHandleUpdateBookList(updatedPage)
     onHandleSetUpdatePage()
+    onHandleSetUpdateMessage('Updated!')
     form.reset()
   }
 
@@ -32,6 +34,7 @@ export default function UpdatePage({
           min="0"
           max={book.pages}
           required
+          autoFocus
         />
         <UpdateButton>Update</UpdateButton>
         <CancelButton type="button" onClick={onHandleSetUpdatePage}>

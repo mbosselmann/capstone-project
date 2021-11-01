@@ -26,7 +26,7 @@ export default function AddBookForm({
         isFinished
           ? history.push('/library')
           : history.push('/currently-reading')
-      }, 5000)
+      }, 4000)
       return () => clearTimeout(timer)
     }
   }, [successMessage, history, isFinished])

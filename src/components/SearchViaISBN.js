@@ -8,16 +8,16 @@ import getBook from '../services/getBook'
 export default function SearchViaISBN({ onHandleSetSearchedBook }) {
   const [errorMessage, setErrorMessage] = useState('')
   const history = useHistory()
-  const message = `Something went wrong! :( Please try again or add your book manually below.'`
+  const message = 'Something went wrong. :( Please try again!'
 
   useEffect(() => {
     if (errorMessage === 'ISBN error') {
       const timer = setTimeout(() => {
         setErrorMessage('')
-      }, 5000)
+      }, 4000)
       return () => clearTimeout(timer)
     }
-  }, [errorMessage, history])
+  }, [errorMessage])
 
   async function handleSubmit(event) {
     event.preventDefault()
