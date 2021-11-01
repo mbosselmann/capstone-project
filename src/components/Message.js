@@ -1,11 +1,10 @@
 import styled, { keyframes } from 'styled-components/macro'
 
-function Message({ image, altText, message, text }) {
+function Message({ image, altText, message }) {
   return (
     <Wrapper>
       <img src={image} alt={altText} />
-      <p>{message}</p>
-      <p>{text}</p>
+      <Text>{message}</Text>
     </Wrapper>
   )
 }
@@ -58,5 +57,8 @@ const Wrapper = styled.div`
     height: 100px;
   }
 `
-
+const Text = styled.p`
+  font-size: 1rem;
+  font-weight: 600;
+`
 export default Message

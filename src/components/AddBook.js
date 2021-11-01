@@ -11,7 +11,6 @@ function AddBook({
 }) {
   const [successMessage, setSuccessMessage] = useState('')
   const message = 'Yay! The book was successfully added to your book list. :)'
-  const text = 'You will shortly be redirected to your currently reading page.'
 
   function handleSetSuccessMessage(success) {
     setSuccessMessage(success)
@@ -20,12 +19,7 @@ function AddBook({
   return (
     <Wrapper>
       {successMessage === 'Success!' && (
-        <Message
-          image={success}
-          message={message}
-          text={text}
-          altText="success"
-        />
+        <Message image={success} message={message} altText="success" />
       )}
       <AddBookForm
         successMessage={successMessage}

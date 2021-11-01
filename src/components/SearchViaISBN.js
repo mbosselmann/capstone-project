@@ -8,8 +8,7 @@ import getBook from '../services/getBook'
 export default function SearchViaISBN({ onHandleSetSearchedBook }) {
   const [errorMessage, setErrorMessage] = useState('')
   const history = useHistory()
-  const message = `Oh no! The ISBN doesn't seem to exist. :(`
-  const text = 'Please try again or add your book manually below.'
+  const message = `Something went wrong! :( Please try again or add your book manually below.'`
 
   useEffect(() => {
     if (errorMessage === 'ISBN error') {
@@ -37,7 +36,7 @@ export default function SearchViaISBN({ onHandleSetSearchedBook }) {
   return (
     <Wrapper>
       {errorMessage === 'ISBN error' && (
-        <Message image={error} message={message} text={text} alt-text="error" />
+        <Message image={error} message={message} alt-text="error" />
       )}
       <h2>Add a new book:</h2>
       <form onSubmit={handleSubmit}>
@@ -58,9 +57,9 @@ export default function SearchViaISBN({ onHandleSetSearchedBook }) {
       </form>
       <Divider />
       <div>
-        <p>
+        <Text>
           You don't have the ISBN at hand or want to enter the book manually?
-        </p>
+        </Text>
         <LinkToForm to="/add-book-form">Click here</LinkToForm>
       </div>
     </Wrapper>
@@ -84,12 +83,12 @@ const Wrapper = styled.div`
   label {
     margin: 0 0 0.5rem 0.6rem;
   }
+`
 
-  p {
-    padding: 0 1rem;
-    font-size: 0.9rem;
-    margin: 0 0 0.5rem 0.6rem;
-  }
+const Text = styled.p`
+  padding: 0 1rem;
+  font-size: 0.9rem;
+  margin: 0 0 0.5rem 0.6rem;
 `
 
 const Divider = styled.hr`
