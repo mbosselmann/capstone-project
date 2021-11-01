@@ -78,9 +78,8 @@ const Wrapper = styled.div`
     z-index: 1;
     top: 65px;
     margin-right: 1rem;
-    border-radius: 5px;
-    border: 0.2rem solid #fff;
-    background-color: #fff;
+    border-radius: var(--border-radius-small);
+    background-color: var(--bg-color-main);
     box-shadow: var(--box-shadow);
     -webkit-box-shadow: var(--box-shadow);
   }
@@ -90,12 +89,11 @@ const Wrapper = styled.div`
     display: flex;
     font-size: 1rem;
     justify-content: flex-end;
-    align-items: center;
     height: 3rem;
     padding: 1rem;
-    background-color: #fff;
+    background-color: var(--bg-color-main);
     border: none;
-    border-radius: 5px;
+    border-radius: var(--border-radius-small);
     text-transform: uppercase;
   }
 `

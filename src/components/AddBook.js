@@ -35,7 +35,7 @@ function AddBook({
 export default AddBook
 
 const Wrapper = styled.div`
-  background-color: #f6f6f6;
+  background-color: var(--bg-color-light);
   display: flex;
   flex-direction: column;
   height: 100%;

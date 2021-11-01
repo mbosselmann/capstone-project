@@ -55,10 +55,10 @@ const Wrapper = styled.section`
   }
 
   h1 {
-    font-family: 'Libre Baskerville', serif;
+    font-family: var(--font-family-special);
     font-size: 3.5rem;
     text-align: center;
-    color: #4a4453;
+    color: var(--font-color-dark);
     margin-top: 0.5rem;
   }
 

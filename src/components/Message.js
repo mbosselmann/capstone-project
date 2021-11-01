@@ -42,10 +42,9 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0.5rem;
-  background-color: #fff;
-  color: #000;
+  background-color: var(--bg-color-main);
   height: 300px;
-  border-radius: 0 0 25px 25px;
+  border-radius: var(--border-radius-normal-bottom);
   box-shadow: var(--box-shadow);
   -webkit-box-shadow: var(--box-shadow);
   padding: 2rem;
@@ -60,6 +59,6 @@ const Wrapper = styled.div`
 `
 const Text = styled.p`
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: var(--font-weight-bold);
 `
 export default Message

@@ -137,7 +137,7 @@ function BookDetails({ books, onHandleSetBooks }) {
 }
 
 const Article = styled.article`
-  background-color: #f6f6f6;
+  background-color: var(--bg-color-light);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -150,9 +150,9 @@ const ActionContainer = styled.div`
 `
 
 const InfoSection = styled.div`
-  background-color: #fff;
+  background-color: var(--bg-color-main);
   padding: 1.5rem;
-  border-radius: 25px 25px 0 0;
+  border-radius: var(--border-radius-normal-top);
   box-shadow: var(--box-shadow);
   -webkit-box-shadow: var(--box-shadow);
   flex-grow: 1;
@@ -167,7 +167,7 @@ const InfoSection = styled.div`
   }
 
   span {
-    font-weight: 600;
+    font-weight: var(--font-weight-bold);
   }
 `
 
