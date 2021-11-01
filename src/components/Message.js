@@ -31,6 +31,7 @@ width: 100%;
 `
 
 const Wrapper = styled.div`
+  width: 100%;
   max-width: 600px;
   position: absolute;
   top: -300px;
@@ -51,14 +52,15 @@ const Wrapper = styled.div`
   z-index: 100;
 
   img {
-    max-width: 80%;
+    max-width: 60%;
     align-self: center;
     margin: 1rem 0;
-    height: 120px;
   }
 `
 const Text = styled.p`
   font-size: 1rem;
   font-weight: var(--font-weight-bold);
+  color: var(--font-color-dark);
+  margin-top: 1rem;
 `
 export default Message

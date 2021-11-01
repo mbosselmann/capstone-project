@@ -32,7 +32,7 @@ const GlobalStyles = createGlobalStyle`
         --border-radius-small: 5px;
         --font-weight-bold: 600;
         --link-color-dark: #504465;
-        --navlink-color-dark: #4a4453;
+        --navlink-color-dark: #504465;
         --navlink-color-light: #ffffff;
         --font-family-special: 'Libre Baskerville', serif;
 
@@ -42,7 +42,6 @@ const GlobalStyles = createGlobalStyle`
         background-color: var(--bg-color-main);
         font-size: 1rem;
         color: var(--font-color-dark);
-
     }
 
     h2 {
