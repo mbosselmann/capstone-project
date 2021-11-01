@@ -37,6 +37,10 @@ export default function AddBookForm({
     const reader = new FileReader()
     reader.onload = event => {
       setBookcover(event.target.result)
+      onHandleSetSearchedBook({
+        ...searchedBook,
+        thumbnail: event.target.result,
+      })
     }
     reader.readAsDataURL(image)
   }
@@ -62,6 +66,7 @@ export default function AddBookForm({
       pages: searchedBook ? searchedBook.pages : '',
     })
     onHandleSetSuccessMessage('Success!')
+    setBookcover(placeholder)
     form.reset()
   }
 
@@ -71,7 +76,13 @@ export default function AddBookForm({
         <LinkBack to="/add-book">
           <img src={back} alt="back to start adding a new book" />
         </LinkBack>
-        <button type="reset" onClick={() => onHandleSetSearchedBook('')}>
+        <button
+          type="reset"
+          onClick={() => {
+            onHandleSetSearchedBook('')
+            setBookcover(placeholder)
+          }}
+        >
           <img src={reset} alt="reset" />
         </button>
       </ActionContainer>
