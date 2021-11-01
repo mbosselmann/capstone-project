@@ -2,6 +2,7 @@ import styled from 'styled-components/macro'
 import { useState } from 'react'
 import previewPlaceholder from '../images/preview-placeholder.png'
 import getToday from '../utils/getToday'
+import formatDate from '../utils/formatDate'
 import handleAuthorsLength from '../utils/handleAuthorsLength'
 import placeholder from '../images/placeholder.png'
 import back from '../images/back-to.svg'
@@ -48,7 +49,7 @@ export default function AddBookForm({
       title: title.value,
       authors: authors.value,
       finished: isFinished,
-      readingSince: isFinished ? '' : readingSince.value,
+      readingSince: isFinished ? '' : formatDate(readingSince.value),
       finishedOn: isFinished ? finishedOn.value : '',
       onPage: isFinished ? '' : onPage.value,
       thumbnail: searchedBook ? searchedBook.thumbnail : bookcover,

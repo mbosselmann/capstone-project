@@ -8,6 +8,7 @@ import back from '../images/back-to.svg'
 import success from '../images/success.svg'
 import setLocalStorage from '../lib/saveToLocal'
 import getToday from '../utils/getToday'
+import formatDate from '../utils/formatDate'
 
 function BookDetails({ books, onHandleSetBooks }) {
   const [updatePage, setUpdatePage] = useState(false)
@@ -45,8 +46,10 @@ function BookDetails({ books, onHandleSetBooks }) {
     const updatedBook = {
       ...book,
       finished: !book.finished,
-      readingSince: book.readingSince ? book.readingSince : getToday(),
-      finishedOn: book.finished ? '' : getToday(),
+      readingSince: book.readingSince
+        ? book.readingSince
+        : formatDate(getToday()),
+      finishedOn: book.finished ? '' : formatDate(getToday()),
     }
     handleUpdateBookList(updatedBook)
   }
