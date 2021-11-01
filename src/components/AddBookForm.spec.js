@@ -92,6 +92,10 @@ describe('AddBookForm', () => {
       type: 'image/png',
     })
 
+    const mockFileReader = jest
+      .spyOn(FileReader.prototype, 'readAsDataURL')
+      .mockImplementation(function () {})
+
     render(
       <Router history={history}>
         <AddBookForm />
@@ -100,7 +104,7 @@ describe('AddBookForm', () => {
 
     const inputElBookcover = screen.getByLabelText('Select')
     userEvent.upload(inputElBookcover, file)
-    expect(inputElBookcover.files[0]).toStrictEqual(file)
+    expect(mockFileReader).toHaveBeenCalledWith(file)
   })
 
   it('calls onCreateNewBook with values of form', () => {
