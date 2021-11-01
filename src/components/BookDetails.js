@@ -29,7 +29,7 @@ function BookDetails({ books, onHandleSetBooks }) {
       ...book,
       finished: !book.finished,
       readingSince: book.readingSince ? book.readingSince : getToday(),
-      finishedOn: book.finished ? book.finished : getToday(),
+      finishedOn: book.finished ? '' : getToday(),
     }
     handleUpdateBookList(updatedBook)
   }
