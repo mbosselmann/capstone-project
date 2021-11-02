@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro'
-import burger from '../images/burger.svg'
+import burgerClosed from '../images/burger-closed.svg'
 import burgerOpen from '../images/burger-open.svg'
 import { useState } from 'react'
 
@@ -21,7 +21,7 @@ export default function DropDownMenu({
         {isOpen ? (
           <img src={burgerOpen} alt="close drop down menu" />
         ) : (
-          <img src={burger} alt="open drop down menu" />
+          <img src={burgerClosed} alt="open drop down menu" />
         )}
       </MenuButton>
       {isOpen && (
@@ -99,9 +99,15 @@ const Wrapper = styled.div`
 `
 
 const MenuButton = styled.button`
-  width: 60px;
-  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
   margin-right: 0.2rem;
   border: none;
-  background-color: transparent;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: var(--box-shadow);
+  -webkit-box-shadow: var(--box-shadow);
 `

@@ -5,7 +5,7 @@ import getToday from '../utils/getToday'
 import formatDate from '../utils/formatDate'
 import handleAuthorsLength from '../utils/handleAuthorsLength'
 import placeholder from '../images/placeholder.png'
-import back from '../images/back-to.svg'
+import back from '../images/arrow.svg'
 import reset from '../images/reset.svg'
 import { useEffect } from 'react'
 import { useHistory, Link } from 'react-router-dom'
@@ -75,9 +75,9 @@ export default function AddBookForm({
   return (
     <Form onSubmit={handleSubmit}>
       <ActionContainer>
-        <LinkBack to="/add-book">
+        <BackLink to="/add-book">
           <img src={back} alt="back to start adding a new book" />
-        </LinkBack>
+        </BackLink>
         <ResetButton
           type="reset"
           onClick={() => {
@@ -221,9 +221,22 @@ const Wrapper = styled.div`
   padding: 1rem 1rem 1.5rem;
 `
 
-const LinkBack = styled(Link)`
-  flex: 1;
+const BackLink = styled(Link)`
   margin-left: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: var(--box-shadow);
+  -webkit-box-shadow: var(--box-shadow);
+  margin: 0.5rem 0 1rem 0.5rem;
+
+  img {
+    width: 24px;
+  }
 `
 
 const ActionContainer = styled.div`
@@ -234,17 +247,25 @@ const ActionContainer = styled.div`
 `
 
 const ResetButton = styled.button`
-  justify-content: flex-end;
-  height: 40px;
-  width: 40px;
-  background-color: transparent;
+  margin-left: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  box-shadow: none;
-  margin-right: 0.3rem;
+  box-shadow: var(--box-shadow);
+  -webkit-box-shadow: var(--box-shadow);
+  margin: 0.5rem 0 1rem 0.5rem;
+
+  img {
+    margin-right: 0.2rem;
+  }
 
   &:focus {
-    height: 40px;
-    width: 40px;
+    height: 50px;
+    width: 50px;
   }
 `
 
