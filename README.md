@@ -26,8 +26,6 @@ You can find the hosted version on Vercel: [Demo Version of Capstone Project](ht
 - npm
 - Vercel
 
----
-
 ## Project Setup
 
 - Clone this repository
