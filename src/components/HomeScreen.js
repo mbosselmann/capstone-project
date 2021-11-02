@@ -66,4 +66,8 @@ const Wrapper = styled.section`
   form {
     margin-top: 3rem;
   }
+
+  button {
+    background-color: var(--button-bg-color-secondary);
+  }
 `
