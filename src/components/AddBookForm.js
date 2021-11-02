@@ -32,15 +32,17 @@ export default function AddBookForm({
     }
   }, [successMessage, history, isFinished])
 
-  function getBookcoverPreview(previewEvent) {
-    const image = previewEvent.target.files[0]
+  function getBookcoverPreview(event) {
+    const image = event.target.files[0]
     const reader = new FileReader()
     reader.onload = event => {
       setBookcover(event.target.result)
-      onHandleSetSearchedBook({
-        ...searchedBook,
-        thumbnail: event.target.result,
-      })
+      if (searchedBook) {
+        onHandleSetSearchedBook({
+          ...searchedBook,
+          thumbnail: event.target.result,
+        })
+      }
     }
     reader.readAsDataURL(image)
   }
@@ -54,7 +56,7 @@ export default function AddBookForm({
       authors: authors.value,
       finished: isFinished,
       readingSince: isFinished ? '' : formatDate(readingSince.value),
-      finishedOn: isFinished ? finishedOn.value : '',
+      finishedOn: isFinished ? formatDate(finishedOn.value) : '',
       onPage: isFinished ? '' : onPage.value,
       thumbnail: searchedBook ? searchedBook.thumbnail : bookcover,
       isbn10: searchedBook ? searchedBook.isbn10 : '',
@@ -221,6 +223,7 @@ const Wrapper = styled.div`
 
 const LinkBack = styled(Link)`
   flex: 1;
+  margin-left: 0.5rem;
 `
 
 const ActionContainer = styled.div`

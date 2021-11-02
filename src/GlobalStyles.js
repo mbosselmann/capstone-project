@@ -47,7 +47,7 @@ const GlobalStyles = createGlobalStyle`
     h2 {
         font-size: 2rem;
         font-weight: var(--font-weight-bold);
-        font-family: var(--font-family-special)
+        font-family: var(--font-family-special);
     }
 
     h3 {

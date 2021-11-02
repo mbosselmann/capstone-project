@@ -34,6 +34,7 @@ function Start({ onHandleSetUsername }) {
           placeholder="Your name"
           autoComplete="off"
           required
+          autoFocus
         />
         <button>Start</button>
       </form>
