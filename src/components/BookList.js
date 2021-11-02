@@ -1,20 +1,50 @@
 import Book from './Book'
+import Message from './Message'
 import styled from 'styled-components/macro'
 import TitleBookList from './TitleBookList'
 import { useLocation } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import klammerfischImage from '../images/klammer-message.jpg'
 
 function BookList({ books, username }) {
+  const [fishMessage, setFishMessage] = useState('')
   const { pathname: status } = useLocation()
+  const message = 'Gotcha! Add your own Klammerfisch book! :)'
+
+  useEffect(() => {
+    if (fishMessage === 'Gotcha!') {
+      const timer = setTimeout(() => {
+        setFishMessage('')
+      }, 4000)
+      return () => clearTimeout(timer)
+    }
+  }, [fishMessage])
 
   const filteredBooks =
     status === '/library'
       ? books.filter(book => book.finished === true)
       : books.filter(book => book.finished === false)
 
+  function handleSetFishMessage(message) {
+    setFishMessage(message)
+  }
+
   return (
     <Wrapper>
+      {fishMessage === 'Gotcha!' && (
+        <Message
+          image={klammerfischImage}
+          message={message}
+          alt-text="neue fische"
+        />
+      )}
       <TitleContainer data-testid="booklist-title">
-        {status && <TitleBookList username={username} />}
+        {status && (
+          <TitleBookList
+            username={username}
+            onHandleSetFishMessage={handleSetFishMessage}
+          />
+        )}
       </TitleContainer>
       <ul>
         {filteredBooks.map(book => (
