@@ -63,7 +63,6 @@ const TitleContainer = styled.section`
     display: flex;
     flex-direction: column;
     gap: 5px;
-    margin-bottom: 70px;
   }
 
   p {

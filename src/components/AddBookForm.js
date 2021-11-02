@@ -2,6 +2,7 @@ import styled from 'styled-components/macro'
 import { useState } from 'react'
 import previewPlaceholder from '../images/preview-placeholder.png'
 import getToday from '../utils/getToday'
+import formatDate from '../utils/formatDate'
 import handleAuthorsLength from '../utils/handleAuthorsLength'
 import placeholder from '../images/placeholder.png'
 import back from '../images/back-to.svg'
@@ -26,16 +27,22 @@ export default function AddBookForm({
         isFinished
           ? history.push('/library')
           : history.push('/currently-reading')
-      }, 5000)
+      }, 4000)
       return () => clearTimeout(timer)
     }
   }, [successMessage, history, isFinished])
 
-  function getBookcoverPreview(previewEvent) {
-    const image = previewEvent.target.files[0]
+  function getBookcoverPreview(event) {
+    const image = event.target.files[0]
     const reader = new FileReader()
     reader.onload = event => {
       setBookcover(event.target.result)
+      if (searchedBook) {
+        onHandleSetSearchedBook({
+          ...searchedBook,
+          thumbnail: event.target.result,
+        })
+      }
     }
     reader.readAsDataURL(image)
   }
@@ -48,8 +55,8 @@ export default function AddBookForm({
       title: title.value,
       authors: authors.value,
       finished: isFinished,
-      readingSince: isFinished ? '' : readingSince.value,
-      finishedOn: isFinished ? finishedOn.value : '',
+      readingSince: isFinished ? '' : formatDate(readingSince.value),
+      finishedOn: isFinished ? formatDate(finishedOn.value) : '',
       onPage: isFinished ? '' : onPage.value,
       thumbnail: searchedBook ? searchedBook.thumbnail : bookcover,
       isbn10: searchedBook ? searchedBook.isbn10 : '',
@@ -61,6 +68,7 @@ export default function AddBookForm({
       pages: searchedBook ? searchedBook.pages : '',
     })
     onHandleSetSuccessMessage('Success!')
+    setBookcover(placeholder)
     form.reset()
   }
 
@@ -70,9 +78,15 @@ export default function AddBookForm({
         <LinkBack to="/add-book">
           <img src={back} alt="back to start adding a new book" />
         </LinkBack>
-        <button type="reset" onClick={() => onHandleSetSearchedBook('')}>
+        <ResetButton
+          type="reset"
+          onClick={() => {
+            onHandleSetSearchedBook('')
+            setBookcover(placeholder)
+          }}
+        >
           <img src={reset} alt="reset" />
-        </button>
+        </ResetButton>
       </ActionContainer>
       <Wrapper>
         <MainContentContainer>
@@ -183,7 +197,7 @@ export default function AddBookForm({
             </button>
           </ReadingStatus>
         </OptionalContentContainer>
-        <button>Add book to list</button>
+        <SubmitButton>Add book to list</SubmitButton>
       </Wrapper>
     </Form>
   )
@@ -192,31 +206,24 @@ export default function AddBookForm({
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+  background-color: var(--bg-color-light);
 
   h2 {
-    font-family: 'Libre Baskerville', serif;
     padding-left: 0.5rem;
     margin-bottom: 1rem;
-  }
-
-  button {
-    background-color: #006a75;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 2.5rem;
   }
 `
 
 const Wrapper = styled.div`
-  background-color: #fff;
-  border-radius: 25px;
+  background-color: var(--bg-color-main);
+  border-radius: var(--border-radius-normal);
   box-shadow: var(--box-shadow);
   padding: 1rem 1rem 1.5rem;
 `
 
 const LinkBack = styled(Link)`
   flex: 1;
+  margin-left: 0.5rem;
 `
 
 const ActionContainer = styled.div`
@@ -224,28 +231,20 @@ const ActionContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: auto 1rem;
+`
 
-  button {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    height: 60px;
-    width: 60px;
-    border: none;
-    background-color: transparent;
-    border-radius: 50%;
-    box-shadow: none;
-    -webkit-box-shadow: none;
-  }
+const ResetButton = styled.button`
+  justify-content: flex-end;
+  height: 40px;
+  width: 40px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: none;
+  margin-right: 0.3rem;
 
-  button:focus {
-    width: 60px;
-  }
-
-  img {
-    width: 60px;
-    margin-left: 0.3rem;
+  &:focus {
+    height: 40px;
+    width: 40px;
   }
 `
 
@@ -276,7 +275,6 @@ const BookcoverContainer = styled.div`
 
   img {
     max-height: 120px;
-    max-width: 100%;
     position: relative;
     margin: 0 auto;
     border-radius: 5px;
@@ -318,4 +316,9 @@ const ReadingStatus = styled.div`
   button:focus {
     height: 40px;
   }
+`
+
+const SubmitButton = styled.button`
+  background-color: var(--button-bg-color-primary);
+  width: 100%;
 `

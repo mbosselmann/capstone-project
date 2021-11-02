@@ -34,12 +34,14 @@ describe('UpdatePage', () => {
   it('is called with new page number', () => {
     const mockOnHandleUpdateBookList = jest.fn()
     const mockOnHandleSetUpdatePage = jest.fn()
+    const mockOnHandleSetUpdateMessage = jest.fn()
 
     render(
       <UpdatePage
         book={book}
         onHandleUpdateBookList={mockOnHandleUpdateBookList}
         onHandleSetUpdatePage={mockOnHandleSetUpdatePage}
+        onHandleSetUpdateMessage={mockOnHandleSetUpdateMessage}
       />
     )
 

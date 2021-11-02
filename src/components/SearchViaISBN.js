@@ -8,17 +8,16 @@ import getBook from '../services/getBook'
 export default function SearchViaISBN({ onHandleSetSearchedBook }) {
   const [errorMessage, setErrorMessage] = useState('')
   const history = useHistory()
-  const message = `Oh no! The ISBN doesn't seem to exist. :(`
-  const text = 'Please try again or add your book manually below.'
+  const message = 'Something went wrong. :( Please try again!'
 
   useEffect(() => {
     if (errorMessage === 'ISBN error') {
       const timer = setTimeout(() => {
         setErrorMessage('')
-      }, 5000)
+      }, 4000)
       return () => clearTimeout(timer)
     }
-  }, [errorMessage, history])
+  }, [errorMessage])
 
   async function handleSubmit(event) {
     event.preventDefault()
@@ -37,7 +36,7 @@ export default function SearchViaISBN({ onHandleSetSearchedBook }) {
   return (
     <Wrapper>
       {errorMessage === 'ISBN error' && (
-        <Message image={error} message={message} text={text} alt-text="error" />
+        <Message image={error} message={message} alt-text="error" />
       )}
       <h2>Add a new book:</h2>
       <form onSubmit={handleSubmit}>
@@ -58,9 +57,9 @@ export default function SearchViaISBN({ onHandleSetSearchedBook }) {
       </form>
       <Divider />
       <div>
-        <p>
+        <Text>
           You don't have the ISBN at hand or want to enter the book manually?
-        </p>
+        </Text>
         <LinkToForm to="/add-book-form">Click here</LinkToForm>
       </div>
     </Wrapper>
@@ -72,8 +71,8 @@ const Wrapper = styled.div`
 
   h2 {
     padding: 3rem 1rem 1.5rem 1.6rem;
-    background-color: #504465;
-    color: #fff;
+    background-color: var(--bg-color-dark);
+    color: var(--font-color-light);
   }
 
   form {
@@ -85,18 +84,21 @@ const Wrapper = styled.div`
     margin: 0 0 0.5rem 0.6rem;
   }
 
-  p {
-    padding: 0 1rem;
-    font-size: 0.9rem;
-    margin: 0 0 0.5rem 0.6rem;
+  button {
+    background-color: var(--button-bg-color-primary);
   }
+`
+
+const Text = styled.p`
+  padding: 0 1rem;
+  margin: 0 0 0.5rem 0.6rem;
 `
 
 const Divider = styled.hr`
   margin: 2rem;
   border-radius: 5px;
-  background-color: #504465;
-  border: 0.1rem solid #504465;
+  background-color: var(--bg-color-dark);
+  border: 0.1rem solid var(--bg-color-dark);
 `
 
 const LinkToForm = styled(Link)`
@@ -104,12 +106,12 @@ const LinkToForm = styled(Link)`
   justify-content: center;
   align-items: center;
   margin: 0.7rem 1.2rem 0 1.2rem;
-  background-color: #504465;
-  color: #fff;
+  background-color: var(--link-color-dark);
+  color: var(--font-color-light);
   height: 2.5rem;
   font-size: 1.2rem;
-  font-weight: 600;
-  border-radius: 5px;
+  font-weight: var(--font-weight-bold);
+  border-radius: var(--border-radius-small);
   text-transform: uppercase;
   text-decoration: none;
   box-shadow: var(--box-shadow);

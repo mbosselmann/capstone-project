@@ -1,11 +1,10 @@
 import styled, { keyframes } from 'styled-components/macro'
 
-function Message({ image, altText, message, text }) {
+function Message({ image, altText, message }) {
   return (
     <Wrapper>
       <img src={image} alt={altText} />
-      <p>{message}</p>
-      <p>{text}</p>
+      <Text>{message}</Text>
     </Wrapper>
   )
 }
@@ -32,31 +31,36 @@ width: 100%;
 `
 
 const Wrapper = styled.div`
+  width: 100%;
   max-width: 600px;
   position: absolute;
   top: -300px;
-  animation-duration: 5s;
+  animation-duration: 4s;
   animation-name: ${animation};
   animation-iteration-count: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding: 0.5rem;
-  background-color: #fff;
-  color: #000;
+  background-color: var(--bg-color-main);
   height: 300px;
-  border-radius: 0 0 25px 25px;
+  border-radius: var(--border-radius-normal-bottom);
   box-shadow: var(--box-shadow);
   -webkit-box-shadow: var(--box-shadow);
   padding: 2rem;
   z-index: 100;
 
   img {
-    max-width: 70%;
+    max-width: 60%;
     align-self: center;
     margin: 1rem 0;
-    height: 100px;
   }
 `
-
+const Text = styled.p`
+  font-size: 1rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--font-color-dark);
+  margin-top: 1rem;
+`
 export default Message

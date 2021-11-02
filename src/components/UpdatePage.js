@@ -5,6 +5,7 @@ export default function UpdatePage({
   book,
   onHandleSetUpdatePage,
   onHandleUpdateBookList,
+  onHandleSetUpdateMessage,
 }) {
   function handleSubmit(event) {
     event.preventDefault()
@@ -16,6 +17,7 @@ export default function UpdatePage({
     }
     onHandleUpdateBookList(updatedPage)
     onHandleSetUpdatePage()
+    onHandleSetUpdateMessage('Updated!')
     form.reset()
   }
 
@@ -32,6 +34,7 @@ export default function UpdatePage({
           min="0"
           max={book.pages}
           required
+          autoFocus
         />
         <UpdateButton>Update</UpdateButton>
         <CancelButton type="button" onClick={onHandleSetUpdatePage}>
@@ -47,16 +50,14 @@ const Form = styled.form`
   top: 0;
   width: 100%;
   max-width: 600px;
-  margin-right: 0;
-  background-color: #fff;
   padding: 1rem 2rem 2rem;
-  border-radius: 0 0 25px 25px;
+  border-radius: var(--border-radius-normal-bottom);
   box-shadow: var(--box-shadow);
   -webkit-box-shadow: var(--box-shadow);
 
   label {
     font-size: 1.2rem;
-    font-weight: 600;
+    font-weight: var(--font-weight-bold);
     margin: 0.5rem 0;
   }
 
@@ -74,8 +75,8 @@ const Form = styled.form`
 `
 
 const UpdateButton = styled.button`
-  background-color: #006a75;
+  background-color: var(--button-bg-color-primary);
 `
 const CancelButton = styled.button`
-  background-color: #00252f;
+  background-color: var(--button-bg-color-secondary);
 `

@@ -1,6 +1,6 @@
 export default function getToday() {
   const date = new Date()
-  const today =
-    date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
-  return today
+  const dateString = date.toISOString()
+  console.log(dateString)
+  return dateString.slice(0, 10)
 }

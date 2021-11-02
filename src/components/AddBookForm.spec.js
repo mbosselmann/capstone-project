@@ -2,6 +2,7 @@ import { render, screen, act } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import AddBookForm from './AddBookForm'
 import getToday from '../utils/getToday'
+import formatDate from '../utils/formatDate'
 import placeholder from '../images/placeholder.png'
 import { Router } from 'react-router'
 import { createMemoryHistory } from 'history'
@@ -92,6 +93,10 @@ describe('AddBookForm', () => {
       type: 'image/png',
     })
 
+    const mockFileReader = jest
+      .spyOn(FileReader.prototype, 'readAsDataURL')
+      .mockImplementation(function () {})
+
     render(
       <Router history={history}>
         <AddBookForm />
@@ -100,7 +105,7 @@ describe('AddBookForm', () => {
 
     const inputElBookcover = screen.getByLabelText('Select')
     userEvent.upload(inputElBookcover, file)
-    expect(inputElBookcover.files[0]).toStrictEqual(file)
+    expect(mockFileReader).toHaveBeenCalledWith(file)
   })
 
   it('calls onCreateNewBook with values of form', () => {
@@ -132,7 +137,7 @@ describe('AddBookForm', () => {
     expect(mockOnHandleCreateNewBook).toHaveBeenCalledWith({
       title: 'Das Haus',
       authors: 'Marie Meier',
-      readingSince: getToday(),
+      readingSince: formatDate(getToday()),
       onPage: '10',
       thumbnail: placeholder,
       isbn10: '',

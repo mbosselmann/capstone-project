@@ -1,17 +1,35 @@
 import DropDownMenu from './DropDownMenu'
+import Message from './Message'
 import UpdatePage from './UpdatePage'
 import styled from 'styled-components/macro'
 import { Link, useParams, useHistory } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import back from '../images/back-to.svg'
+import success from '../images/success.svg'
 import setLocalStorage from '../lib/saveToLocal'
 import getToday from '../utils/getToday'
+import formatDate from '../utils/formatDate'
 
 function BookDetails({ books, onHandleSetBooks }) {
   const [updatePage, setUpdatePage] = useState(false)
+  const [updateMessage, setUpdateMessage] = useState('')
   const { id } = useParams()
   const history = useHistory()
   const book = books.find(book => book.id === id)
+  const message = 'Update was successful!'
+
+  useEffect(() => {
+    if (updateMessage === 'Updated!') {
+      const timer = setTimeout(() => {
+        setUpdateMessage('')
+      }, 4000)
+      return () => clearTimeout(timer)
+    }
+  }, [updateMessage])
+
+  function handleSetUpdateMessage(update) {
+    setUpdateMessage(update)
+  }
 
   function handleSetUpdatePage() {
     setUpdatePage(!updatePage)
@@ -28,8 +46,10 @@ function BookDetails({ books, onHandleSetBooks }) {
     const updatedBook = {
       ...book,
       finished: !book.finished,
-      readingSince: book.readingSince ? book.readingSince : getToday(),
-      finishedOn: book.finished ? book.finished : getToday(),
+      readingSince: book.readingSince
+        ? book.readingSince
+        : formatDate(getToday()),
+      finishedOn: book.finished ? '' : formatDate(getToday()),
     }
     handleUpdateBookList(updatedBook)
   }
@@ -47,12 +67,16 @@ function BookDetails({ books, onHandleSetBooks }) {
 
   return (
     <Article>
+      {updateMessage === 'Updated!' && (
+        <Message image={success} message={message} altText="success" />
+      )}
       {updatePage && (
         <UpdatePage
           book={book}
           onHandleSetBooks={onHandleSetBooks}
           onHandleSetUpdatePage={handleSetUpdatePage}
           onHandleUpdateBookList={handleUpdateBookList}
+          onHandleSetUpdateMessage={handleSetUpdateMessage}
         />
       )}
       <ActionContainer>
@@ -104,7 +128,7 @@ function BookDetails({ books, onHandleSetBooks }) {
             <p>
               <span>Description:</span>
             </p>
-            <DescriptionText>{book.description}</DescriptionText>
+            <p>{book.description}</p>
           </div>
         )}
       </InfoSection>
@@ -113,7 +137,7 @@ function BookDetails({ books, onHandleSetBooks }) {
 }
 
 const Article = styled.article`
-  background-color: #f6f6f6;
+  background-color: var(--bg-color-light);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -126,9 +150,9 @@ const ActionContainer = styled.div`
 `
 
 const InfoSection = styled.div`
-  background-color: #fff;
+  background-color: var(--bg-color-main);
   padding: 1.5rem;
-  border-radius: 25px 25px 0 0;
+  border-radius: var(--border-radius-normal-top);
   box-shadow: var(--box-shadow);
   -webkit-box-shadow: var(--box-shadow);
   flex-grow: 1;
@@ -143,7 +167,7 @@ const InfoSection = styled.div`
   }
 
   span {
-    font-weight: 600;
+    font-weight: var(--font-weight-bold);
   }
 `
 
@@ -165,13 +189,6 @@ const TitleSection = styled.div`
   p {
     margin-bottom: 1rem;
   }
-`
-
-const DescriptionText = styled.p`
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-line-clamp: 10;
-  -webkit-box-orient: vertical;
 `
 
 export default BookDetails
