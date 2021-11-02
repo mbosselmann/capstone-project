@@ -106,7 +106,7 @@ const MenuButton = styled.button`
   height: 50px;
   margin-right: 0.2rem;
   border: none;
-  background-color: #fff;
+  background-color: var(--bg-color-main);
   border-radius: 50%;
   box-shadow: var(--box-shadow);
   -webkit-box-shadow: var(--box-shadow);

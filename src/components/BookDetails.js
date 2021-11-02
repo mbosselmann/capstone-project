@@ -153,7 +153,7 @@ const BackLink = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
+  background-color: var(--bg-color-main);
   width: 50px;
   height: 50px;
   border-radius: 50%;

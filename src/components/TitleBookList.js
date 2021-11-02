@@ -81,7 +81,7 @@ const TitleContainer = styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #003a45;
+    background-color: #00252f;
     width: 50px;
     height: 50px;
     border-radius: 50%;

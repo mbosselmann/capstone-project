@@ -226,7 +226,7 @@ const BackLink = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
+  background-color: var(--bg-color-main);
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -247,17 +247,16 @@ const ActionContainer = styled.div`
 `
 
 const ResetButton = styled.button`
-  margin-left: 0.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
+  background-color: var(--bg-color-main);
   width: 50px;
   height: 50px;
   border-radius: 50%;
   box-shadow: var(--box-shadow);
   -webkit-box-shadow: var(--box-shadow);
-  margin: 0.5rem 0 1rem 0.5rem;
+  margin: 0.5rem 0.5rem 1rem 0.5rem;
 
   img {
     margin-right: 0.2rem;
