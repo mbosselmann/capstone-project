@@ -21,9 +21,9 @@ BookCurrentlyRead.args = {
   bookCover: placeholder,
   title: 'Harry Potter and the Goblet of Fire',
   authors: ['J. K. Rowling'],
-  finished: false,
-  readingStatusDate: '05/2021',
-  finishedSince: '',
+  readingStatus: false,
+  readingStatusDate: '01.05.2021',
+  finishedOn: '',
 }
 
 export const BookAlreadyRead = Template.bind({})
@@ -32,7 +32,7 @@ BookAlreadyRead.args = {
   bookCover: placeholder,
   title: 'Cathedral of the Sea',
   authors: ['Ildefonso Falcones de Sierra'],
-  finished: true,
-  readingStatusDate: '05/2021',
-  finishedSince: '08/2021',
+  readingStatus: true,
+  readingStatusDate: '01.05.2021',
+  finishedOn: '01.08.2021',
 }

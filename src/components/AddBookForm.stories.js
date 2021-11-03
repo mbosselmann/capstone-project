@@ -11,4 +11,6 @@ export const Form = Template.bind({})
 Form.args = {
   onHandleCreateNewBook: action(book => console.log(book)),
   onGetBookCoverPreview: action(image => console.log(image)),
+  onHandleSetSearchedBook: action(book => console.log(book)),
+  onHandleSetSuccessMessage: action(message => console.log(message)),
 }
