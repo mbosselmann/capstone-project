@@ -14,8 +14,6 @@ ErrorMessage.args = {
   image: error,
   altText: 'error',
   message: "Oh no! The ISBN doesn't seem to exist. :-(",
-  text:
-    'Please try again or use the possibility to add your book manually below.',
 }
 
 export const SuccessMessage = Template.bind({})
@@ -23,5 +21,11 @@ SuccessMessage.args = {
   image: success,
   altText: 'success',
   message: 'Yay! The book was successfully added to your book list. :-)',
-  text: 'You will shortly be redirected to your currently reading page.',
+}
+
+export const UpdateMessage = Template.bind({})
+UpdateMessage.args = {
+  image: success,
+  altText: 'success',
+  message: 'Updated!',
 }
