@@ -10,12 +10,31 @@ import setLocalStorage from './lib/saveToLocal'
 import { nanoid } from 'nanoid'
 import { Route, Switch, Redirect, useLocation } from 'react-router-dom'
 import { useState } from 'react'
+import klammerfisch from './klammerfisch.json'
+import klammerfischImage from './images/klammerfisch.jpg'
 
 function App() {
   const [username, setUsername] = useState(getLocalStorage('user') ?? '')
   const [books, setBooks] = useState(getLocalStorage('books') ?? [])
   const [searchedBook, setSearchedBook] = useState('')
   const { pathname } = useLocation()
+
+  function handleEasterEgg(user) {
+    if (user.includes('<><')) {
+      const fisch = {
+        ...klammerfisch,
+        thumbnail: klammerfischImage,
+        id: nanoid(),
+        key: klammerfisch.id,
+      }
+      const newBooks = [fisch, ...books]
+      setBooks(newBooks)
+      setLocalStorage('books', newBooks)
+      setLocalStorage('user', user.replace('<><', ''))
+      setLocalStorage('fish', '<><')
+      setUsername(user.replace('<><', ''))
+    }
+  }
 
   function handleSetUsername(name) {
     setUsername(name)
@@ -43,7 +62,10 @@ function App() {
     if (pathname === '/') {
       return (
         <AppContainer>
-          <HomeScreen onHandleSetUsername={handleSetUsername} />
+          <HomeScreen
+            onHandleSetUsername={handleSetUsername}
+            onHandleEasterEgg={handleEasterEgg}
+          />
         </AppContainer>
       )
     } else {
@@ -54,7 +76,10 @@ function App() {
       <AppContainer>
         <Switch>
           <Route exact path="/">
-            <HomeScreen onHandleSetUsername={handleSetUsername} />
+            <HomeScreen
+              onHandleSetUsername={handleSetUsername}
+              onHandleEasterEgg={handleEasterEgg}
+            />
           </Route>
           <Main>
             <Route exact path={['/currently-reading', '/library']}>

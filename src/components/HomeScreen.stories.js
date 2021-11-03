@@ -10,5 +10,6 @@ const Template = args => <HomeScreen {...args} />
 
 export const Welcome = Template.bind({})
 Welcome.args = {
-  setUsername: action(user => console.log(user)),
+  onHandleSetUsername: action(user => console.log(user)),
+  onHandleEasterEgg: action(egg => console.log(egg)),
 }

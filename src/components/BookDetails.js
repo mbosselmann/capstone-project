@@ -4,7 +4,7 @@ import UpdatePage from './UpdatePage'
 import styled from 'styled-components/macro'
 import { Link, useParams, useHistory } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import back from '../images/back-to.svg'
+import back from '../images/arrow.svg'
 import success from '../images/success.svg'
 import setLocalStorage from '../lib/saveToLocal'
 import getToday from '../utils/getToday'
@@ -81,13 +81,13 @@ function BookDetails({ books, onHandleSetBooks }) {
       )}
       <ActionContainer>
         {book.finished ? (
-          <Link to="/library">
+          <BackLink to="/library">
             <img src={back} alt="back to book list of finished books" />
-          </Link>
+          </BackLink>
         ) : (
-          <Link to="/currently-reading">
+          <BackLink to="/currently-reading">
             <img src={back} alt="back to book list of currently read books" />
-          </Link>
+          </BackLink>
         )}
         <DropDownMenu
           book={book}
@@ -147,6 +147,23 @@ const ActionContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0.4rem;
+`
+
+const BackLink = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-color-main);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: var(--box-shadow);
+  -webkit-box-shadow: var(--box-shadow);
+  margin-left: 0.5rem;
+
+  img {
+    width: 24px;
+  }
 `
 
 const InfoSection = styled.div`

@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 import setLocalStorage from '../lib/saveToLocal'
 import { useHistory } from 'react-router'
 
-function Start({ onHandleSetUsername }) {
+function Start({ onHandleSetUsername, onHandleEasterEgg }) {
   const history = useHistory()
 
   function handleSubmit(startEvent) {
@@ -12,6 +12,7 @@ function Start({ onHandleSetUsername }) {
     const { username } = form.elements
     setLocalStorage('user', username.value)
     onHandleSetUsername(username.value)
+    onHandleEasterEgg(username.value)
     history.push('/currently-reading')
   }
 
