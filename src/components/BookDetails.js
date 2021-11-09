@@ -112,7 +112,7 @@ function BookDetails({ books, onHandleSetBooks }) {
         <p>
           <span>Pages:</span> {book.pages ? book.pages : 'Unknown'}
         </p>
-        {!book.finished && (
+        {!book.finished ? (
           <>
             <p>
               <span>Reading since:</span> {book.readingSince}
@@ -122,6 +122,10 @@ function BookDetails({ books, onHandleSetBooks }) {
               {book.pages ? book.pages : 'Unknown'}
             </p>
           </>
+        ) : (
+          <p>
+            <span>Finished on:</span> {book.finishedOn}
+          </p>
         )}
         {book.description && (
           <div>
