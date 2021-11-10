@@ -6,7 +6,7 @@ Readaholic makes it easy to keep track of the books you are reading. Add your bo
 
 ## Demo:
 
-You can find the hosted version on Vercel: [Demo Version of Capstone Project](https://capstone-project-khaki.vercel.app/)
+You can find the hosted version on Vercel: [Demo Version of Capstone Project](https://capstone-project-readaholic.vercel.app/)
 
 **Important:** This demo is optimized for mobile screen.
 
